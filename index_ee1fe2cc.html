@@ -1,0 +1,3304 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>每日海龟汤挑战 - 每天一道推理谜题</title>
+<meta name="description" content="每日海龟汤挑战 - 经典横向思维推理游戏。每天一道谜题，通过提问推理出隐藏的真相。挑战你的逻辑思维！">
+<meta name="keywords" content="海龟汤,lateral thinking,推理游戏,每日挑战,脑筋急转弯,解谜">
+<meta name="theme-color" content="#040b14">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta property="og:title" content="每日海龟汤挑战">
+<meta property="og:description" content="每天一道推理谜题，通过提问推理出隐藏的真相。你能用最少的问题解开谜底吗？">
+<meta property="og:type" content="website">
+<meta property="og:image" content="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🐢</text></svg>">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🐢</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700;900&family=ZCOOL+KuaiLe&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+/* === SKELETON — sections filled via Edit === */
+
+/* RESET & BASE */
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg-deep:#040b14;
+  --bg-card:rgba(8,22,40,0.72);
+  --bg-glass:rgba(12,32,58,0.55);
+  --border-glass:rgba(56,189,248,0.12);
+  --teal:#0ea5e9;
+  --teal-dim:#0c4a6e;
+  --amber:#f59e0b;
+  --amber-glow:#fbbf24;
+  --gold:#d4a017;
+  --green:#22c55e;
+  --red:#ef4444;
+  --gray:#94a3b8;
+  --text:#e2e8f0;
+  --text-dim:#64748b;
+  --font-display:'ZCOOL KuaiLe','Noto Serif SC',serif;
+  --font-serif:'Noto Serif SC',serif;
+  --font-body:'Noto Sans SC',sans-serif;
+  --radius:16px;
+  --radius-sm:10px;
+}
+html{font-size:16px;scroll-behavior:smooth}
+body{
+  font-family:var(--font-body);
+  background:var(--bg-deep);
+  color:var(--text);
+  min-height:100vh;
+  overflow-x:hidden;
+  position:relative;
+}
+
+/* CANVAS BG */
+#bg-canvas{position:fixed;inset:0;z-index:0;pointer-events:none}
+#confetti-canvas{position:fixed;inset:0;z-index:9999;pointer-events:none}
+
+/* LAYOUT */
+#app-header{position:sticky;top:0;z-index:100;backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);background:rgba(4,11,20,0.82);border-bottom:1px solid var(--border-glass);padding:0 24px;height:64px;display:flex;align-items:center;justify-content:space-between}
+#app-nav{position:sticky;top:64px;z-index:99;backdrop-filter:blur(16px);background:rgba(4,11,20,0.7);border-bottom:1px solid var(--border-glass);padding:8px 24px;display:flex;gap:4px;overflow-x:auto;scrollbar-width:none}
+#app-nav::-webkit-scrollbar{display:none}
+#app-main{position:relative;z-index:1;max-width:800px;margin:0 auto;padding:24px 16px 120px}
+.view{display:none;animation:viewIn .4s ease}
+.view.active{display:block}
+@keyframes viewIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+
+/* HEADER */
+.header-brand{display:flex;align-items:center;gap:12px}
+.header-logo{font-family:var(--font-display);font-size:1.5rem;color:var(--amber);text-shadow:0 0 24px rgba(245,158,11,0.3)}
+.header-day{font-size:.8rem;color:var(--text-dim);background:var(--bg-glass);border:1px solid var(--border-glass);padding:4px 12px;border-radius:20px}
+.header-timer{font-family:'Courier New',monospace;font-size:1rem;color:var(--teal);letter-spacing:2px;background:var(--bg-glass);border:1px solid var(--border-glass);padding:6px 14px;border-radius:var(--radius-sm)}
+
+/* NAV */
+.nav-btn{font-family:var(--font-body);font-size:.85rem;padding:8px 18px;border-radius:24px;border:1px solid transparent;background:transparent;color:var(--text-dim);cursor:pointer;transition:all .3s;white-space:nowrap}
+.nav-btn:hover{color:var(--text);background:var(--bg-glass)}
+.nav-btn.active{color:var(--amber);background:rgba(245,158,11,0.1);border-color:rgba(245,158,11,0.25)}
+
+/* CARDS & GLASS */
+.glass-card{background:var(--bg-card);backdrop-filter:blur(12px);border:1px solid var(--border-glass);border-radius:var(--radius);padding:24px;margin-bottom:20px;transition:transform .25s,box-shadow .25s}
+.glass-card:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(0,0,0,0.3)}
+.glass-card-sm{background:var(--bg-glass);border:1px solid var(--border-glass);border-radius:var(--radius-sm);padding:16px;transition:all .25s}
+
+/* PUZZLE CARD */
+.puzzle-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:16px}
+.puzzle-title{font-family:var(--font-serif);font-size:1.4rem;font-weight:700;color:var(--amber-glow)}
+.puzzle-difficulty{display:flex;gap:3px}
+.puzzle-difficulty .star{color:var(--text-dim);font-size:.9rem}
+.puzzle-difficulty .star.filled{color:var(--amber)}
+.puzzle-scenario{position:relative;padding:20px 24px;background:linear-gradient(135deg,rgba(14,165,233,0.06),rgba(245,158,11,0.06));border-left:3px solid var(--amber);border-radius:0 var(--radius-sm) var(--radius-sm) 0;font-family:var(--font-serif);font-size:1.05rem;line-height:1.85;color:var(--text);margin-bottom:8px}
+.puzzle-scenario::before{content:'\201C';position:absolute;top:-8px;left:8px;font-size:3rem;color:var(--amber);opacity:.3;font-family:serif}
+.puzzle-meta{display:flex;gap:16px;font-size:.8rem;color:var(--text-dim);margin-top:12px}
+
+/* CHAT AREA */
+.chat-container{max-height:420px;overflow-y:auto;padding:4px;margin-bottom:16px;scrollbar-width:thin;scrollbar-color:var(--teal-dim) transparent}
+.chat-container::-webkit-scrollbar{width:4px}
+.chat-container::-webkit-scrollbar-thumb{background:var(--teal-dim);border-radius:4px}
+.chat-empty{text-align:center;padding:48px 16px;color:var(--text-dim)}
+.chat-empty-icon{font-size:2.5rem;margin-bottom:12px;opacity:.5}
+.chat-empty-text{font-size:.9rem}
+.chat-msg{display:flex;gap:12px;padding:12px 0;animation:msgIn .35s ease}
+.chat-msg+.chat-msg{border-top:1px solid rgba(56,189,248,0.06)}
+@keyframes msgIn{from{opacity:0;transform:translateX(-12px)}to{opacity:1;transform:translateX(0)}}
+.chat-msg-q{font-size:.95rem;color:var(--text);flex:1}
+.chat-msg-q .q-label{font-size:.7rem;color:var(--teal);text-transform:uppercase;letter-spacing:1px;margin-bottom:4px}
+.chat-badge{display:inline-flex;align-items:center;gap:4px;padding:4px 14px;border-radius:20px;font-size:.85rem;font-weight:500;white-space:nowrap;flex-shrink:0;align-self:center}
+.badge-yes{background:rgba(34,197,94,0.15);color:var(--green);border:1px solid rgba(34,197,94,0.3)}
+.badge-no{background:rgba(239,68,68,0.15);color:var(--red);border:1px solid rgba(239,68,68,0.3)}
+.badge-irrelevant{background:rgba(148,163,184,0.12);color:var(--gray);border:1px solid rgba(148,163,184,0.2)}
+.chat-typing{display:flex;align-items:center;gap:8px;padding:12px 0;color:var(--text-dim);font-size:.85rem}
+.typing-dots{display:flex;gap:4px}
+.typing-dots span{width:6px;height:6px;border-radius:50%;background:var(--teal);animation:typingBounce .6s ease infinite}
+.typing-dots span:nth-child(2){animation-delay:.15s}
+.typing-dots span:nth-child(3){animation-delay:.3s}
+@keyframes typingBounce{0%,100%{opacity:.3;transform:translateY(0)}50%{opacity:1;transform:translateY(-4px)}}
+
+/* INPUT AREA */
+.input-area{display:flex;gap:8px;align-items:center}
+.input-field{flex:1;font-family:var(--font-body);font-size:.95rem;padding:12px 18px;background:var(--bg-glass);border:1px solid var(--border-glass);border-radius:28px;color:var(--text);outline:none;transition:border-color .3s,box-shadow .3s}
+.input-field::placeholder{color:var(--text-dim)}
+.input-field:focus{border-color:var(--teal);box-shadow:0 0 0 3px rgba(14,165,233,0.15)}
+.btn{font-family:var(--font-body);font-size:.9rem;padding:10px 20px;border-radius:24px;border:none;cursor:pointer;transition:all .25s;font-weight:500}
+.btn-primary{background:linear-gradient(135deg,var(--teal),#0284c7);color:#fff;box-shadow:0 4px 16px rgba(14,165,233,0.25)}
+.btn-primary:hover{transform:translateY(-1px);box-shadow:0 6px 24px rgba(14,165,233,0.35)}
+.btn-primary:active{transform:translateY(0)}
+.btn-amber{background:linear-gradient(135deg,var(--amber),var(--gold));color:#1a1a2e;box-shadow:0 4px 16px rgba(245,158,11,0.25)}
+.btn-amber:hover{transform:translateY(-1px);box-shadow:0 6px 24px rgba(245,158,11,0.35)}
+.btn-ghost{background:transparent;border:1px solid var(--border-glass);color:var(--text-dim)}
+.btn-ghost:hover{border-color:var(--teal);color:var(--text)}
+.btn-sm{padding:6px 14px;font-size:.8rem}
+.btn-danger{background:rgba(239,68,68,0.15);color:var(--red);border:1px solid rgba(239,68,68,0.3)}
+.btn-danger:hover{background:rgba(239,68,68,0.25)}
+.btn-success{background:rgba(34,197,94,0.15);color:var(--green);border:1px solid rgba(34,197,94,0.3)}
+.btn-success:hover{background:rgba(34,197,94,0.25)}
+.game-actions{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}
+
+/* HINTS */
+.hints-row{display:flex;gap:10px;margin-top:16px;flex-wrap:wrap}
+.hint-card{flex:1;min-width:140px;padding:14px;background:var(--bg-glass);border:1px solid var(--border-glass);border-radius:var(--radius-sm);cursor:pointer;transition:all .3s;text-align:center;position:relative;overflow:hidden}
+.hint-card.locked::before{content:'';position:absolute;inset:0;background:rgba(4,11,20,0.6);backdrop-filter:blur(4px);z-index:1}
+.hint-card.locked::after{content:'🔒';position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:1.3rem;z-index:2}
+.hint-card.locked:hover{border-color:var(--amber);transform:translateY(-2px)}
+.hint-card.revealed{border-color:rgba(245,158,11,0.3);background:rgba(245,158,11,0.05)}
+.hint-label{font-size:.7rem;color:var(--text-dim);margin-bottom:6px;position:relative;z-index:3}
+.hint-text{font-size:.85rem;color:var(--text);font-family:var(--font-serif)}
+.hint-cost{font-size:.7rem;color:var(--amber);margin-top:6px}
+
+/* QUESTION COUNT */
+.q-count{text-align:center;font-size:.8rem;color:var(--text-dim);padding:8px 0;border-top:1px solid var(--border-glass);margin-top:8px}
+
+/* MODAL */
+.modal-overlay{position:fixed;inset:0;z-index:1000;background:rgba(4,11,20,0.85);backdrop-filter:blur(8px);display:none;align-items:center;justify-content:center;padding:24px;animation:fadeIn .3s}
+.modal-overlay.open{display:flex}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+.modal-content{background:var(--bg-card);border:1px solid var(--border-glass);border-radius:var(--radius);padding:32px;max-width:520px;width:100%;animation:modalIn .35s ease;max-height:90vh;overflow-y:auto}
+@keyframes modalIn{from{opacity:0;transform:scale(.92) translateY(16px)}to{opacity:1;transform:scale(1) translateY(0)}}
+.modal-title{font-family:var(--font-serif);font-size:1.3rem;color:var(--amber-glow);margin-bottom:20px}
+.modal-close{position:absolute;top:16px;right:16px;background:none;border:none;color:var(--text-dim);font-size:1.2rem;cursor:pointer}
+
+/* PROGRESS RING */
+.progress-ring-wrap{display:flex;flex-direction:column;align-items:center;margin:24px 0}
+.progress-ring{width:160px;height:160px;position:relative}
+.progress-ring svg{transform:rotate(-90deg)}
+.progress-ring circle{fill:none;stroke-width:8}
+.progress-ring .ring-bg{stroke:var(--bg-glass)}
+.progress-ring .ring-fg{stroke:var(--teal);stroke-linecap:round;transition:stroke-dashoffset 1.2s ease,stroke .5s}
+.progress-ring .ring-fg.high{stroke:var(--green)}
+.progress-ring .ring-fg.mid{stroke:var(--amber)}
+.progress-ring .ring-fg.low{stroke:var(--red)}
+.progress-ring-value{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.progress-ring-pct{font-family:var(--font-display);font-size:2.2rem;color:var(--text)}
+.progress-ring-label{font-size:.8rem;color:var(--text-dim)}
+.similarity-msg{text-align:center;font-size:.95rem;margin-top:12px;color:var(--text-dim)}
+.similarity-msg.success{color:var(--green)}
+
+/* TEXTAREA */
+.textarea-field{width:100%;font-family:var(--font-body);font-size:.95rem;padding:14px 18px;background:var(--bg-glass);border:1px solid var(--border-glass);border-radius:var(--radius-sm);color:var(--text);outline:none;resize:vertical;min-height:100px;transition:border-color .3s}
+.textarea-field:focus{border-color:var(--teal)}
+
+/* LEADERBOARD */
+.lb-tabs{display:flex;gap:4px;margin-bottom:20px;flex-wrap:wrap}
+.lb-tab{padding:8px 16px;border-radius:20px;font-size:.82rem;border:1px solid var(--border-glass);background:transparent;color:var(--text-dim);cursor:pointer;transition:all .3s;font-family:var(--font-body)}
+.lb-tab.active{background:rgba(245,158,11,0.1);color:var(--amber);border-color:rgba(245,158,11,0.25)}
+.lb-entry{display:flex;align-items:center;gap:14px;padding:14px 16px;border-radius:var(--radius-sm);background:var(--bg-glass);border:1px solid var(--border-glass);margin-bottom:8px;transition:all .3s}
+.lb-entry:hover{border-color:var(--teal);transform:translateX(4px)}
+.lb-rank{font-family:var(--font-display);font-size:1.3rem;width:36px;text-align:center;flex-shrink:0}
+.lb-rank.gold{color:var(--amber-glow)}
+.lb-rank.silver{color:#c0c0c0}
+.lb-rank.bronze{color:#cd7f32}
+.lb-avatar{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--teal-dim),var(--teal));display:flex;align-items:center;justify-content:center;font-size:.85rem;color:#fff;flex-shrink:0}
+.lb-info{flex:1}
+.lb-name{font-size:.9rem;font-weight:500}
+.lb-stat{font-size:.75rem;color:var(--text-dim)}
+.lb-score{font-family:var(--font-display);font-size:1.1rem;color:var(--amber)}
+
+/* ARCHIVE */
+.archive-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px}
+.archive-card{padding:18px;background:var(--bg-glass);border:1px solid var(--border-glass);border-radius:var(--radius-sm);cursor:pointer;transition:all .3s;position:relative;overflow:hidden}
+.archive-card:hover{border-color:var(--teal);transform:translateY(-3px);box-shadow:0 8px 24px rgba(0,0,0,0.3)}
+.archive-day{font-size:.7rem;color:var(--teal);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px}
+.archive-title{font-family:var(--font-serif);font-size:1rem;color:var(--text);margin-bottom:8px}
+.archive-meta{display:flex;justify-content:space-between;align-items:center;font-size:.75rem;color:var(--text-dim)}
+.archive-status{padding:2px 10px;border-radius:12px;font-size:.7rem}
+.archive-status.solved{background:rgba(34,197,94,0.15);color:var(--green);border:1px solid rgba(34,197,94,0.2)}
+.archive-status.unsolved{background:rgba(148,163,184,0.1);color:var(--gray);border:1px solid rgba(148,163,184,0.15)}
+
+/* SUBMIT FORM */
+.form-group{margin-bottom:18px}
+.form-label{display:block;font-size:.85rem;color:var(--text-dim);margin-bottom:6px;font-weight:500}
+.form-label .required{color:var(--red)}
+.preview-card{background:rgba(245,158,11,0.04);border:1px dashed rgba(245,158,11,0.25);border-radius:var(--radius-sm);padding:20px;margin:20px 0}
+.preview-label{font-size:.7rem;color:var(--amber);text-transform:uppercase;letter-spacing:1px;margin-bottom:12px}
+
+/* ADMIN */
+.admin-gate{text-align:center;padding:60px 20px}
+.admin-gate-title{font-family:var(--font-serif);font-size:1.5rem;color:var(--amber);margin-bottom:8px}
+.admin-gate-desc{color:var(--text-dim);font-size:.9rem;margin-bottom:24px}
+.admin-input-row{display:flex;gap:8px;justify-content:center;max-width:320px;margin:0 auto}
+.admin-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin-bottom:24px}
+.admin-stat-card{text-align:center;padding:18px;background:var(--bg-glass);border:1px solid var(--border-glass);border-radius:var(--radius-sm)}
+.admin-stat-num{font-family:var(--font-display);font-size:1.8rem;color:var(--teal)}
+.admin-stat-label{font-size:.75rem;color:var(--text-dim);margin-top:4px}
+.admin-section{margin-bottom:28px}
+.admin-section-title{font-family:var(--font-serif);font-size:1.1rem;color:var(--amber);margin-bottom:14px;padding-bottom:8px;border-bottom:1px solid var(--border-glass)}
+.admin-item{display:flex;gap:12px;align-items:flex-start;padding:14px;background:var(--bg-glass);border:1px solid var(--border-glass);border-radius:var(--radius-sm);margin-bottom:8px}
+.admin-item-body{flex:1}
+.admin-item-title{font-size:.9rem;font-weight:500;margin-bottom:4px}
+.admin-item-desc{font-size:.8rem;color:var(--text-dim)}
+.admin-item-actions{display:flex;gap:6px;flex-shrink:0}
+
+/* TOAST */
+#toast-container{position:fixed;top:80px;right:20px;z-index:10000;display:flex;flex-direction:column;gap:8px}
+.toast{padding:12px 20px;border-radius:var(--radius-sm);background:var(--bg-card);border:1px solid var(--border-glass);backdrop-filter:blur(12px);font-size:.85rem;animation:toastIn .35s ease,toastOut .35s ease forwards;animation-delay:0s,2.8s;max-width:320px;box-shadow:0 8px 32px rgba(0,0,0,0.4)}
+.toast-success{border-color:rgba(34,197,94,0.3);color:var(--green)}
+.toast-error{border-color:rgba(239,68,68,0.3);color:var(--red)}
+.toast-info{border-color:rgba(14,165,233,0.3);color:var(--teal)}
+@keyframes toastIn{from{opacity:0;transform:translateX(40px)}to{opacity:1;transform:translateX(0)}}
+@keyframes toastOut{from{opacity:1}to{opacity:0;transform:translateX(40px)}}
+
+/* SECTION HEADERS */
+.section-header{margin-bottom:24px}
+.section-title{font-family:var(--font-serif);font-size:1.4rem;color:var(--text)}
+.section-desc{font-size:.85rem;color:var(--text-dim);margin-top:4px}
+
+/* SOLVED BANNER */
+.solved-banner{text-align:center;padding:24px;background:linear-gradient(135deg,rgba(34,197,94,0.08),rgba(245,158,11,0.08));border:1px solid rgba(34,197,94,0.2);border-radius:var(--radius);margin-bottom:20px}
+.solved-banner-icon{font-size:2.5rem;margin-bottom:8px}
+.solved-banner-text{font-family:var(--font-serif);font-size:1.1rem;color:var(--green)}
+.solved-banner-truth{font-size:.9rem;color:var(--text-dim);margin-top:8px;font-family:var(--font-serif);line-height:1.7}
+
+/* MISC */
+.divider{height:1px;background:var(--border-glass);margin:20px 0}
+.text-center{text-align:center}
+.mt-8{margin-top:8px}
+.mt-16{margin-top:16px}
+.mb-8{margin-bottom:8px}
+
+/* RESPONSIVE */
+@media(max-width:600px){
+  #app-header{padding:0 14px;height:56px}
+  .header-logo{font-size:1.2rem}
+  #app-main{padding:16px 12px 100px}
+  .glass-card{padding:18px}
+  .puzzle-title{font-size:1.15rem}
+  .puzzle-scenario{padding:16px 18px;font-size:.95rem}
+  .archive-grid{grid-template-columns:1fr}
+  .modal-content{padding:24px 18px}
+  .hints-row{flex-direction:column}
+  .lb-entry{padding:10px 12px}
+  .admin-stats{grid-template-columns:1fr 1fr}
+  .welcome-content{padding:24px 18px}
+  .streak-bar{flex-direction:column;gap:8px}
+  .share-card{padding:20px}
+  .achievement-grid{grid-template-columns:1fr 1fr}
+  .footer-inner{flex-direction:column;text-align:center;gap:12px}
+}
+
+/* WELCOME MODAL */
+.welcome-overlay{position:fixed;inset:0;z-index:2000;background:rgba(4,11,20,0.92);backdrop-filter:blur(12px);display:flex;align-items:center;justify-content:center;padding:24px;animation:fadeIn .5s ease}
+.welcome-content{background:var(--bg-card);border:1px solid var(--border-glass);border-radius:var(--radius);padding:40px 32px;max-width:480px;width:100%;text-align:center;animation:modalIn .5s ease}
+.welcome-turtle{font-size:4rem;margin-bottom:16px;animation:turtleBob 2s ease-in-out infinite}
+@keyframes turtleBob{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+.welcome-title{font-family:var(--font-display);font-size:1.8rem;color:var(--amber-glow);margin-bottom:8px}
+.welcome-subtitle{color:var(--text-dim);font-size:.9rem;margin-bottom:24px;line-height:1.6}
+.welcome-name-input{width:100%;font-family:var(--font-body);font-size:1rem;padding:14px 20px;background:var(--bg-glass);border:1px solid var(--border-glass);border-radius:var(--radius-sm);color:var(--text);outline:none;text-align:center;margin-bottom:16px;transition:border-color .3s}
+.welcome-name-input:focus{border-color:var(--amber)}
+.welcome-name-input::placeholder{color:var(--text-dim)}
+.welcome-rules{text-align:left;background:var(--bg-glass);border-radius:var(--radius-sm);padding:16px;margin-bottom:20px}
+.welcome-rule{display:flex;gap:10px;align-items:flex-start;padding:6px 0;font-size:.85rem;color:var(--text-dim)}
+.welcome-rule-num{width:22px;height:22px;border-radius:50%;background:var(--teal);color:#fff;display:flex;align-items:center;justify-content:center;font-size:.7rem;flex-shrink:0;font-weight:700}
+
+/* STREAK BAR */
+.streak-bar{display:flex;align-items:center;justify-content:center;gap:16px;padding:12px 16px;background:var(--bg-glass);border:1px solid var(--border-glass);border-radius:var(--radius-sm);margin-bottom:16px}
+.streak-item{display:flex;align-items:center;gap:6px;font-size:.82rem;color:var(--text-dim)}
+.streak-item .streak-val{font-family:var(--font-display);font-size:1.1rem;color:var(--amber)}
+
+/* ACHIEVEMENTS */
+.achievement-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:10px;margin-top:16px}
+.achievement-card{padding:14px;background:var(--bg-glass);border:1px solid var(--border-glass);border-radius:var(--radius-sm);text-align:center;transition:all .3s;position:relative}
+.achievement-card.unlocked{border-color:rgba(245,158,11,0.3);background:rgba(245,158,11,0.05)}
+.achievement-card.locked{opacity:.45}
+.achievement-icon{font-size:1.8rem;margin-bottom:6px}
+.achievement-name{font-size:.8rem;font-weight:500;color:var(--text);margin-bottom:2px}
+.achievement-desc{font-size:.7rem;color:var(--text-dim)}
+.achievement-badge{position:absolute;top:6px;right:6px;width:16px;height:16px;border-radius:50%;background:var(--green);display:flex;align-items:center;justify-content:center;font-size:.6rem;color:#fff}
+
+/* SHARE CARD */
+.share-card{background:linear-gradient(135deg,#0a1628,#0c2340);border:1px solid var(--border-glass);border-radius:var(--radius);padding:28px;text-align:center;margin:16px 0}
+.share-card-title{font-family:var(--font-display);font-size:1.3rem;color:var(--amber-glow);margin-bottom:4px}
+.share-card-puzzle{font-family:var(--font-serif);font-size:.9rem;color:var(--text-dim);margin-bottom:16px}
+.share-card-stats{display:flex;justify-content:center;gap:24px;margin-bottom:16px}
+.share-stat{text-align:center}
+.share-stat-val{font-family:var(--font-display);font-size:1.4rem;color:var(--teal)}
+.share-stat-label{font-size:.7rem;color:var(--text-dim)}
+.share-card-grid{display:flex;justify-content:center;gap:4px;margin-bottom:16px;flex-wrap:wrap}
+.share-block{width:28px;height:28px;border-radius:4px;font-size:.7rem;display:flex;align-items:center;justify-content:center}
+.share-block.yes{background:rgba(34,197,94,0.25);color:var(--green)}
+.share-block.no{background:rgba(239,68,68,0.25);color:var(--red)}
+.share-block.irr{background:rgba(148,163,184,0.15);color:var(--gray)}
+.share-btns{display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
+
+/* CUSTOM CONFIRM DIALOG */
+.confirm-overlay{position:fixed;inset:0;z-index:3000;background:rgba(4,11,20,0.85);backdrop-filter:blur(6px);display:none;align-items:center;justify-content:center;padding:24px}
+.confirm-overlay.open{display:flex}
+.confirm-box{background:var(--bg-card);border:1px solid var(--border-glass);border-radius:var(--radius);padding:28px;max-width:380px;width:100%;text-align:center;animation:modalIn .3s ease}
+.confirm-icon{font-size:2.5rem;margin-bottom:12px}
+.confirm-title{font-family:var(--font-serif);font-size:1.1rem;color:var(--text);margin-bottom:8px}
+.confirm-desc{font-size:.85rem;color:var(--text-dim);margin-bottom:20px}
+.confirm-actions{display:flex;gap:8px;justify-content:center}
+
+/* FOOTER */
+.app-footer{position:relative;z-index:1;border-top:1px solid var(--border-glass);padding:24px 16px;margin-top:40px}
+.footer-inner{max-width:800px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px}
+.footer-left{font-size:.75rem;color:var(--text-dim)}
+.footer-links{display:flex;gap:16px}
+.footer-link{font-size:.75rem;color:var(--text-dim);text-decoration:none;transition:color .3s;cursor:pointer}
+.footer-link:hover{color:var(--teal)}
+
+/* KEYBOARD SHORTCUT HINT */
+.kbd-hint{position:fixed;bottom:16px;left:50%;transform:translateX(-50%);z-index:50;font-size:.7rem;color:var(--text-dim);background:var(--bg-glass);border:1px solid var(--border-glass);padding:4px 12px;border-radius:16px;opacity:.5;transition:opacity .3s;pointer-events:none}
+@media(max-width:768px){.kbd-hint{display:none}}
+
+/* PULSE FOR NEW ANSWER */
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(14,165,233,0.4)}70%{box-shadow:0 0 0 10px rgba(14,165,233,0)}100%{box-shadow:0 0 0 0 rgba(14,165,233,0)}}
+.chat-msg:last-child .chat-badge{animation:pulse 1s ease}
+
+/* SCORE DISPLAY */
+.score-display{display:flex;align-items:center;gap:6px;font-size:.82rem;color:var(--amber);padding:4px 12px;background:rgba(245,158,11,0.08);border:1px solid rgba(245,158,11,0.15);border-radius:16px}
+.score-display-val{font-family:var(--font-display);font-size:1rem}
+
+/* RULES PAGE */
+.rules-section{margin-top:8px}
+.rules-card{background:var(--bg-glass);border:1px solid var(--border-glass);border-radius:var(--radius-sm);padding:16px;margin-bottom:10px}
+.rules-card-title{font-family:var(--font-serif);font-size:.95rem;color:var(--amber);margin-bottom:8px;display:flex;align-items:center;gap:8px}
+.rules-card-body{font-size:.85rem;color:var(--text-dim);line-height:1.7}
+/* ADMIN TABS */
+.admin-tabs{display:flex;gap:4px;margin-bottom:20px;overflow-x:auto;scrollbar-width:none;padding-bottom:4px}
+.admin-tabs::-webkit-scrollbar{display:none}
+.admin-tab{font-family:var(--font-body);font-size:.82rem;padding:8px 16px;border-radius:20px;border:1px solid var(--border-glass);background:transparent;color:var(--text-dim);cursor:pointer;transition:all .3s;white-space:nowrap}
+.admin-tab:hover{color:var(--text);background:var(--bg-glass)}
+.admin-tab.active{background:rgba(245,158,11,0.1);color:var(--amber);border-color:rgba(245,158,11,0.25)}
+.admin-tab-content{display:none;animation:viewIn .4s ease}
+.admin-tab-content.active{display:block}
+.admin-table{width:100%;border-collapse:separate;border-spacing:0;font-size:.85rem}
+.admin-table thead th{text-align:left;padding:10px 12px;font-size:.75rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:1px;border-bottom:1px solid var(--border-glass);background:rgba(4,11,20,0.9)}
+.admin-table tbody td{padding:10px 12px;border-bottom:1px solid rgba(56,189,248,0.06);vertical-align:middle}
+.admin-table tbody tr:hover{background:rgba(14,165,233,0.04)}
+.admin-table-wrap{overflow-x:auto;border:1px solid var(--border-glass);border-radius:var(--radius-sm);background:var(--bg-glass)}
+.admin-badge{display:inline-block;padding:2px 10px;border-radius:12px;font-size:.72rem;font-weight:500}
+.admin-badge-admin{background:rgba(245,158,11,0.15);color:var(--amber);border:1px solid rgba(245,158,11,0.25)}
+.admin-badge-user{background:rgba(14,165,233,0.1);color:var(--teal);border:1px solid rgba(14,165,233,0.2)}
+.admin-badge-pending{background:rgba(245,158,11,0.12);color:var(--amber);border:1px solid rgba(245,158,11,0.2)}
+.admin-badge-approved{background:rgba(34,197,94,0.12);color:var(--green);border:1px solid rgba(34,197,94,0.2)}
+.admin-badge-rejected{background:rgba(239,68,68,0.12);color:var(--red);border:1px solid rgba(239,68,68,0.2)}
+.admin-badge-draft{background:rgba(148,163,184,0.1);color:var(--gray);border:1px solid rgba(148,163,184,0.15)}
+.admin-badge-builtin{background:rgba(139,92,246,0.12);color:#a78bfa;border:1px solid rgba(139,92,246,0.2)}
+.admin-detail-panel{background:var(--bg-glass);border:1px solid var(--border-glass);border-radius:var(--radius-sm);padding:16px;margin-top:8px;animation:viewIn .3s ease}
+.admin-detail-row{display:flex;gap:8px;margin-bottom:8px;font-size:.85rem}
+.admin-detail-label{color:var(--text-dim);min-width:80px;flex-shrink:0;font-weight:500}
+.admin-detail-value{color:var(--text);flex:1;line-height:1.6;word-break:break-all}
+.admin-modal-footer{display:flex;gap:8px;justify-content:flex-end;margin-top:20px;padding-top:16px;border-top:1px solid var(--border-glass)}
+.admin-toolbar{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap;align-items:center}
+.admin-search{flex:1;min-width:180px}
+.admin-pagination{display:flex;gap:4px;justify-content:center;margin-top:16px}
+.admin-page-btn{padding:6px 12px;border-radius:8px;border:1px solid var(--border-glass);background:transparent;color:var(--text-dim);font-size:.8rem;cursor:pointer;transition:all .2s;font-family:var(--font-body)}
+.admin-page-btn:hover{border-color:var(--teal);color:var(--text)}
+.admin-page-btn.active{background:rgba(14,165,233,0.15);color:var(--teal);border-color:var(--teal)}
+.ai-gen-card{background:linear-gradient(135deg,rgba(14,165,233,0.06),rgba(245,158,11,0.06));border:1px solid var(--border-glass);border-radius:var(--radius);padding:24px;text-align:center;margin-bottom:20px}
+.ai-template-select{font-family:var(--font-body);font-size:.9rem;padding:8px 14px;background:var(--bg-glass);border:1px solid var(--border-glass);border-radius:var(--radius-sm);color:var(--text);outline:none;cursor:pointer}
+.ai-template-select option{background:var(--bg-deep);color:var(--text)}
+.ai-workspace{background:var(--bg-glass);border:1px solid var(--border-glass);border-radius:var(--radius);padding:20px;margin-bottom:20px}
+.ai-workspace-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;flex-wrap:wrap;gap:8px}
+.ai-workspace-title{font-family:var(--font-serif);font-size:1rem;color:var(--amber)}
+.ai-prompt-area{margin-bottom:16px}
+.ai-prompt-textarea{width:100%;font-family:var(--font-body);font-size:.9rem;padding:12px 16px;background:var(--bg-glass);border:1px solid var(--border-glass);border-radius:var(--radius-sm);color:var(--text);outline:none;resize:vertical;min-height:80px;transition:border-color .3s}
+.ai-prompt-textarea:focus{border-color:var(--teal)}
+.ai-prompt-textarea::placeholder{color:var(--text-dim)}
+.ai-tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}
+.ai-tag{padding:4px 12px;border-radius:16px;font-size:.78rem;border:1px solid var(--border-glass);background:transparent;color:var(--text-dim);cursor:pointer;transition:all .25s;font-family:var(--font-body)}
+.ai-tag:hover{border-color:var(--teal);color:var(--text)}
+.ai-tag.active{background:rgba(14,165,233,0.12);color:var(--teal);border-color:rgba(14,165,233,0.3)}
+.ai-tone-row{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}
+.ai-tone-btn{padding:4px 12px;border-radius:16px;font-size:.78rem;border:1px solid var(--border-glass);background:transparent;color:var(--text-dim);cursor:pointer;transition:all .25s;font-family:var(--font-body)}
+.ai-tone-btn:hover{border-color:var(--amber);color:var(--text)}
+.ai-tone-btn.active{background:rgba(245,158,11,0.12);color:var(--amber);border-color:rgba(245,158,11,0.3)}
+.ai-today-panel{background:linear-gradient(135deg,rgba(34,197,94,0.06),rgba(245,158,11,0.06));border:1px solid rgba(34,197,94,0.15);border-radius:var(--radius);padding:16px;margin-bottom:20px}
+.ai-today-title{font-family:var(--font-serif);font-size:1rem;color:var(--green);margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.ai-today-item{display:flex;justify-content:space-between;align-items:center;padding:10px 12px;background:var(--bg-glass);border:1px solid var(--border-glass);border-radius:var(--radius-sm);margin-bottom:8px;gap:12px;flex-wrap:wrap}
+.ai-today-info{flex:1;min-width:0}
+.ai-today-desc{font-size:.88rem;color:var(--text);margin-bottom:4px}
+.ai-today-type{font-size:.7rem;display:inline-block;padding:2px 8px;border-radius:10px}
+.ai-today-actions{display:flex;gap:4px;flex-shrink:0}
+.ai-feedback-area{margin-top:16px;padding-top:16px;border-top:1px solid var(--border-glass)}
+.ai-feedback-history{max-height:200px;overflow-y:auto;margin-bottom:12px;scrollbar-width:thin;scrollbar-color:var(--teal-dim) transparent}
+.ai-revision-entry{padding:8px 12px;font-size:.82rem;color:var(--text-dim);border-left:2px solid var(--teal-dim);margin-bottom:8px;margin-left:4px}
+.ai-revision-entry .rev-label{font-size:.72rem;color:var(--teal);letter-spacing:.5px;margin-bottom:2px}
+.ai-queue-item{display:flex;justify-content:space-between;align-items:center;padding:12px;background:var(--bg-glass);border:1px solid var(--border-glass);border-radius:var(--radius-sm);margin-bottom:8px;gap:8px;flex-wrap:wrap}
+.ai-queue-date{font-family:monospace;font-size:.82rem;color:var(--teal);background:rgba(14,165,233,0.08);padding:2px 8px;border-radius:8px;white-space:nowrap}
+.ai-dice-btn{background:linear-gradient(135deg,rgba(139,92,246,0.15),rgba(245,158,11,0.1));border:1px solid rgba(139,92,246,0.25);color:#a78bfa;padding:8px 16px;border-radius:var(--radius-sm);cursor:pointer;transition:all .3s;font-family:var(--font-body);font-size:.85rem}
+.ai-dice-btn:hover{transform:translateY(-1px);box-shadow:0 4px 16px rgba(139,92,246,0.2)}
+.ai-dice-result{padding:12px;background:rgba(139,92,246,0.06);border:1px dashed rgba(139,92,246,0.2);border-radius:var(--radius-sm);margin-top:8px;font-size:.85rem;color:var(--text)}
+.ai-stats-bar{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-bottom:16px;font-size:.8rem;color:var(--text-dim)}
+.ai-stats-bar span{display:flex;align-items:center;gap:4px}
+.ai-stats-bar .stat-val{color:var(--teal);font-family:var(--font-display)}
+.admin-badge-workspace{background:rgba(139,92,246,0.12);color:#a78bfa;border:1px solid rgba(139,92,246,0.2);font-size:.72rem;padding:2px 8px;border-radius:10px;display:inline-block}
+.admin-badge-pending-pub{background:rgba(245,158,11,0.12);color:var(--amber);border:1px solid rgba(245,158,11,0.2);font-size:.72rem;padding:2px 8px;border-radius:10px;display:inline-block}
+.admin-badge-published{background:rgba(34,197,94,0.12);color:var(--green);border:1px solid rgba(34,197,94,0.2);font-size:.72rem;padding:2px 8px;border-radius:10px;display:inline-block}
+.admin-stat-card-icon{font-size:1.5rem;margin-bottom:4px}
+@media(max-width:600px){
+  .admin-tabs{gap:2px}
+  .admin-tab{font-size:.75rem;padding:6px 12px}
+  .admin-table{font-size:.78rem}
+  .admin-table thead th,.admin-table tbody td{padding:8px 6px}
+  .admin-toolbar{flex-direction:column}
+}
+</style>
+</head>
+<body>
+<canvas id="bg-canvas"></canvas>
+
+<!-- WELCOME MODAL -->
+<div id="welcome-modal" class="welcome-overlay" style="display:none">
+  <div class="welcome-content">
+    <div class="welcome-turtle">🐢</div>
+    <div class="welcome-title">每日海龟汤挑战</div>
+    <div class="welcome-subtitle">经典横向思维推理游戏<br>每天一道谜题，通过提问推理出隐藏的真相</div>
+
+    <!-- Login / Register tabs -->
+    <div style="display:flex;gap:4px;margin-bottom:16px">
+      <button class="nav-btn active" id="auth-login-tab" style="flex:1;text-align:center">登录</button>
+      <button class="nav-btn" id="auth-register-tab" style="flex:1;text-align:center">注册</button>
+    </div>
+
+    <!-- Login form -->
+    <div id="auth-login-form">
+      <input type="text" class="welcome-name-input" id="login-username" placeholder="用户名" maxlength="20" autocomplete="username">
+      <input type="password" class="welcome-name-input" id="login-password" placeholder="密码" maxlength="32" autocomplete="current-password" style="margin-top:8px">
+      <div id="login-error" style="color:var(--red);font-size:.8rem;margin-bottom:8px;display:none"></div>
+      <button class="btn btn-amber" id="login-btn" style="width:100%;padding:14px;font-size:1rem">登录</button>
+      <div style="font-size:.75rem;color:var(--text-dim);margin-top:12px">还没有账号？直接注册即可开始游戏</div>
+    </div>
+
+    <!-- Register form -->
+    <div id="auth-register-form" style="display:none">
+      <input type="text" class="welcome-name-input" id="reg-username" placeholder="设置用户名（2-12字）" maxlength="12" autocomplete="username">
+      <input type="password" class="welcome-name-input" id="reg-password" placeholder="设置密码（4位以上）" maxlength="32" autocomplete="new-password" style="margin-top:8px">
+      <input type="password" class="welcome-name-input" id="reg-password2" placeholder="确认密码" maxlength="32" autocomplete="new-password" style="margin-top:8px">
+      <div id="reg-error" style="color:var(--red);font-size:.8rem;margin-bottom:8px;display:none"></div>
+      <button class="btn btn-amber" id="register-btn" style="width:100%;padding:14px;font-size:1rem">注册并开始</button>
+    </div>
+
+    <div class="welcome-rules" style="margin-top:16px">
+      <div class="welcome-rule"><div class="welcome-rule-num">1</div><div>阅读谜面，了解表面故事</div></div>
+      <div class="welcome-rule"><div class="welcome-rule-num">2</div><div>提出「是/否」类问题，系统会回答 是、否 或 无关</div></div>
+      <div class="welcome-rule"><div class="welcome-rule-num">3</div><div>根据回答推理真相，用最少的问题解开谜底</div></div>
+      <div class="welcome-rule"><div class="welcome-rule-num">4</div><div>觉得胸有成竹？点击「猜答案」提交你的推理</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- CUSTOM CONFIRM DIALOG -->
+<div id="confirm-dialog" class="confirm-overlay">
+  <div class="confirm-box">
+    <div class="confirm-icon" id="confirm-icon">🏳️</div>
+    <div class="confirm-title" id="confirm-title">确定放弃吗？</div>
+    <div class="confirm-desc" id="confirm-desc">放弃后将直接揭晓答案，且不计入排行榜</div>
+    <div class="confirm-actions">
+      <button class="btn btn-ghost" id="confirm-cancel">再想想</button>
+      <button class="btn btn-danger" id="confirm-ok">确定放弃</button>
+    </div>
+  </div>
+</div>
+
+<!-- HEADER -->
+<header id="app-header">
+  <div class="header-brand">
+    <span class="header-logo">🐢 每日海龟汤</span>
+    <span class="header-day" id="day-badge">第 1 天</span>
+  </div>
+  <div style="display:flex;align-items:center;gap:10px">
+    <div id="user-badge" style="font-size:.8rem;color:var(--text-dim);cursor:pointer" title="点击登出"></div>
+    <div class="score-display" id="score-display"><span>⭐</span> <span class="score-display-val" id="current-score">1000</span></div>
+    <div class="header-timer" id="timer-display">00:00</div>
+  </div>
+</header>
+
+<!-- NAVIGATION -->
+<nav id="app-nav">
+  <button class="nav-btn active" data-view="game">🎮 今日挑战</button>
+  <button class="nav-btn" data-view="leaderboard">🏆 排行榜</button>
+  <button class="nav-btn" data-view="archive">📚 历史谜题</button>
+  <button class="nav-btn" data-view="achievements">🏅 成就</button>
+  <button class="nav-btn" data-view="submit">✍️ 玩家投稿</button>
+</nav>
+
+<!-- MAIN CONTENT -->
+<main id="app-main">
+  <!-- VIEW: Game -->
+  <section id="view-game" class="view active">
+    <!-- Streak Bar -->
+    <div class="streak-bar" id="streak-bar">
+      <div class="streak-item">🔥 <span>连续挑战</span> <span class="streak-val" id="streak-count">0</span> <span>天</span></div>
+      <div class="streak-item">✅ <span>已解谜题</span> <span class="streak-val" id="total-solved">0</span></div>
+      <div class="streak-item">📊 <span>总提问</span> <span class="streak-val" id="total-questions">0</span></div>
+    </div>
+
+    <!-- Solved banner (hidden by default) -->
+    <div id="solved-banner" class="solved-banner" style="display:none">
+      <div class="solved-banner-icon">🎉</div>
+      <div class="solved-banner-text">恭喜你解出了今日海龟汤！</div>
+      <div class="solved-banner-truth" id="solved-truth"></div>
+    </div>
+
+    <!-- Share Card (hidden until solved) -->
+    <div id="share-card" class="share-card" style="display:none">
+      <div class="share-card-title">🐢 每日海龟汤 #<span id="share-day">1</span></div>
+      <div class="share-card-puzzle" id="share-puzzle-name"></div>
+      <div class="share-card-stats">
+        <div class="share-stat"><div class="share-stat-val" id="share-time">--</div><div class="share-stat-label">用时</div></div>
+        <div class="share-stat"><div class="share-stat-val" id="share-questions">--</div><div class="share-stat-label">提问</div></div>
+        <div class="share-stat"><div class="share-stat-val" id="share-hints">--</div><div class="share-stat-label">提示</div></div>
+        <div class="share-stat"><div class="share-stat-val" id="share-score">--</div><div class="share-stat-label">得分</div></div>
+      </div>
+      <div class="share-card-grid" id="share-grid"></div>
+      <div class="share-btns">
+        <button class="btn btn-primary btn-sm" id="copy-share-btn">📋 复制分享</button>
+        <button class="btn btn-ghost btn-sm" id="next-puzzle-btn">➡️ 下一题</button>
+      </div>
+    </div>
+
+    <!-- Puzzle Card -->
+    <div class="glass-card" id="puzzle-card">
+      <div class="puzzle-header">
+        <div class="puzzle-title" id="puzzle-title">加载中...</div>
+        <div class="puzzle-difficulty" id="puzzle-difficulty"></div>
+      </div>
+      <div class="puzzle-scenario" id="puzzle-scenario">正在获取今日谜题...</div>
+      <div class="puzzle-meta">
+        <span id="puzzle-q-count">已提问：0 次</span>
+        <span id="puzzle-hint-count">已用提示：0/3</span>
+      </div>
+    </div>
+
+    <!-- Hints -->
+    <div class="hints-row" id="hints-row"></div>
+
+    <!-- Chat -->
+    <div class="glass-card" style="padding:16px">
+      <div class="chat-container" id="chat-container">
+        <div class="chat-empty">
+          <div class="chat-empty-icon">&#x1F50D;</div>
+          <div class="chat-empty-text">通过提问来推理真相吧！<br>只能问「是/否」类问题哦</div>
+        </div>
+      </div>
+      <div class="input-area" id="input-area">
+        <input type="text" class="input-field" id="question-input" placeholder="输入你的问题..." maxlength="200">
+        <button class="btn btn-primary" id="ask-btn">提问</button>
+      </div>
+      <div class="game-actions">
+        <button class="btn btn-amber" id="guess-btn">&#x1F3AF; 猜答案</button>
+        <button class="btn btn-ghost btn-sm" id="give-up-btn">&#x1F3F3;&#xFE0F; 放弃查看答案</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- VIEW: Leaderboard -->
+  <section id="view-leaderboard" class="view">
+    <div class="section-header">
+      <div class="section-title">&#x1F3C6; 今日排行榜</div>
+      <div class="section-desc">看看谁的推理最厉害</div>
+    </div>
+    <div class="lb-tabs" id="lb-tabs">
+      <button class="lb-tab active" data-tab="fastest">&#x1F947; 最快解出</button>
+      <button class="lb-tab" data-tab="fewest">&#x1F948; 提问最少</button>
+      <button class="lb-tab" data-tab="best">&#x1F949; 最佳推理</button>
+    </div>
+    <div id="lb-list"></div>
+  </section>
+
+  <!-- VIEW: Archive -->
+  <section id="view-archive" class="view">
+    <div class="section-header">
+      <div class="section-title">&#x1F4DA; 历史谜题库</div>
+      <div class="section-desc">回顾经典，再次挑战</div>
+    </div>
+    <div class="archive-grid" id="archive-grid"></div>
+  </section>
+
+  <!-- VIEW: Achievements -->
+  <section id="view-achievements" class="view">
+    <div class="section-header">
+      <div class="section-title">🏅 成就系统</div>
+      <div class="section-desc">完成挑战解锁成就徽章</div>
+    </div>
+    <div class="achievement-grid" id="achievement-grid"></div>
+    <div class="rules-section">
+      <div style="font-family:var(--font-serif);font-size:1.1rem;color:var(--text);margin:24px 0 14px">📖 游戏规则</div>
+      <div class="rules-card">
+        <div class="rules-card-title">🎯 基本玩法</div>
+        <div class="rules-card-body">每天 00:00 自动发布一道新的海龟汤谜题。阅读汤面（表面故事），通过提出「是/否」类型的问题来推理出汤底（隐藏的真相）。系统会回答「是」「否」或「无关」。</div>
+      </div>
+      <div class="rules-card">
+        <div class="rules-card-title">⭐ 计分规则</div>
+        <div class="rules-card-body">基础分 1000 分。每提一个问题扣 20 分，每用一个提示扣对应分数（提示1: -10, 提示2: -20, 提示3: -30），每过 1 秒扣 1 分。最终得分不低于 100 分。</div>
+      </div>
+      <div class="rules-card">
+        <div class="rules-card-title">💡 提示系统</div>
+        <div class="rules-card-body">每题有 3 个提示，必须按顺序揭示。使用提示会降低得分，但能帮助你更快接近真相。放弃后会自动揭示所有提示。</div>
+      </div>
+      <div class="rules-card">
+        <div class="rules-card-title">🏆 排行榜</div>
+        <div class="rules-card-body">解出谜题后自动进入当日排行榜。分为最快解出、提问最少、最佳推理三个维度。放弃的谜题不计入排行榜。</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VIEW: Submit -->
+  <section id="view-submit" class="view">
+    <div class="section-header">
+      <div class="section-title">&#x270D;&#xFE0F; 投稿海龟汤</div>
+      <div class="section-desc">贡献你的创意谜题，让更多人来烧脑</div>
+    </div>
+    <div class="glass-card">
+      <div class="form-group">
+        <label class="form-label">汤名 <span class="required">*</span></label>
+        <input type="text" class="input-field" id="submit-title" placeholder="给你的谜题起个名字" style="border-radius:var(--radius-sm)">
+      </div>
+      <div class="form-group">
+        <label class="form-label">汤面（谜面）<span class="required">*</span></label>
+        <textarea class="textarea-field" id="submit-scenario" placeholder="写出谜题的表面故事..."></textarea>
+      </div>
+      <div class="form-group">
+        <label class="form-label">汤底（真相）<span class="required">*</span></label>
+        <textarea class="textarea-field" id="submit-truth" placeholder="写出背后的真相..."></textarea>
+      </div>
+      <div class="form-group">
+        <label class="form-label">关键线索（逗号分隔）</label>
+        <input type="text" class="input-field" id="submit-clues" placeholder="线索1, 线索2, 线索3..." style="border-radius:var(--radius-sm)">
+      </div>
+      <div id="submit-preview" style="display:none">
+        <div class="preview-card">
+          <div class="preview-label">预览</div>
+          <div class="puzzle-title" id="preview-title" style="margin-bottom:12px"></div>
+          <div class="puzzle-scenario" id="preview-scenario"></div>
+        </div>
+      </div>
+      <div style="display:flex;gap:8px;margin-top:8px">
+        <button class="btn btn-ghost" id="preview-btn">&#x1F441; 预览</button>
+        <button class="btn btn-amber" id="submit-btn">&#x1F4E4; 提交审核</button>
+      </div>
+    </div>
+    <!-- My Submissions -->
+    <div class="glass-card" style="margin-top:16px">
+      <div style="font-family:var(--font-serif);font-size:1rem;color:var(--amber);margin-bottom:14px">我的投稿</div>
+      <div id="my-submissions">
+        <div style="text-align:center;color:var(--text-dim);font-size:.85rem;padding:20px">暂无投稿记录</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VIEW: Admin -->
+  <section id="view-admin" class="view">
+    <div id="admin-gate-view" class="admin-gate">
+      <div class="admin-gate-title">&#x1F512; 管理员面板</div>
+      <div class="admin-gate-desc">请输入管理员密码</div>
+      <div class="admin-input-row">
+        <input type="password" class="input-field" id="admin-pwd" placeholder="密码" style="border-radius:var(--radius-sm)">
+        <button class="btn btn-primary" id="admin-login-btn">进入</button>
+      </div>
+    </div>
+    <div id="admin-panel" style="display:none">
+      <div class="section-header" style="display:flex;justify-content:space-between;align-items:center">
+        <div>
+          <div class="section-title">&#x1F6E0;&#xFE0F; 管理员面板</div>
+          <div class="section-desc">全面管理谜题、用户和内容</div>
+        </div>
+        <button class="btn btn-ghost btn-sm" id="admin-logout-btn">退出管理</button>
+      </div>
+      <div class="admin-tabs" id="admin-tabs">
+        <button class="admin-tab active" data-admin-tab="dashboard">&#x1F4CA; 数据总览</button>
+        <button class="admin-tab" data-admin-tab="puzzles">&#x1F9E9; 谜题管理</button>
+        <button class="admin-tab" data-admin-tab="submissions">&#x1F4DD; 投稿审核</button>
+        <button class="admin-tab" data-admin-tab="ai-gen">&#x1F916; AI创作</button>
+        <button class="admin-tab" data-admin-tab="users">&#x1F465; 用户管理</button>
+      </div>
+      <div class="admin-tab-content active" id="admin-tab-dashboard"></div>
+      <div class="admin-tab-content" id="admin-tab-puzzles"></div>
+      <div class="admin-tab-content" id="admin-tab-submissions"></div>
+      <div class="admin-tab-content" id="admin-tab-ai-gen"></div>
+      <div class="admin-tab-content" id="admin-tab-users"></div>
+    </div>
+  </section>
+</main>
+
+<!-- FOOTER -->
+<footer class="app-footer">
+  <div class="footer-inner">
+    <div class="footer-left">🐢 每日海龟汤挑战 &copy; 2025 &middot; 灵感来自 Lateral Thinking Puzzles</div>
+    <div class="footer-links">
+      <span class="footer-link" onclick="switchView('achievements')">规则说明</span>
+      <span class="footer-link" onclick="if(location.hash!=='#admin')location.hash='#admin'">管理面板</span>
+    </div>
+  </div>
+</footer>
+
+<!-- KEYBOARD HINT -->
+<div class="kbd-hint" id="kbd-hint">按 Enter 提问 · H 揭示提示 · G 猜答案 · 1-4 切换页面</div>
+
+<!-- ANSWER MODAL -->
+<div id="answer-modal" class="modal-overlay">
+  <div class="modal-content" style="position:relative">
+    <button class="modal-close" id="modal-close-btn">&times;</button>
+    <div class="modal-title">&#x1F3AF; 提交你的推理</div>
+    <p style="font-size:.85rem;color:var(--text-dim);margin-bottom:16px">写出你认为的真相，AI 会判断你的接近程度</p>
+    <textarea class="textarea-field" id="answer-input" placeholder="写出你推理出的真相..."></textarea>
+    <div class="progress-ring-wrap" id="similarity-result" style="display:none">
+      <div class="progress-ring">
+        <svg viewBox="0 0 160 160">
+          <circle class="ring-bg" cx="80" cy="80" r="68"/>
+          <circle class="ring-fg" id="ring-fg" cx="80" cy="80" r="68" stroke-dasharray="427.3" stroke-dashoffset="427.3"/>
+        </svg>
+        <div class="progress-ring-value">
+          <div class="progress-ring-pct" id="ring-pct">0%</div>
+          <div class="progress-ring-label">接近度</div>
+        </div>
+      </div>
+      <div class="similarity-msg" id="similarity-msg"></div>
+    </div>
+    <div style="display:flex;gap:8px;margin-top:16px;justify-content:flex-end">
+      <button class="btn btn-ghost" id="modal-cancel-btn">取消</button>
+      <button class="btn btn-amber" id="submit-answer-btn">&#x1F680; 提交答案</button>
+    </div>
+  </div>
+</div>
+
+<!-- ADMIN EDIT MODAL -->
+<div id="admin-edit-modal" class="modal-overlay">
+  <div class="modal-content" style="position:relative;max-width:640px">
+    <button class="modal-close" id="admin-modal-close">&times;</button>
+    <div class="modal-title" id="admin-modal-title">编辑</div>
+    <div id="admin-modal-body"></div>
+    <div class="admin-modal-footer" id="admin-modal-footer"></div>
+  </div>
+</div>
+
+<!-- TOAST CONTAINER -->
+<div id="toast-container"></div>
+
+<!-- CONFETTI CANVAS -->
+<canvas id="confetti-canvas"></canvas>
+
+<script>
+/* ============================================
+   SOUND EFFECTS (Web Audio API — tiny beeps)
+   ============================================ */
+const AudioCtx = window.AudioContext || window.webkitAudioContext;
+let audioCtx = null;
+function ensureAudio(){if(!audioCtx)try{audioCtx=new AudioCtx()}catch(e){}}
+function playTone(freq,dur=0.1,type='sine',vol=0.12){
+  ensureAudio();if(!audioCtx)return;
+  const o=audioCtx.createOscillator(),g=audioCtx.createGain();
+  o.type=type;o.frequency.value=freq;g.gain.value=vol;
+  o.connect(g);g.connect(audioCtx.destination);
+  o.start();g.gain.exponentialRampToValueAtTime(0.001,audioCtx.currentTime+dur);
+  o.stop(audioCtx.currentTime+dur);
+}
+function sfxAsk(){playTone(520,0.08);setTimeout(()=>playTone(660,0.08),80)}
+function sfxYes(){playTone(880,0.12,'sine',0.1)}
+function sfxNo(){playTone(330,0.15,'triangle',0.1)}
+function sfxIrr(){playTone(440,0.1,'sine',0.06)}
+function sfxHint(){playTone(600,0.08);setTimeout(()=>playTone(750,0.08),60);setTimeout(()=>playTone(900,0.1),120)}
+function sfxSolve(){[0,100,200,300,400].forEach((d,i)=>setTimeout(()=>playTone(600+i*100,0.15,'sine',0.1),d))}
+function sfxClick(){playTone(700,0.04,'sine',0.06)}
+
+/* ============================================
+   ACHIEVEMENTS DEFINITION
+   ============================================ */
+const ACHIEVEMENTS = [
+  {id:'first_solve',icon:'🎯',name:'初出茅庐',desc:'解出第一道谜题'},
+  {id:'speed_demon',icon:'⚡',name:'闪电侠',desc:'在2分钟内解出谜题'},
+  {id:'no_hints',icon:'🧠',name:'纯靠脑力',desc:'不使用任何提示解出谜题'},
+  {id:'three_questions',icon:'🎲',name:'三步破案',desc:'3个问题内解出谜题'},
+  {id:'five_solved',icon:'🔥',name:'推理达人',desc:'累计解出5道谜题'},
+  {id:'ten_solved',icon:'👑',name:'推理之王',desc:'累计解出10道谜题'},
+  {id:'streak_3',icon:'📅',name:'三日连胜',desc:'连续3天解出谜题'},
+  {id:'streak_7',icon:'🌟',name:'周冠军',desc:'连续7天解出谜题'},
+  {id:'perfect_score',icon:'💎',name:'满分通关',desc:'获得900分以上'},
+  {id:'contributor',icon:'✍️',name:'出题达人',desc:'成功投稿一道谜题'},
+  {id:'all_hints',icon:'💡',name:'提示收集者',desc:'使用过所有3个提示'},
+  {id:'twenty_questions',icon:'❓',name:'追根究底',desc:'单局提出20个以上问题'}
+];
+
+/* ============================================
+   PUZZLE DATA — 10 carefully crafted puzzles
+   ============================================ */
+const PUZZLES = [
+  {
+    id:1, title:"海龟汤",
+    scenario:"一个男人走进一家餐厅，点了一碗海龟汤。他喝了一口，然后走出餐厅，回家自杀了。为什么？",
+    truth:"这个男人曾经遭遇海难，在荒岛上靠同伴的肉活了下来，同伴告诉他那是海龟肉。当他在餐厅喝到真正的海龟汤后，发现味道完全不同，意识到当年吃的其实是同伴的肉，因此无法承受自杀了。",
+    key_clues:["海难","荒岛","同伴","人肉","味道不同","欺骗","生存"],
+    // NEW: structured Q&A rules. Each rule is [keywords_any, answer, priority]
+    // keywords_any: if question contains ANY of these → return this answer
+    // Evaluated top-to-bottom, first match wins. Fallback is "无关"
+    rules:[
+      // Core truth matches → 是
+      [["海难","遇难","船难","沉船","翻船","遭难"],"是"],
+      [["荒岛","孤岛","漂流","海上漂","被困"],"是"],
+      [["同伴","朋友","同事","队友","一起的人"],"是"],
+      [["人肉","吃人","吃的是人","吃了人"],"是"],
+      [["味道不同","味道不一样","味道不对","不是海龟","不是真的","真正的海龟"],"是"],
+      [["欺骗","被骗","骗了","说谎","谎言","隐瞒"],"是"],
+      [["生存","活下来","求生","活命"],"是"],
+      [["经历","过去","以前","之前","往事","回忆"],"是"],
+      [["发现","意识到","才知道","恍然大悟","明白了"],"是"],
+      [["肉","吃了什么","吃过","食物"],"是"],
+      [["死","自杀","不想活","崩溃","无法承受","受不了"],"是"],
+      [["海龟汤","喝汤","尝","味道","口味","真正"],"是"],
+      [["救援","获救","回到","回来"],"是"],
+      // Wrong direction → 否
+      [["毒","下毒","有毒","投毒"],"否"],
+      [["过敏","食物过敏"],"否"],
+      [["餐厅老板","服务员","厨师做了","店里的人"],"否"],
+      [["女朋友","恋人","妻子","老婆","感情","分手","离婚"],"否"],
+      [["钱","破产","欠债","赌","工作","失业"],"否"],
+      [["虫","脏","变质","过期"],"否"],
+      // Confirmations of scenario facts → 是
+      [["男人","男的","他是一个人"],"是"],
+      [["餐厅","饭店","饭馆"],"是"],
+      [["是人","和人有关","涉及他人","关于别人"],"是"],
+    ],
+    difficulty:3,
+    hints:["与他过去的一段经历有关","涉及生存困境","他喝到了「真正的」海龟汤"]
+  },
+  {
+    id:2, title:"半夜敲门",
+    scenario:"一个人在深夜听到敲门声，他打开门却没有人。关上门回去睡觉后又听到敲门声，如此反复。最后他崩溃了。为什么？",
+    truth:"这个人住在一艘船上，他的门朝外开。每次打开门，门就把站在窄走廊上的来访者推到了海里。敲门声其实是不同的人来拜访他，但每次他一开门，就把对方推下了海。",
+    key_clues:["船","门朝外开","推下海","走廊","多人","门推人"],
+    rules:[
+      [["船","船上","轮船","航船","海上"],"是"],
+      [["门朝外","门向外","外开","往外推","推开门"],"是"],
+      [["推下","掉进","落水","推到海","推到水","推下海"],"是"],
+      [["走廊","窄","过道","通道"],"是"],
+      [["多人","不同的人","好几个人","很多人","不止一个"],"是"],
+      [["敲门的人","来拜访","来找他","来访","访客"],"是"],
+      [["门把人","门推人","开门导致","开门的后果"],"是"],
+      [["海","水","掉下去","落下去"],"是"],
+      [["房子","普通房子","公寓","住宅","陆地"],"否"],
+      [["鬼","幽灵","灵异","超自然","闹鬼"],"否"],
+      [["恶作剧","捣乱","小孩","孩子","熊孩子"],"否"],
+      [["动物","猫","狗","老鼠","鸟"],"否"],
+      [["风","自然","天气"],"否"],
+      [["幻觉","精神","疯了","做梦","梦"],"否"],
+      [["有人","真的有人","确实有人来"],"是"],
+      [["死","出事","受伤","没了"],"是"],
+      [["知道","发现","看到","意识","明白"],"是"],
+    ],
+    difficulty:4,
+    hints:["这不是发生在普通房子里","门的打开方式很关键","每次开门都造成了后果"]
+  },
+  {
+    id:3, title:"电梯里的矮个子",
+    scenario:"一个住在30楼的男人，每天上班坐电梯到1楼。下班回来时，如果电梯里有其他人，他会直接坐到30楼；如果只有他一个人，他只坐到15楼然后走楼梯上去。为什么？",
+    truth:"这个男人是一个矮个子/侏儒，他只能够到15楼的按钮。有其他人在时可以请别人帮忙按30楼，独自一人时只能按到15楼。",
+    key_clues:["矮","身高","够不到","按钮","侏儒"],
+    rules:[
+      [["矮","个子矮","个头矮","身材矮","侏儒","小矮人","矮小"],"是"],
+      [["身高","高度","高矮","个子","个头"],"是"],
+      [["够不到","按不到","摸不到","碰不到","触不到","达不到"],"是"],
+      [["按钮","按键","楼层按钮","电梯按钮"],"是"],
+      [["帮忙","帮他按","请人按","别人帮","请别人"],"是"],
+      [["手","胳膊","手臂","伸手"],"是"],
+      [["身体","身体特征","生理","外貌","外表"],"是"],
+      [["锻炼","减肥","健身","运动"],"否"],
+      [["害怕","恐高","恐惧","紧张"],"否"],
+      [["省电","节约","省钱","环保"],"否"],
+      [["故障","坏了","电梯坏","维修"],"否"],
+      [["15楼","十五楼","只能到15"],"是"],
+      [["低","够","伸"],"是"],
+    ],
+    difficulty:1,
+    hints:["与他的身体特征有关","他在电梯里能做的事有限","想想电梯按钮的位置"]
+  },
+  {
+    id:4, title:"沙漠中的尸体",
+    scenario:"在沙漠中央发现了一具尸体，旁边有一个未打开的包裹。这个人是怎么死的？",
+    truth:"这个人在高空跳伞时降落伞没有打开，坠落在沙漠中死亡。未打开的包裹就是他的降落伞包。",
+    key_clues:["跳伞","降落伞","高空","坠落","飞机","伞包"],
+    rules:[
+      [["跳伞","降落伞","伞","伞包","降落"],"是"],
+      [["高空","天上","空中","飞机","飞","上面"],"是"],
+      [["坠落","掉下来","掉落","摔","坠亡","摔死"],"是"],
+      [["包裹是伞","包是伞","伞包","背包","包裹是什么","包裹里面"],"是"],
+      [["没打开","打不开","没有打开","故障","失灵"],"是"],
+      [["天","从上面","从高处","掉下"],"是"],
+      [["渴死","缺水","中暑","热死","脱水"],"否"],
+      [["迷路","走失","找不到路"],"否"],
+      [["毒蛇","蛇","蝎子","动物"],"否"],
+      [["沙尘暴","暴风","天气"],"否"],
+      [["谋杀","杀","他杀","被人杀"],"否"],
+      [["车","开车","走路","徒步"],"否"],
+      [["自杀","自己","故意"],"否"],
+      [["救命","本可以","如果打开"],"是"],
+    ],
+    difficulty:2,
+    hints:["包裹是他随身携带的","他从很高的地方来","包裹里的东西本可以救他的命"]
+  },
+  {
+    id:5, title:"致命的音乐会",
+    scenario:"一个女人去听了一场音乐会，回家后就自杀了。为什么？",
+    truth:"这个女人是盲人，她的丈夫声称自己也是盲人，两人因此相依为命。在音乐会上有人鼓掌，她没有鼓掌因为她是盲人不知道何时该鼓掌。但她旁边的丈夫在正确的时间鼓了掌，她意识到丈夫一直在装瞎骗她。",
+    key_clues:["盲人","丈夫","假装","装瞎","鼓掌","欺骗"],
+    rules:[
+      [["盲人","瞎","看不见","失明","视障","眼睛看不见","视力"],"是"],
+      [["丈夫","老公","伴侣","爱人","先生"],"是"],
+      [["假装","装","装瞎","假的","伪装","欺骗","骗","说谎"],"是"],
+      [["鼓掌","拍手","掌声","鼓了掌"],"是"],
+      [["看到","看见","能看","视力正常","不是瞎","不是盲"],"是"],
+      [["时机","正确","知道何时","什么时候该","时间"],"是"],
+      [["秘密","发现了","意识到","才知道","明白了","真相"],"是"],
+      [["身体","缺陷","残疾","障碍"],"是"],
+      [["歌手","演员","明星","偶像"],"否"],
+      [["情人","出轨","第三者","外遇"],"否"],
+      [["分手","离婚","不爱"],"否"],
+      [["歌词","剧情","内容","表演","节目"],"否"],
+      [["感动","悲伤","触动","回忆起"],"否"],
+      [["两个人","一起去","她不是一个人"],"是"],
+    ],
+    difficulty:4,
+    hints:["这个女人有身体上的缺陷","她丈夫也和她去了音乐会","她在音乐会上发现了一个秘密"]
+  },
+  {
+    id:6, title:"最后的照片",
+    scenario:"一个摄影师在拍了一张照片后立刻死了。照片里没有任何危险的东西。他是怎么死的？",
+    truth:"摄影师在非洲草原上给一头狮子拍照，闪光灯激怒了狮子，狮子扑过来把他咬死了。照片本身只有一头狮子，看起来并不危险。",
+    key_clues:["狮子","动物","闪光灯","激怒","攻击","野外"],
+    rules:[
+      [["狮子","老虎","猛兽","野兽","动物","猛禽","熊"],"是"],
+      [["闪光灯","闪光","灯光","光","亮光"],"是"],
+      [["激怒","怒","愤怒","发火","被惹","生气"],"是"],
+      [["扑","攻击","咬","吃","冲过来","袭击"],"是"],
+      [["草原","非洲","野外","户外","丛林","荒野"],"是"],
+      [["野生","危险动物","拍动物","拍野生"],"是"],
+      [["照片里有动物","拍到了什么","照片内容"],"是"],
+      [["自拍","拍自己","拍人"],"否"],
+      [["悬崖","高处","坠落","掉下去"],"否"],
+      [["车祸","交通","开车"],"否"],
+      [["爆炸","枪","武器"],"否"],
+      [["鬼","灵异","诅咒","超自然"],"否"],
+      [["相机爆炸","触电","漏电","设备故障"],"否"],
+      [["拍照","按快门","拍","拍完"],"是"],
+    ],
+    difficulty:2,
+    hints:["照片中确实有一个活物","拍照的动作本身激发了危险","发生在户外野生环境中"]
+  },
+  {
+    id:7, title:"雪地脚印",
+    scenario:"雪地上只有一行脚印通向一具尸体，没有返回的脚印。尸体旁边没有任何武器。但这不是自杀。他是怎么死的？",
+    truth:"凶手踩着死者的脚印原路退回，所以雪地上只留下了一行脚印。凶手走在前面，到达目的地后杀了受害者，然后倒退踩着来时的脚印离开。",
+    key_clues:["踩脚印","倒退","原路返回","覆盖","两个人","凶手"],
+    rules:[
+      [["踩","踩着","踩在","踩脚印","踩到"],"是"],
+      [["脚印","足迹","痕迹","印子"],"是"],
+      [["覆盖","重叠","叠","盖住","遮盖"],"是"],
+      [["倒退","退着走","倒着走","退回","后退","原路返回"],"是"],
+      [["两个人","不止一人","另一个人","第二个人","还有人","多人"],"是"],
+      [["凶手","杀手","杀人者","犯人","坏人","谋杀"],"是"],
+      [["同行","一起","跟着","陪着","同路"],"是"],
+      [["走回去","原路","退回去","回头"],"是"],
+      [["直升机","飞机","飞","飞行器"],"否"],
+      [["雪崩","雪灾","天灾"],"否"],
+      [["冻死","冻","低温","冷死"],"否"],
+      [["降落伞","热气球","空中"],"否"],
+      [["绳子","工具","远程"],"否"],
+      [["滑雪","滑","雪橇"],"否"],
+      [["被杀","谋杀","他杀","不是自杀"],"是"],
+    ],
+    difficulty:3,
+    hints:["脚印不一定只属于一个人","凶手找到了一种方式让自己的痕迹消失","关键在于脚印的「覆盖」"]
+  },
+  {
+    id:8, title:"第十三层",
+    scenario:"一栋大楼没有第13层（从12层直接跳到14层）。但有一天，一个人声称自己去过第13层，而且说了实话。这怎么可能？",
+    truth:"这栋大楼在外国（如美国），楼层标注跳过了13，但实际物理层是连续的。所谓的14层其实就是物理上的第13层。那个人去了标注为14层的楼层，他说的是物理意义上的第13层，所以说了实话。",
+    key_clues:["物理层","实际","标注","编号","14层就是13层"],
+    rules:[
+      [["物理","实际","物理上","实际上","真正","本质"],"是"],
+      [["标注","编号","标号","命名","叫法","名字"],"是"],
+      [["14层","十四层","14楼","十四楼"],"是"],
+      [["跳过","跳号","省略","没有标"],"是"],
+      [["其实","本质上","事实上","等于","就是"],"是"],
+      [["数字","号码","楼层号","楼号"],"是"],
+      [["连续","物理连续","层数连续","实际层数"],"是"],
+      [["鬼","灵异","超自然","幽灵","神秘"],"否"],
+      [["梦","幻觉","想象","虚拟","精神"],"否"],
+      [["电梯故障","电梯","故障"],"否"],
+      [["隐藏","密室","暗门","秘密房间","夹层"],"否"],
+      [["魔法","魔术","特异功能"],"否"],
+      [["说谎","骗人","不是实话"],"否"],
+    ],
+    difficulty:2,
+    hints:["没有任何超自然因素","想想楼层的「标注」和「实际」的区别","14层在物理上其实是第几层？"]
+  },
+  {
+    id:9, title:"三杯水",
+    scenario:"三个人同时喝了完全一样的水。一个人很快死了，其他两个人没事。为什么？",
+    truth:"水中有毒，但毒被冻在冰块里。喝得慢的人，冰块融化后毒素释放出来导致死亡。另外两个人喝得很快，在冰块融化之前就喝完了，所以没事。",
+    key_clues:["冰块","毒","融化","速度","喝得慢"],
+    rules:[
+      [["冰","冰块","冰粒","冰片","冻"],"是"],
+      [["毒","毒素","有毒","毒药","毒物"],"是"],
+      [["融化","融","化了","化开","溶化","溶解"],"是"],
+      [["速度","快慢","喝的速度","喝快","喝慢","时间"],"是"],
+      [["喝得慢","喝慢了","慢慢喝","后喝完","最后喝完"],"是"],
+      [["喝得快","喝快了","很快喝完","先喝完","一口喝完"],"是"],
+      [["水一样","完全一样","相同","一模一样","没区别","同样的水"],"是"],
+      [["固态","固体","固体物质","水里有东西","水里有固体"],"是"],
+      [["温度","热","冷","凉","温度变化"],"是"],
+      [["藏在冰里","冰里面","冰中","冰含有","冰块里"],"是"],
+      [["体质","身体","过敏","体质差","抵抗力"],"否"],
+      [["药","疾病","病","心脏病","基础病"],"否"],
+      [["杯子","杯底","杯壁","容器"],"否"],
+      [["不同的水","水不一样","水不同","不是同一种","换了"],"否"],
+      [["假装","替换","偷换","掉包"],"否"],
+    ],
+    difficulty:3,
+    hints:["水确实是完全一样的","死亡与饮用速度有关","水里有一种固态的东西"]
+  },
+  {
+    id:10, title:"无声的呼救",
+    scenario:"一个女人在家中打电话叫了一份披萨外卖。接线员觉得很奇怪，但还是派了警察去她家。结果救了她的命。为什么？",
+    truth:"女人正被歹徒挟持，不能直接报警。她假装打电话订披萨，实际是在拨打报警电话。接线员（911接线员）意识到她是在用暗语求救，因为她不能明说自己遇到了危险。",
+    key_clues:["挟持","绑架","歹徒","报警","暗语","求救","假装"],
+    rules:[
+      [["挟持","绑架","劫持","劫","控制","被抓","被困"],"是"],
+      [["歹徒","坏人","犯人","犯罪","罪犯","入室","闯入"],"是"],
+      [["报警","911","110","警察","警方","求助"],"是"],
+      [["暗语","暗号","密语","隐语","不能明说","不能直说"],"是"],
+      [["求救","救命","呼救","求助","帮忙"],"是"],
+      [["假装","装","伪装","装作","假的","不是真的"],"是"],
+      [["不能说","不方便说","旁边有人","被监视","不自由","被迫"],"是"],
+      [["危险","危急","紧急","有人在","威胁","胁迫"],"是"],
+      [["披萨有毒","披萨有问题","吃了有事"],"否"],
+      [["过敏","食物过敏"],"否"],
+      [["送错","地址错","找错","搞错"],"否"],
+      [["外卖员","送餐的","快递员"],"否"],
+      [["变态","跟踪","偷窥"],"否"],
+      [["前男友","前夫","情感","分手"],"否"],
+      [["电话","打电话","打的是","拨打","拨的"],"是"],
+    ],
+    difficulty:3,
+    hints:["她打的不是真正的披萨店电话","她旁边有不该在的人","她不能自由说话"]
+  }
+];
+
+/* ============================================
+   GAME STATE
+   ============================================ */
+const LS_KEY = 'turtle_soup_v3';
+const LS_USERS = 'turtle_soup_users';
+const LS_GLOBAL = 'turtle_soup_global';
+
+let state = {
+  currentPuzzleIndex: 0,
+  questions: [],
+  hintsUsed: 0,
+  solved: false,
+  givenUp: false,
+  startTime: null,
+  elapsed: 0,
+  solvedPuzzles: {},
+  submissions: [],
+  playerName: '',
+  welcomed: false,
+  streak: 0,
+  lastPlayDate: null,
+  totalQuestions: 0,
+  achievements: [],
+  soundEnabled: true,
+  dailyPuzzleId: null
+};
+
+// User account system (localStorage-based)
+let currentUser = null; // {username, password, role:'user'|'admin', created}
+let allUsers = [];       // stored in LS_USERS
+let globalData = {       // stored in LS_GLOBAL — shared across users
+  submissions: [],       // {id, title, scenario, truth, clues, author, date, status, aiReview}
+  approvedPuzzles: [],   // puzzles approved by admin, added to pool
+  aiDrafts: [],          // AI-generated puzzle drafts
+  deletedPuzzleIds: [],  // soft-deleted built-in puzzle IDs
+  customPuzzles: []      // admin-created/edited puzzles (persisted)
+};
+
+function saveUsers() { try { localStorage.setItem(LS_USERS, JSON.stringify(allUsers)); } catch(e){} }
+function loadUsers() { try { const s=localStorage.getItem(LS_USERS); if(s) allUsers=JSON.parse(s); } catch(e){} }
+function saveGlobal() { try { localStorage.setItem(LS_GLOBAL, JSON.stringify(globalData)); } catch(e){} }
+function loadGlobal() {
+  try { const s=localStorage.getItem(LS_GLOBAL); if(s) globalData=JSON.parse(s); } catch(e){}
+  if(!globalData.aiDrafts) globalData.aiDrafts=[];
+  if(!globalData.deletedPuzzleIds) globalData.deletedPuzzleIds=[];
+  if(!globalData.customPuzzles) globalData.customPuzzles=[];
+  if(!globalData.approvedPuzzles) globalData.approvedPuzzles=[];
+  if(!globalData.submissions) globalData.submissions=[];
+  if(!globalData.aiGenerationLog) globalData.aiGenerationLog=[];
+  globalData.aiDrafts.forEach(d=>{
+    if(!d.draftStatus) d.draftStatus = d.status==='published'?'published':'workspace';
+    if(!d.revisionHistory) d.revisionHistory=[];
+  });
+}
+
+function isAdmin() { return currentUser && currentUser.role === 'admin'; }
+
+// Ensure default admin account exists
+function ensureAdminAccount() {
+  if (!allUsers.find(u => u.role === 'admin')) {
+    allUsers.push({username:'admin', password:'admin123', role:'admin', created: new Date().toISOString()});
+    saveUsers();
+  }
+}
+
+function getDayIndex() {
+  const d = new Date();
+  const dayNum = Math.floor(d.getTime() / 86400000);
+  return dayNum % PUZZLES.length;
+}
+function getDayNumber() {
+  const start = new Date(2025, 0, 1).getTime();
+  return Math.floor((Date.now() - start) / 86400000) + 1;
+}
+function getCurrentPuzzle() {
+  return PUZZLES[state.currentPuzzleIndex];
+}
+// saveState() and loadState() defined later with per-user support
+
+/* ============================================
+   BACKGROUND BUBBLES
+   ============================================ */
+function initBubbles() {
+  const canvas = document.getElementById('bg-canvas');
+  const ctx = canvas.getContext('2d');
+  let W, H;
+  const bubbles = [];
+  const COUNT = 40;
+
+  function resize() {
+    W = canvas.width = window.innerWidth;
+    H = canvas.height = window.innerHeight;
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  for (let i = 0; i < COUNT; i++) {
+    bubbles.push({
+      x: Math.random() * W,
+      y: Math.random() * H,
+      r: Math.random() * 3 + 1,
+      dx: (Math.random() - 0.5) * 0.3,
+      dy: -(Math.random() * 0.4 + 0.1),
+      alpha: Math.random() * 0.3 + 0.05
+    });
+  }
+
+  function draw() {
+    ctx.clearRect(0, 0, W, H);
+    // gradient background
+    const grad = ctx.createLinearGradient(0, 0, 0, H);
+    grad.addColorStop(0, '#040b14');
+    grad.addColorStop(0.5, '#071a2e');
+    grad.addColorStop(1, '#0a0e1a');
+    ctx.fillStyle = grad;
+    ctx.fillRect(0, 0, W, H);
+
+    for (const b of bubbles) {
+      ctx.beginPath();
+      ctx.arc(b.x, b.y, b.r, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(14,165,233,${b.alpha})`;
+      ctx.fill();
+
+      // subtle glow
+      ctx.beginPath();
+      ctx.arc(b.x, b.y, b.r * 3, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(14,165,233,${b.alpha * 0.15})`;
+      ctx.fill();
+
+      b.x += b.dx;
+      b.y += b.dy;
+      if (b.y < -10) { b.y = H + 10; b.x = Math.random() * W; }
+      if (b.x < -10) b.x = W + 10;
+      if (b.x > W + 10) b.x = -10;
+    }
+    requestAnimationFrame(draw);
+  }
+  draw();
+}
+
+/* ============================================
+   NAVIGATION
+   ============================================ */
+function initNav() {
+  document.querySelectorAll('.nav-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const view = btn.dataset.view;
+      switchView(view);
+    });
+  });
+  // Admin via hash
+  if (location.hash === '#admin') switchView('admin');
+  window.addEventListener('hashchange', () => {
+    if (location.hash === '#admin') switchView('admin');
+  });
+}
+function switchView(name) {
+  document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  const view = document.getElementById('view-' + name);
+  if (view) view.classList.add('active');
+  const navBtn = document.querySelector(`.nav-btn[data-view="${name}"]`);
+  if (navBtn) navBtn.classList.add('active');
+
+  if (name === 'leaderboard') renderLeaderboard();
+  if (name === 'archive') renderArchive();
+  if (name === 'achievements') renderAchievements();
+  if (name === 'admin') {
+    // Auto-show admin panel if logged in as admin
+    if (isAdmin()) {
+      document.getElementById('admin-gate-view').style.display = 'none';
+      document.getElementById('admin-panel').style.display = 'block';
+      renderAdmin();
+    } else {
+      document.getElementById('admin-gate-view').style.display = '';
+      document.getElementById('admin-panel').style.display = 'none';
+    }
+  }
+  if (name === 'submit') renderMySubmissions();
+}
+
+/* ============================================
+   TIMER
+   ============================================ */
+let timerInterval = null;
+function startTimer() {
+  if (state.solved || state.givenUp) {
+    document.getElementById('timer-display').textContent = formatTime(state.elapsed);
+    return;
+  }
+  if (!state.startTime) state.startTime = Date.now();
+  timerInterval = setInterval(() => {
+    state.elapsed = Math.floor((Date.now() - state.startTime) / 1000);
+    document.getElementById('timer-display').textContent = formatTime(state.elapsed);
+  }, 1000);
+}
+function stopTimer() { clearInterval(timerInterval); }
+function formatTime(s) {
+  const m = Math.floor(s / 60);
+  const sec = s % 60;
+  return `${String(m).padStart(2,'0')}:${String(sec).padStart(2,'0')}`;
+}
+
+/* ============================================
+   RENDER PUZZLE
+   ============================================ */
+function renderPuzzle() {
+  const p = getCurrentPuzzle();
+  document.getElementById('day-badge').textContent = `第 ${getDayNumber()} 天`;
+  document.getElementById('puzzle-title').textContent = p.title;
+  document.getElementById('puzzle-scenario').textContent = p.scenario;
+
+  // difficulty stars
+  let stars = '';
+  for (let i = 1; i <= 5; i++) {
+    stars += `<span class="star ${i <= p.difficulty ? 'filled' : ''}">★</span>`;
+  }
+  document.getElementById('puzzle-difficulty').innerHTML = stars;
+
+  renderHints();
+  renderChat();
+  updateMeta();
+
+  // Solved/given-up state
+  if (state.solved) showSolvedState();
+  if (state.givenUp) showGivenUpState();
+}
+
+function updateMeta() {
+  document.getElementById('puzzle-q-count').textContent = `已提问：${state.questions.length} 次`;
+  document.getElementById('puzzle-hint-count').textContent = `已用提示：${state.hintsUsed}/3`;
+}
+
+/* ============================================
+   HINTS
+   ============================================ */
+function renderHints() {
+  const p = getCurrentPuzzle();
+  const row = document.getElementById('hints-row');
+  row.innerHTML = '';
+  p.hints.forEach((hint, i) => {
+    const revealed = i < state.hintsUsed;
+    const card = document.createElement('div');
+    card.className = `hint-card ${revealed ? 'revealed' : 'locked'}`;
+    card.innerHTML = `
+      <div class="hint-label">提示 ${i + 1}</div>
+      <div class="hint-text">${revealed ? hint : '点击揭示'}</div>
+      ${!revealed ? `<div class="hint-cost">-${(i+1)*10} 分</div>` : ''}
+    `;
+    if (!revealed && !state.solved && !state.givenUp) {
+      card.addEventListener('click', () => {
+        if (i === state.hintsUsed) { // only reveal next sequential hint
+          state.hintsUsed++;
+          saveState();
+          renderHints();
+          updateMeta();
+          updateScore();
+          sfxHint();
+          showToast(`提示 ${i+1} 已揭示`, 'info');
+          if (state.hintsUsed >= 3) unlockAchievement('all_hints');
+        }
+      });
+    }
+    row.appendChild(card);
+  });
+}
+
+/* ============================================
+   CHAT / QUESTION LOGIC
+   ============================================ */
+function renderChat() {
+  const container = document.getElementById('chat-container');
+  if (state.questions.length === 0) {
+    container.innerHTML = `<div class="chat-empty"><div class="chat-empty-icon">&#x1F50D;</div><div class="chat-empty-text">通过提问来推理真相吧！<br>只能问「是/否」类问题哦</div></div>`;
+    return;
+  }
+  container.innerHTML = '';
+  state.questions.forEach(q => {
+    const msg = document.createElement('div');
+    msg.className = 'chat-msg';
+    const badgeClass = q.answer === '是' ? 'badge-yes' : q.answer === '否' ? 'badge-no' : 'badge-irrelevant';
+    const badgeIcon = q.answer === '是' ? '✓' : q.answer === '否' ? '✗' : '—';
+    msg.innerHTML = `
+      <div class="chat-msg-q"><div class="q-label">提问 #${q.num}</div>${q.text}</div>
+      <div class="chat-badge ${badgeClass}">${q.answer} ${badgeIcon}</div>
+    `;
+    container.appendChild(msg);
+  });
+  container.scrollTop = container.scrollHeight;
+}
+
+function judgeQuestion(text) {
+  const p = getCurrentPuzzle();
+  const t = text;
+
+  // Use structured rules: first matching rule wins
+  if (p.rules) {
+    for (const [keywords, answer] of p.rules) {
+      for (const kw of keywords) {
+        if (t.includes(kw)) {
+          return answer;
+        }
+      }
+    }
+  }
+
+  // Fallback to legacy keyword system if no rules
+  if (p.yes_keywords) {
+    let yesScore = 0;
+    for (const kw of p.yes_keywords) { if (t.includes(kw)) yesScore++; }
+    let noScore = 0;
+    if (p.no_keywords) { for (const kw of p.no_keywords) { if (t.includes(kw)) noScore++; } }
+    if (noScore > yesScore && noScore > 0) return '否';
+    if (yesScore > 0) return '是';
+  }
+
+  return '无关';
+}
+
+function initChat() {
+  const input = document.getElementById('question-input');
+  const askBtn = document.getElementById('ask-btn');
+
+  function askQuestion() {
+    const text = input.value.trim();
+    if (!text || state.solved || state.givenUp) return;
+    sfxAsk();
+
+    // Show typing indicator
+    const container = document.getElementById('chat-container');
+    if (state.questions.length === 0) container.innerHTML = '';
+    const typing = document.createElement('div');
+    typing.className = 'chat-typing';
+    typing.id = 'typing-indicator';
+    typing.innerHTML = `<div class="typing-dots"><span></span><span></span><span></span></div>AI 正在思考...`;
+    container.appendChild(typing);
+    container.scrollTop = container.scrollHeight;
+    input.value = '';
+    askBtn.disabled = true;
+
+    setTimeout(() => {
+      const typingEl = document.getElementById('typing-indicator');
+      if (typingEl) typingEl.remove();
+
+      const answer = judgeQuestion(text);
+      state.questions.push({ num: state.questions.length + 1, text, answer });
+      state.totalQuestions = (state.totalQuestions || 0) + 1;
+      saveState();
+      renderChat();
+      updateMeta();
+      updateScore();
+      askBtn.disabled = false;
+      input.focus();
+
+      // Sound for answer type
+      if (answer === '是') sfxYes();
+      else if (answer === '否') sfxNo();
+      else sfxIrr();
+
+      // Check achievements
+      if (state.questions.length >= 20) unlockAchievement('twenty_questions');
+    }, 600 + Math.random() * 500);
+  }
+
+  askBtn.addEventListener('click', askQuestion);
+  input.addEventListener('keydown', e => {
+    if (e.key === 'Enter') askQuestion();
+  });
+}
+
+/* ============================================
+   ANSWER MODAL & SIMILARITY
+   ============================================ */
+function initAnswerModal() {
+  const modal = document.getElementById('answer-modal');
+  const guessBtn = document.getElementById('guess-btn');
+  const closeBtn = document.getElementById('modal-close-btn');
+  const cancelBtn = document.getElementById('modal-cancel-btn');
+  const submitBtn = document.getElementById('submit-answer-btn');
+
+  guessBtn.addEventListener('click', () => {
+    if (state.solved || state.givenUp) return;
+    modal.classList.add('open');
+    document.getElementById('similarity-result').style.display = 'none';
+    document.getElementById('answer-input').value = '';
+  });
+
+  function closeModal() { modal.classList.remove('open'); }
+  closeBtn.addEventListener('click', closeModal);
+  cancelBtn.addEventListener('click', closeModal);
+  modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
+
+  submitBtn.addEventListener('click', () => {
+    const answer = document.getElementById('answer-input').value.trim();
+    if (!answer) return;
+    const score = calculateSimilarity(answer);
+    showSimilarityResult(score);
+
+    if (score >= 85) {
+      state.solved = true;
+      state.elapsed = Math.floor((Date.now() - state.startTime) / 1000);
+      const finalScore = calculateGameScore();
+      const p = getCurrentPuzzle();
+      state.solvedPuzzles[p.id] = {
+        score: finalScore,
+        time: state.elapsed,
+        questions: state.questions.length,
+        hints: state.hintsUsed,
+        date: new Date().toISOString().split('T')[0]
+      };
+      // Update streak
+      updateStreak();
+      saveState();
+      stopTimer();
+      sfxSolve();
+      setTimeout(() => {
+        closeModal();
+        showSolvedState();
+        showShareCard(finalScore);
+        launchConfetti();
+        addToLeaderboard();
+        updateStreakBar();
+        // Check achievements
+        unlockAchievement('first_solve');
+        if (state.elapsed <= 120) unlockAchievement('speed_demon');
+        if (state.hintsUsed === 0) unlockAchievement('no_hints');
+        if (state.questions.length <= 3) unlockAchievement('three_questions');
+        if (finalScore >= 900) unlockAchievement('perfect_score');
+        const solvedCount = Object.keys(state.solvedPuzzles).length;
+        if (solvedCount >= 5) unlockAchievement('five_solved');
+        if (solvedCount >= 10) unlockAchievement('ten_solved');
+        if (state.streak >= 3) unlockAchievement('streak_3');
+        if (state.streak >= 7) unlockAchievement('streak_7');
+        if (state.hintsUsed >= 3) unlockAchievement('all_hints');
+      }, 2000);
+    }
+  });
+}
+
+function calculateSimilarity(answer) {
+  const p = getCurrentPuzzle();
+  const truth = p.truth;
+  // Gather all keywords from key_clues + keywords from rules
+  const ruleKeywords = [];
+  if (p.rules) {
+    for (const [keywords, ans] of p.rules) {
+      if (ans === '是') ruleKeywords.push(...keywords);
+    }
+  }
+  const allKeywords = [...p.key_clues, ...ruleKeywords];
+  const uniqueKeywords = [...new Set(allKeywords)];
+
+  let matchCount = 0;
+  const matched = new Set();
+  for (const kw of uniqueKeywords) {
+    if (answer.includes(kw) && !matched.has(kw)) {
+      matchCount++;
+      matched.add(kw);
+    }
+  }
+
+  // Also check overlap with truth text directly (character n-gram)
+  let ngramOverlap = 0;
+  const n = 3;
+  const truthGrams = new Set();
+  for (let i = 0; i <= truth.length - n; i++) {
+    truthGrams.add(truth.substring(i, i + n));
+  }
+  for (let i = 0; i <= answer.length - n; i++) {
+    if (truthGrams.has(answer.substring(i, i + n))) ngramOverlap++;
+  }
+
+  const keywordScore = Math.min(matchCount / Math.max(p.key_clues.length, 1), 1) * 60;
+  const ngramScore = Math.min(ngramOverlap / Math.max(truthGrams.size * 0.3, 1), 1) * 40;
+  return Math.min(Math.round(keywordScore + ngramScore), 100);
+}
+
+function showSimilarityResult(score) {
+  const result = document.getElementById('similarity-result');
+  result.style.display = 'block';
+  const ring = document.getElementById('ring-fg');
+  const pctEl = document.getElementById('ring-pct');
+  const msgEl = document.getElementById('similarity-msg');
+
+  const circumference = 2 * Math.PI * 68;
+  ring.style.strokeDasharray = circumference;
+  ring.style.strokeDashoffset = circumference;
+  ring.classList.remove('high', 'mid', 'low');
+
+  if (score >= 85) ring.classList.add('high');
+  else if (score >= 50) ring.classList.add('mid');
+  else ring.classList.add('low');
+
+  // Animate
+  setTimeout(() => {
+    ring.style.strokeDashoffset = circumference * (1 - score / 100);
+  }, 100);
+
+  let current = 0;
+  const interval = setInterval(() => {
+    current += 2;
+    if (current > score) { current = score; clearInterval(interval); }
+    pctEl.textContent = current + '%';
+  }, 20);
+
+  if (score >= 85) {
+    msgEl.textContent = '恭喜！你破解了真相！';
+    msgEl.className = 'similarity-msg success';
+  } else if (score >= 60) {
+    msgEl.textContent = '已经很接近了，再想想细节！';
+    msgEl.className = 'similarity-msg';
+  } else if (score >= 30) {
+    msgEl.textContent = '方向似乎有些偏，继续推理吧';
+    msgEl.className = 'similarity-msg';
+  } else {
+    msgEl.textContent = '离真相还有一段距离哦';
+    msgEl.className = 'similarity-msg';
+  }
+}
+
+function showSolvedState() {
+  const p = getCurrentPuzzle();
+  const banner = document.getElementById('solved-banner');
+  banner.style.display = 'block';
+  document.getElementById('solved-truth').textContent = '真相：' + p.truth;
+  document.getElementById('input-area').style.display = 'none';
+  document.querySelector('.game-actions').style.display = 'none';
+}
+
+function showGivenUpState() {
+  const p = getCurrentPuzzle();
+  const banner = document.getElementById('solved-banner');
+  banner.style.display = 'block';
+  banner.querySelector('.solved-banner-icon').textContent = '🏳️';
+  banner.querySelector('.solved-banner-text').textContent = '你选择了查看答案';
+  banner.querySelector('.solved-banner-text').style.color = 'var(--amber)';
+  document.getElementById('solved-truth').textContent = '真相：' + p.truth;
+  document.getElementById('input-area').style.display = 'none';
+  document.querySelector('.game-actions').style.display = 'none';
+  // Reveal all hints
+  state.hintsUsed = 3;
+  renderHints();
+}
+
+function initGiveUp() {
+  document.getElementById('give-up-btn').addEventListener('click', () => {
+    if (state.solved || state.givenUp) return;
+    showConfirm('🏳️', '确定要放弃吗？', '放弃后将直接揭晓答案，且不计入排行榜。', () => {
+      state.givenUp = true;
+      state.elapsed = Math.floor((Date.now() - state.startTime) / 1000);
+      saveState();
+      stopTimer();
+      showGivenUpState();
+    });
+  });
+}
+
+/* ============================================
+   CONFETTI
+   ============================================ */
+function launchConfetti() {
+  const canvas = document.getElementById('confetti-canvas');
+  const ctx = canvas.getContext('2d');
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+
+  const particles = [];
+  const colors = ['#f59e0b','#0ea5e9','#22c55e','#ef4444','#8b5cf6','#ec4899','#fbbf24'];
+  for (let i = 0; i < 150; i++) {
+    particles.push({
+      x: Math.random() * canvas.width,
+      y: -20 - Math.random() * 200,
+      w: Math.random() * 8 + 4,
+      h: Math.random() * 6 + 3,
+      color: colors[Math.floor(Math.random() * colors.length)],
+      vy: Math.random() * 3 + 2,
+      vx: (Math.random() - 0.5) * 4,
+      rot: Math.random() * 360,
+      rotSpeed: (Math.random() - 0.5) * 10,
+      alpha: 1
+    });
+  }
+
+  let frame = 0;
+  function animate() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    let alive = false;
+    for (const p of particles) {
+      if (p.alpha <= 0) continue;
+      alive = true;
+      ctx.save();
+      ctx.translate(p.x, p.y);
+      ctx.rotate(p.rot * Math.PI / 180);
+      ctx.globalAlpha = p.alpha;
+      ctx.fillStyle = p.color;
+      ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
+      ctx.restore();
+
+      p.x += p.vx;
+      p.y += p.vy;
+      p.vy += 0.05;
+      p.rot += p.rotSpeed;
+      if (frame > 60) p.alpha -= 0.008;
+    }
+    frame++;
+    if (alive && frame < 300) requestAnimationFrame(animate);
+    else ctx.clearRect(0, 0, canvas.width, canvas.height);
+  }
+  animate();
+}
+
+/* ============================================
+   LEADERBOARD (Fake data)
+   ============================================ */
+const FAKE_NAMES = ['推理王小明','汤神阿花','脑洞大开','侦探小李','逻辑怪','海龟粉丝','真相猎人','思维达人','破案高手','福尔摩斯','柯南再世','解谜少女','智慧之光','烧脑爱好者','第六感'];
+
+function generateLeaderboard() {
+  const fastest = [];
+  const fewest = [];
+  const best = [];
+  const shuffle = arr => arr.slice().sort(() => Math.random() - 0.5);
+  const names = shuffle(FAKE_NAMES);
+
+  for (let i = 0; i < 10; i++) {
+    fastest.push({ name: names[i % names.length], time: 30 + Math.floor(Math.random() * 300), score: 1000 - i * 65 });
+    fewest.push({ name: names[(i + 3) % names.length], questions: 2 + Math.floor(Math.random() * 12), score: 950 - i * 55 });
+    best.push({ name: names[(i + 6) % names.length], reasoning: (95 - i * 7) + '%', score: 980 - i * 60 });
+  }
+  fastest.sort((a, b) => a.time - b.time);
+  fewest.sort((a, b) => a.questions - b.questions);
+  best.sort((a, b) => b.score - a.score);
+  return { fastest, fewest, best };
+}
+
+let lbData = null;
+function renderLeaderboard() {
+  if (!lbData) lbData = generateLeaderboard();
+  const tabs = document.querySelectorAll('.lb-tab');
+  let currentTab = 'fastest';
+  tabs.forEach(t => { if (t.classList.contains('active')) currentTab = t.dataset.tab; });
+
+  const list = document.getElementById('lb-list');
+  list.innerHTML = '';
+
+  const data = currentTab === 'fastest' ? lbData.fastest :
+               currentTab === 'fewest' ? lbData.fewest : lbData.best;
+
+  data.forEach((entry, i) => {
+    const el = document.createElement('div');
+    el.className = 'lb-entry';
+    el.style.animationDelay = `${i * 0.05}s`;
+    const rankClass = i === 0 ? 'gold' : i === 1 ? 'silver' : i === 2 ? 'bronze' : '';
+    const rankDisplay = i < 3 ? ['🥇','🥈','🥉'][i] : (i + 1);
+    const statText = currentTab === 'fastest' ? `用时 ${formatTime(entry.time)}` :
+                     currentTab === 'fewest' ? `${entry.questions} 次提问` : `推理评分 ${entry.reasoning}`;
+
+    el.innerHTML = `
+      <div class="lb-rank ${rankClass}">${rankDisplay}</div>
+      <div class="lb-avatar">${entry.name.charAt(0)}</div>
+      <div class="lb-info">
+        <div class="lb-name">${entry.name}</div>
+        <div class="lb-stat">${statText}</div>
+      </div>
+      <div class="lb-score">${entry.score}</div>
+    `;
+    list.appendChild(el);
+  });
+}
+
+function initLeaderboardTabs() {
+  document.getElementById('lb-tabs').addEventListener('click', e => {
+    const tab = e.target.closest('.lb-tab');
+    if (!tab) return;
+    document.querySelectorAll('.lb-tab').forEach(t => t.classList.remove('active'));
+    tab.classList.add('active');
+    renderLeaderboard();
+  });
+}
+
+function addToLeaderboard() {
+  if (!lbData) lbData = generateLeaderboard();
+  const name = state.playerName || '你';
+  const entry = {
+    name,
+    time: state.elapsed,
+    questions: state.questions.length,
+    reasoning: Math.max(100 - state.questions.length * 3 - state.hintsUsed * 10, 10) + '%',
+    score: Math.max(1000 - state.elapsed - state.questions.length * 20 - state.hintsUsed * 50, 100)
+  };
+  lbData.fastest.push(entry);
+  lbData.fastest.sort((a, b) => a.time - b.time);
+  lbData.fewest.push({ ...entry });
+  lbData.fewest.sort((a, b) => a.questions - b.questions);
+  lbData.best.push({ ...entry });
+  lbData.best.sort((a, b) => b.score - a.score);
+}
+
+/* ============================================
+   ARCHIVE
+   ============================================ */
+function renderArchive() {
+  const grid = document.getElementById('archive-grid');
+  grid.innerHTML = '';
+  PUZZLES.forEach((p, i) => {
+    const solved = state.solvedPuzzles[p.id];
+    const dayNum = i + 1;
+    const card = document.createElement('div');
+    card.className = 'archive-card';
+    card.innerHTML = `
+      <div class="archive-day">第 ${dayNum} 天</div>
+      <div class="archive-title">${p.title}</div>
+      <div class="archive-meta">
+        <span>${'★'.repeat(p.difficulty)}${'☆'.repeat(5-p.difficulty)}</span>
+        <span class="archive-status ${solved ? 'solved' : 'unsolved'}">${solved ? '已解' : '未挑战'}</span>
+      </div>
+    `;
+    card.addEventListener('click', () => {
+      if (i === state.currentPuzzleIndex) {
+        switchView('game');
+        return;
+      }
+      // Load this puzzle
+      state.currentPuzzleIndex = i;
+      state.questions = [];
+      state.hintsUsed = 0;
+      state.solved = !!state.solvedPuzzles[p.id];
+      state.givenUp = false;
+      state.startTime = Date.now();
+      state.elapsed = 0;
+      saveState();
+      resetGameUI();
+      renderPuzzle();
+      startTimer();
+      switchView('game');
+      showToast(`已切换到第 ${dayNum} 天的谜题`, 'info');
+    });
+    grid.appendChild(card);
+  });
+}
+
+function resetGameUI() {
+  document.getElementById('solved-banner').style.display = 'none';
+  document.getElementById('input-area').style.display = 'flex';
+  document.querySelector('.game-actions').style.display = 'flex';
+  const banner = document.getElementById('solved-banner');
+  banner.querySelector('.solved-banner-icon').textContent = '🎉';
+  banner.querySelector('.solved-banner-text').textContent = '恭喜你解出了今日海龟汤！';
+  banner.querySelector('.solved-banner-text').style.color = '';
+}
+
+/* ============================================
+   SUBMIT PUZZLE
+   ============================================ */
+function initSubmit() {
+  const previewBtn = document.getElementById('preview-btn');
+  const submitBtn = document.getElementById('submit-btn');
+
+  previewBtn.addEventListener('click', () => {
+    const title = document.getElementById('submit-title').value.trim();
+    const scenario = document.getElementById('submit-scenario').value.trim();
+    if (!title || !scenario) {
+      showToast('请至少填写汤名和汤面', 'error');
+      return;
+    }
+    document.getElementById('preview-title').textContent = title;
+    document.getElementById('preview-scenario').textContent = scenario;
+    document.getElementById('submit-preview').style.display = 'block';
+  });
+
+  submitBtn.addEventListener('click', () => {
+    if (!currentUser) { showToast('请先登录', 'error'); return; }
+    const title = document.getElementById('submit-title').value.trim();
+    const scenario = document.getElementById('submit-scenario').value.trim();
+    const truth = document.getElementById('submit-truth').value.trim();
+    if (!title || !scenario || !truth) {
+      showToast('请填写所有必填项', 'error');
+      return;
+    }
+    const clues = document.getElementById('submit-clues').value.trim();
+
+    // AI Review: check quality
+    const aiReview = aiReviewSubmission(title, scenario, truth);
+
+    if (aiReview.rejected) {
+      showToast('AI 审核未通过：' + aiReview.reason, 'error');
+      return;
+    }
+
+    // Check for duplicates
+    const isDuplicate = globalData.submissions.some(s =>
+      s.title === title || (s.scenario === scenario && s.truth === truth)
+    );
+    if (isDuplicate) {
+      showToast('检测到重复投稿，请勿重复提交', 'error');
+      return;
+    }
+
+    const submission = {
+      id: Date.now(),
+      title, scenario, truth, clues,
+      author: currentUser.username,
+      date: new Date().toLocaleDateString('zh-CN'),
+      status: aiReview.autoApprove ? '已通过' : '待审核',
+      aiReview: aiReview
+    };
+
+    globalData.submissions.push(submission);
+    saveGlobal();
+    saveState();
+
+    if (aiReview.autoApprove) {
+      showToast('AI 审核通过，谜题已自动发布！', 'success');
+    } else {
+      showToast('投稿成功！AI评分: ' + aiReview.score + '/100，等待管理员审核', 'success');
+    }
+    sfxSolve();
+    unlockAchievement('contributor');
+
+    // Clear form
+    document.getElementById('submit-title').value = '';
+    document.getElementById('submit-scenario').value = '';
+    document.getElementById('submit-truth').value = '';
+    document.getElementById('submit-clues').value = '';
+    document.getElementById('submit-preview').style.display = 'none';
+    renderMySubmissions();
+  });
+}
+
+/* ============================================
+   AI REVIEW ENGINE for submissions
+   ============================================ */
+function aiReviewSubmission(title, scenario, truth) {
+  let score = 0;
+  const issues = [];
+
+  // 1. Length checks
+  if (title.length >= 2 && title.length <= 20) score += 10;
+  else issues.push('标题长度不合适');
+
+  if (scenario.length >= 15) score += 15;
+  else issues.push('汤面太短，缺少细节');
+
+  if (scenario.length >= 30) score += 10;
+
+  if (truth.length >= 20) score += 15;
+  else issues.push('汤底太短，逻辑不够完整');
+
+  if (truth.length >= 50) score += 10;
+
+  // 2. Scenario should end with question
+  if (scenario.includes('？') || scenario.includes('?') || scenario.includes('为什么') || scenario.includes('怎么')) {
+    score += 10;
+  } else {
+    issues.push('汤面应以疑问结尾');
+  }
+
+  // 3. Truth should explain the scenario (check for shared characters)
+  const scenarioChars = new Set(scenario.replace(/[，。？！、\s]/g, '').split(''));
+  const truthChars = new Set(truth.replace(/[，。？！、\s]/g, '').split(''));
+  let overlap = 0;
+  for (const c of scenarioChars) { if (truthChars.has(c)) overlap++; }
+  const overlapRatio = overlap / Math.max(scenarioChars.size, 1);
+  if (overlapRatio > 0.15 && overlapRatio < 0.7) {
+    score += 15; // some overlap but not too much (truth shouldn't just repeat scenario)
+  } else if (overlapRatio >= 0.7) {
+    score += 5;
+    issues.push('汤底与汤面内容重复度过高');
+  } else {
+    issues.push('汤底与汤面关联性不足');
+  }
+
+  // 4. Check for spam / gibberish (repeated characters)
+  const repeatedPattern = /(.)\1{4,}/;
+  if (repeatedPattern.test(scenario) || repeatedPattern.test(truth)) {
+    score -= 20;
+    issues.push('检测到异常重复内容');
+  }
+
+  // 5. Basic profanity / inappropriate content check
+  const badWords = ['傻逼','草泥马','操','妈的','垃圾','废物','去死'];
+  const hasBad = badWords.some(w => scenario.includes(w) || truth.includes(w) || title.includes(w));
+  if (hasBad) {
+    return { rejected: true, reason: '包含不当用语', score: 0 };
+  }
+
+  // 6. Minimum quality gate
+  score = Math.max(0, Math.min(100, score));
+  if (score < 30) {
+    return { rejected: true, reason: '内容质量评分过低（' + score + '/100），请补充更多细节', score };
+  }
+
+  return {
+    rejected: false,
+    score,
+    issues,
+    autoApprove: score >= 75, // high quality auto-approved
+    reason: issues.length ? issues.join('；') : '质量良好'
+  };
+}
+
+function renderMySubmissions() {
+  const container = document.getElementById('my-submissions');
+  const myName = currentUser ? currentUser.username : state.playerName;
+  const mySubs = globalData.submissions.filter(s => s.author === myName);
+  if (mySubs.length === 0) {
+    container.innerHTML = '<div style="text-align:center;color:var(--text-dim);font-size:.85rem;padding:20px">暂无投稿记录</div>';
+    return;
+  }
+  container.innerHTML = '';
+  mySubs.forEach(s => {
+    const item = document.createElement('div');
+    item.className = 'admin-item';
+    const statusColor = s.status === '待审核' ? 'var(--amber)' : s.status === '已通过' ? 'var(--green)' : 'var(--red)';
+    const aiScore = s.aiReview ? ` · AI评分: ${s.aiReview.score}` : '';
+    item.innerHTML = `
+      <div class="admin-item-body">
+        <div class="admin-item-title">${s.title}</div>
+        <div class="admin-item-desc">${s.date} · <span style="color:${statusColor}">${s.status}</span>${aiScore}</div>
+      </div>
+    `;
+    container.appendChild(item);
+  });
+}
+
+/* ============================================
+   ADMIN PANEL — Full Management Dashboard
+   ============================================ */
+let currentAdminTab = 'dashboard';
+const ADMIN_PAGE_SIZE = 10;
+let adminPuzzlePage = 1;
+let adminUserPage = 1;
+let adminSubmissionPage = 1;
+let adminPuzzleSearch = '';
+let adminUserSearch = '';
+
+/* --- Helpers --- */
+function escHtml(s) { const d=document.createElement('div');d.textContent=s||'';return d.innerHTML; }
+
+function getActivePuzzles() {
+  const del = globalData.deletedPuzzleIds || [];
+  const builtIn = PUZZLES.filter(p=>!del.includes(p.id)).map(p=>({...p,_source:'内置'}));
+  const custom = (globalData.customPuzzles||[]).map(p=>({...p,_source:'自建'}));
+  const approved = (globalData.approvedPuzzles||[]).map(p=>({...p,_source:'投稿'}));
+  // Deduplicate by id (custom overrides built-in)
+  const seen = new Set();
+  const result = [];
+  for (const p of [...custom, ...approved, ...builtIn]) {
+    if (!seen.has(p.id)) { seen.add(p.id); result.push(p); }
+  }
+  return result;
+}
+
+function openAdminModal(title, bodyHtml, buttons) {
+  document.getElementById('admin-modal-title').textContent = title;
+  document.getElementById('admin-modal-body').innerHTML = bodyHtml;
+  const footer = document.getElementById('admin-modal-footer');
+  footer.innerHTML = '';
+  (buttons||[]).forEach(b => {
+    const btn = document.createElement('button');
+    btn.className = b.cls || 'btn btn-ghost btn-sm';
+    btn.textContent = b.text;
+    if (b.onclick) btn.setAttribute('onclick', b.onclick);
+    footer.appendChild(btn);
+  });
+  document.getElementById('admin-edit-modal').classList.add('open');
+}
+function closeAdminModal() { document.getElementById('admin-edit-modal').classList.remove('open'); }
+
+/* --- Init & Tab System --- */
+function initAdmin() {
+  document.getElementById('admin-login-btn').addEventListener('click', adminLoginFromGate);
+  document.getElementById('admin-pwd').addEventListener('keydown', e => { if(e.key==='Enter') adminLoginFromGate(); });
+  document.getElementById('admin-logout-btn').addEventListener('click', () => switchView('game'));
+  document.getElementById('admin-modal-close').addEventListener('click', closeAdminModal);
+  document.getElementById('admin-edit-modal').addEventListener('click', e => { if(e.target.id==='admin-edit-modal') closeAdminModal(); });
+
+  document.querySelectorAll('.admin-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      currentAdminTab = tab.dataset.adminTab;
+      document.querySelectorAll('.admin-tab').forEach(t=>t.classList.remove('active'));
+      tab.classList.add('active');
+      document.querySelectorAll('.admin-tab-content').forEach(c=>c.classList.remove('active'));
+      document.getElementById('admin-tab-'+currentAdminTab).classList.add('active');
+      renderAdminTab(currentAdminTab);
+    });
+  });
+}
+
+function adminLoginFromGate() {
+  const pwd = document.getElementById('admin-pwd').value;
+  if (currentUser && currentUser.role === 'admin') {
+    document.getElementById('admin-gate-view').style.display = 'none';
+    document.getElementById('admin-panel').style.display = 'block';
+    renderAdmin();
+  } else if (pwd === 'admin123') {
+    const adminUser = allUsers.find(u => u.role === 'admin');
+    if (adminUser) { currentUser=adminUser; localStorage.setItem('turtle_soup_current_user',adminUser.username); loadUserState(adminUser.username); updateUserBadge(); }
+    document.getElementById('admin-gate-view').style.display = 'none';
+    document.getElementById('admin-panel').style.display = 'block';
+    renderAdmin();
+  } else {
+    showToast('密码错误，或你不是管理员', 'error');
+  }
+}
+
+function renderAdmin() {
+  document.querySelectorAll('.admin-tab-content').forEach(c=>c.classList.remove('active'));
+  document.getElementById('admin-tab-'+currentAdminTab).classList.add('active');
+  renderAdminTab(currentAdminTab);
+}
+function renderAdminTab(tab) {
+  switch(tab) {
+    case 'dashboard': renderAdminDashboard(); break;
+    case 'puzzles': renderAdminPuzzles(); break;
+    case 'submissions': renderAdminSubmissions(); break;
+    case 'ai-gen': renderAdminAiGen(); break;
+    case 'users': renderAdminUsers(); break;
+  }
+}
+function switchAdminTab(tabName) {
+  currentAdminTab = tabName;
+  document.querySelectorAll('.admin-tab').forEach(t=>t.classList.toggle('active',t.dataset.adminTab===tabName));
+  document.querySelectorAll('.admin-tab-content').forEach(c=>c.classList.remove('active'));
+  document.getElementById('admin-tab-'+tabName).classList.add('active');
+  renderAdminTab(tabName);
+}
+
+/* === TAB: Dashboard === */
+function renderAdminDashboard() {
+  const el = document.getElementById('admin-tab-dashboard');
+  const ap = getActivePuzzles();
+  const pending = globalData.submissions.filter(s=>s.status==='待审核');
+  const approved = globalData.submissions.filter(s=>s.status==='已通过');
+  const totalSubs = globalData.submissions.length;
+  const rate = totalSubs>0 ? Math.round(approved.length/totalSubs*100) : 0;
+  const userCount = allUsers.length;
+  const drafts = (globalData.aiDrafts||[]).filter(d=>d.draftStatus==='workspace'||d.draftStatus==='pending'||(d.status==='draft'&&!d.draftStatus)).length;
+  const today = Math.min(userCount, Math.max(1, Math.floor(userCount*(0.3+Math.random()*0.4))));
+
+  el.innerHTML = `
+    <div class="admin-stats">
+      <div class="admin-stat-card"><div class="admin-stat-card-icon">&#x1F465;</div><div class="admin-stat-num">${userCount}</div><div class="admin-stat-label">总用户</div></div>
+      <div class="admin-stat-card"><div class="admin-stat-card-icon">&#x1F9E9;</div><div class="admin-stat-num">${ap.length}</div><div class="admin-stat-label">已发布谜题</div></div>
+      <div class="admin-stat-card"><div class="admin-stat-card-icon">&#x1F4DD;</div><div class="admin-stat-num">${totalSubs}</div><div class="admin-stat-label">总投稿</div></div>
+      <div class="admin-stat-card"><div class="admin-stat-card-icon">&#x1F7E2;</div><div class="admin-stat-num">${today}</div><div class="admin-stat-label">今日活跃</div></div>
+      <div class="admin-stat-card"><div class="admin-stat-card-icon">&#x2705;</div><div class="admin-stat-num">${rate}%</div><div class="admin-stat-label">投稿通过率</div></div>
+      <div class="admin-stat-card"><div class="admin-stat-card-icon">&#x23F3;</div><div class="admin-stat-num">${pending.length}</div><div class="admin-stat-label">待审核</div></div>
+      <div class="admin-stat-card"><div class="admin-stat-card-icon">&#x1F916;</div><div class="admin-stat-num">${drafts}</div><div class="admin-stat-label">AI草稿</div></div>
+      <div class="admin-stat-card"><div class="admin-stat-card-icon">&#x2B50;</div><div class="admin-stat-num">${approved.length}</div><div class="admin-stat-label">已通过投稿</div></div>
+    </div>
+    <div class="glass-card" style="margin-top:16px">
+      <div class="admin-section-title">&#x1F4CB; 快速操作</div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap">
+        <button class="btn btn-primary btn-sm" onclick="switchAdminTab('submissions')">审核投稿 (${pending.length})</button>
+        <button class="btn btn-amber btn-sm" onclick="switchAdminTab('ai-gen')">AI创作新题</button>
+        <button class="btn btn-ghost btn-sm" onclick="switchAdminTab('puzzles')">管理谜题</button>
+        <button class="btn btn-ghost btn-sm" onclick="switchAdminTab('users')">用户管理</button>
+      </div>
+    </div>`;
+}
+
+/* === TAB: Puzzle Management === */
+function renderAdminPuzzles() {
+  const el = document.getElementById('admin-tab-puzzles');
+  const all = getActivePuzzles();
+  const filtered = adminPuzzleSearch ? all.filter(p=>p.title.includes(adminPuzzleSearch)||p.scenario.includes(adminPuzzleSearch)) : all;
+  const tp = Math.ceil(filtered.length/ADMIN_PAGE_SIZE)||1;
+  adminPuzzlePage = Math.min(adminPuzzlePage,tp);
+  const start = (adminPuzzlePage-1)*ADMIN_PAGE_SIZE;
+  const page = filtered.slice(start,start+ADMIN_PAGE_SIZE);
+
+  let h = `<div class="admin-toolbar">
+    <input type="text" class="input-field admin-search" id="adm-pz-search" placeholder="搜索谜题标题或内容..." value="${escHtml(adminPuzzleSearch)}" style="border-radius:var(--radius-sm)">
+    <button class="btn btn-amber btn-sm" onclick="openAdminAddPuzzleModal()">&#x2795; 新建谜题</button>
+  </div>
+  <div class="admin-table-wrap"><table class="admin-table"><thead><tr><th>ID</th><th>标题</th><th>难度</th><th>来源</th><th>操作</th></tr></thead><tbody>`;
+
+  page.forEach(p => {
+    const src = p._source||'内置';
+    const srcCls = src==='内置'?'admin-badge-builtin':src==='投稿'?'admin-badge-approved':'admin-badge-admin';
+    const stars = '★'.repeat(p.difficulty||3)+'☆'.repeat(5-(p.difficulty||3));
+    h += `<tr>
+      <td style="color:var(--text-dim)">${p.id}</td>
+      <td style="max-width:180px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${escHtml(p.title)}</td>
+      <td style="color:var(--amber);font-size:.8rem">${stars}</td>
+      <td><span class="admin-badge ${srcCls}">${src}</span></td>
+      <td><div style="display:flex;gap:4px">
+        <button class="btn btn-ghost btn-sm" onclick="openAdminPuzzleDetail(${p.id})">查看</button>
+        <button class="btn btn-primary btn-sm" onclick="openAdminEditPuzzle(${p.id})">编辑</button>
+        <button class="btn btn-danger btn-sm" onclick="adminDeletePuzzle(${p.id})">删除</button>
+      </div></td></tr>`;
+  });
+  h += '</tbody></table></div>';
+  if (tp>1) { h+='<div class="admin-pagination">'; for(let i=1;i<=tp;i++) h+=`<button class="admin-page-btn ${i===adminPuzzlePage?'active':''}" onclick="adminPuzzlePage=${i};renderAdminPuzzles()">${i}</button>`; h+='</div>'; }
+  h += `<div style="font-size:.75rem;color:var(--text-dim);margin-top:8px;text-align:center">共 ${filtered.length} 道谜题</div>`;
+  el.innerHTML = h;
+  document.getElementById('adm-pz-search').addEventListener('input', e=>{ adminPuzzleSearch=e.target.value.trim(); adminPuzzlePage=1; renderAdminPuzzles(); });
+}
+
+function openAdminPuzzleDetail(pid) {
+  const p = getActivePuzzles().find(x=>x.id===pid); if(!p) return;
+  openAdminModal('谜题详情: '+p.title, `<div class="admin-detail-panel">
+    <div class="admin-detail-row"><div class="admin-detail-label">ID</div><div class="admin-detail-value">${p.id}</div></div>
+    <div class="admin-detail-row"><div class="admin-detail-label">标题</div><div class="admin-detail-value">${escHtml(p.title)}</div></div>
+    <div class="admin-detail-row"><div class="admin-detail-label">难度</div><div class="admin-detail-value">${'★'.repeat(p.difficulty||3)}</div></div>
+    <div class="admin-detail-row"><div class="admin-detail-label">汤面</div><div class="admin-detail-value">${escHtml(p.scenario)}</div></div>
+    <div class="admin-detail-row"><div class="admin-detail-label">汤底</div><div class="admin-detail-value">${escHtml(p.truth)}</div></div>
+    <div class="admin-detail-row"><div class="admin-detail-label">关键线索</div><div class="admin-detail-value">${(p.key_clues||[]).join('、')||'—'}</div></div>
+    <div class="admin-detail-row"><div class="admin-detail-label">提示</div><div class="admin-detail-value">${(p.hints||[]).join(' | ')||'—'}</div></div>
+    <div class="admin-detail-row"><div class="admin-detail-label">规则数</div><div class="admin-detail-value">${(p.rules||[]).length} 条</div></div>
+    <div class="admin-detail-row"><div class="admin-detail-label">来源</div><div class="admin-detail-value">${p._source||'未知'}</div></div>
+  </div>`, [{text:'编辑',cls:'btn btn-primary btn-sm',onclick:`closeAdminModal();openAdminEditPuzzle(${pid})`},{text:'关闭',cls:'btn btn-ghost btn-sm',onclick:'closeAdminModal()'}]);
+}
+
+function openAdminEditPuzzle(pid) {
+  const p = getActivePuzzles().find(x=>x.id===pid); if(!p) return;
+  openAdminModal('编辑谜题: '+p.title, `
+    <div class="form-group"><label class="form-label">标题</label><input type="text" class="input-field" id="ed-p-title" value="${escHtml(p.title)}" style="border-radius:var(--radius-sm)"></div>
+    <div class="form-group"><label class="form-label">汤面</label><textarea class="textarea-field" id="ed-p-scenario">${escHtml(p.scenario)}</textarea></div>
+    <div class="form-group"><label class="form-label">汤底</label><textarea class="textarea-field" id="ed-p-truth">${escHtml(p.truth)}</textarea></div>
+    <div class="form-group"><label class="form-label">关键线索 (逗号分隔)</label><input type="text" class="input-field" id="ed-p-clues" value="${escHtml((p.key_clues||[]).join(', '))}" style="border-radius:var(--radius-sm)"></div>
+    <div class="form-group"><label class="form-label">提示 (逗号分隔, 最多3个)</label><input type="text" class="input-field" id="ed-p-hints" value="${escHtml((p.hints||[]).join(', '))}" style="border-radius:var(--radius-sm)"></div>
+    <div class="form-group"><label class="form-label">难度 (1-5)</label><input type="number" class="input-field" id="ed-p-diff" min="1" max="5" value="${p.difficulty||3}" style="border-radius:var(--radius-sm);width:80px"></div>
+  `, [{text:'保存',cls:'btn btn-amber btn-sm',onclick:`adminSavePuzzle(${pid})`},{text:'取消',cls:'btn btn-ghost btn-sm',onclick:'closeAdminModal()'}]);
+}
+
+function adminSavePuzzle(pid) {
+  const title=document.getElementById('ed-p-title').value.trim();
+  const scenario=document.getElementById('ed-p-scenario').value.trim();
+  const truth=document.getElementById('ed-p-truth').value.trim();
+  if(!title||!scenario||!truth){showToast('必填项不能为空','error');return;}
+  const clues=document.getElementById('ed-p-clues').value.split(',').map(s=>s.trim()).filter(Boolean);
+  const hints=document.getElementById('ed-p-hints').value.split(',').map(s=>s.trim()).filter(Boolean).slice(0,3);
+  const diff=parseInt(document.getElementById('ed-p-diff').value)||3;
+  const rules=clues.map(c=>[[c],'是']);
+  const updated={id:pid,title,scenario,truth,key_clues:clues,hints:hints.length?hints:['暂无提示','暂无提示','暂无提示'],difficulty:Math.min(Math.max(diff,1),5),rules};
+
+  // If built-in puzzle, soft-delete original and save to customPuzzles
+  const builtInIdx = PUZZLES.findIndex(p=>p.id===pid && !(globalData.customPuzzles||[]).find(c=>c.id===pid));
+  if (PUZZLES.find(p=>p.id===pid)) {
+    if (!globalData.deletedPuzzleIds.includes(pid)) globalData.deletedPuzzleIds.push(pid);
+  }
+  const cpIdx = (globalData.customPuzzles||[]).findIndex(p=>p.id===pid);
+  if(cpIdx>=0) globalData.customPuzzles[cpIdx]=updated;
+  else { if(!globalData.customPuzzles)globalData.customPuzzles=[]; globalData.customPuzzles.push(updated); }
+  // Also check approvedPuzzles
+  const apIdx = (globalData.approvedPuzzles||[]).findIndex(p=>p.id===pid);
+  if(apIdx>=0) globalData.approvedPuzzles[apIdx]=updated;
+  // Update runtime PUZZLES
+  const rtIdx = PUZZLES.findIndex(p=>p.id===pid);
+  if(rtIdx>=0) Object.assign(PUZZLES[rtIdx],updated);
+  else PUZZLES.push(updated);
+
+  saveGlobal();closeAdminModal();renderAdminPuzzles();showToast('谜题已保存','success');
+}
+
+function adminDeletePuzzle(pid) {
+  showConfirm('&#x1F5D1;&#xFE0F;','确定删除这道谜题？','删除后无法恢复（内置谜题可重置恢复）',()=>{
+    if(PUZZLES.find(p=>p.id===pid)) { if(!globalData.deletedPuzzleIds.includes(pid)) globalData.deletedPuzzleIds.push(pid); }
+    ['customPuzzles','approvedPuzzles'].forEach(k=>{ if(globalData[k]) globalData[k]=globalData[k].filter(p=>p.id!==pid); });
+    saveGlobal();renderAdminPuzzles();showToast('谜题已删除','success');
+  });
+}
+
+function openAdminAddPuzzleModal() {
+  openAdminModal('新建谜题', `
+    <div class="form-group"><label class="form-label">标题 <span class="required">*</span></label><input type="text" class="input-field" id="new-p-title" style="border-radius:var(--radius-sm)"></div>
+    <div class="form-group"><label class="form-label">汤面 <span class="required">*</span></label><textarea class="textarea-field" id="new-p-scenario"></textarea></div>
+    <div class="form-group"><label class="form-label">汤底 <span class="required">*</span></label><textarea class="textarea-field" id="new-p-truth"></textarea></div>
+    <div class="form-group"><label class="form-label">关键线索 (逗号分隔)</label><input type="text" class="input-field" id="new-p-clues" style="border-radius:var(--radius-sm)"></div>
+    <div class="form-group"><label class="form-label">提示 (逗号分隔, 最多3)</label><input type="text" class="input-field" id="new-p-hints" style="border-radius:var(--radius-sm)"></div>
+    <div class="form-group"><label class="form-label">难度 (1-5)</label><input type="number" class="input-field" id="new-p-diff" min="1" max="5" value="3" style="border-radius:var(--radius-sm);width:80px"></div>
+  `, [{text:'创建并发布',cls:'btn btn-amber btn-sm',onclick:'adminCreatePuzzleNew()'},{text:'取消',cls:'btn btn-ghost btn-sm',onclick:'closeAdminModal()'}]);
+}
+
+function adminCreatePuzzleNew() {
+  const title=document.getElementById('new-p-title').value.trim();
+  const scenario=document.getElementById('new-p-scenario').value.trim();
+  const truth=document.getElementById('new-p-truth').value.trim();
+  if(!title||!scenario||!truth){showToast('请填写必填项','error');return;}
+  const clues=document.getElementById('new-p-clues').value.split(',').map(s=>s.trim()).filter(Boolean);
+  const hints=document.getElementById('new-p-hints').value.split(',').map(s=>s.trim()).filter(Boolean).slice(0,3);
+  const diff=parseInt(document.getElementById('new-p-diff').value)||3;
+  const newId=Date.now();
+  const puzzle={id:newId,title,scenario,truth,key_clues:clues,rules:clues.map(c=>[[c],'是']),difficulty:Math.min(Math.max(diff,1),5),hints:hints.length?hints:['暂无提示','暂无提示','暂无提示']};
+  if(!globalData.customPuzzles) globalData.customPuzzles=[];
+  globalData.customPuzzles.push(puzzle);
+  PUZZLES.push(puzzle);
+  saveGlobal();closeAdminModal();renderAdminPuzzles();showToast('谜题已创建并发布','success');
+}
+
+/* === TAB: Submission Review === */
+function renderAdminSubmissions() {
+  const el = document.getElementById('admin-tab-submissions');
+  const allSubs = globalData.submissions;
+  const tp = Math.ceil(allSubs.length/ADMIN_PAGE_SIZE)||1;
+  adminSubmissionPage = Math.min(adminSubmissionPage,tp);
+  const start = (adminSubmissionPage-1)*ADMIN_PAGE_SIZE;
+  const page = allSubs.slice(start,start+ADMIN_PAGE_SIZE);
+
+  let h = `<div class="admin-section-title">&#x1F4DD; 全部投稿 (${allSubs.length})</div>`;
+  if(allSubs.length===0){ h+='<div style="color:var(--text-dim);text-align:center;padding:20px">暂无投稿</div>'; el.innerHTML=h; return; }
+
+  page.forEach((s,li) => {
+    const idx=start+li;
+    const sc=s.status==='待审核'?'admin-badge-pending':s.status==='已通过'?'admin-badge-approved':'admin-badge-rejected';
+    const aiS=s.aiReview?s.aiReview.score:'—';
+    const aiI=s.aiReview&&s.aiReview.issues&&s.aiReview.issues.length?s.aiReview.issues.join('；'):'无';
+    h+=`<div class="admin-item">
+      <div class="admin-item-body" style="cursor:pointer" onclick="document.getElementById('sub-d-${idx}').style.display=document.getElementById('sub-d-${idx}').style.display==='none'?'block':'none'">
+        <div class="admin-item-title">${escHtml(s.title)} <span class="admin-badge ${sc}">${s.status}</span></div>
+        <div class="admin-item-desc">投稿人: ${s.author||'匿名'} · ${s.date} · AI评分: <span style="color:var(--teal)">${aiS}/100</span></div>
+        <div style="font-size:.72rem;color:var(--text-dim);margin-top:2px">AI问题: ${aiI}</div>
+      </div>
+      <div class="admin-item-actions" style="flex-wrap:wrap">
+        ${s.status==='待审核'?`
+          <button class="btn btn-success btn-sm" onclick="adminApproveSubmission(${idx})">通过</button>
+          <button class="btn btn-primary btn-sm" onclick="openEditBeforeApprove(${idx})">编辑后通过</button>
+          <button class="btn btn-danger btn-sm" onclick="adminRejectSubmission(${idx})">拒绝</button>
+        `:`<button class="btn btn-ghost btn-sm" onclick="document.getElementById('sub-d-${idx}').style.display=document.getElementById('sub-d-${idx}').style.display==='none'?'block':'none'">详情</button>`}
+      </div>
+    </div>
+    <div id="sub-d-${idx}" style="display:none" class="admin-detail-panel" style="margin-bottom:8px">
+      <div class="admin-detail-row"><div class="admin-detail-label">汤面</div><div class="admin-detail-value">${escHtml(s.scenario||'—')}</div></div>
+      <div class="admin-detail-row"><div class="admin-detail-label">汤底</div><div class="admin-detail-value">${escHtml(s.truth||'—')}</div></div>
+      <div class="admin-detail-row"><div class="admin-detail-label">线索</div><div class="admin-detail-value">${escHtml(s.clues||'—')}</div></div>
+    </div>`;
+  });
+  if(tp>1){h+='<div class="admin-pagination">';for(let i=1;i<=tp;i++)h+=`<button class="admin-page-btn ${i===adminSubmissionPage?'active':''}" onclick="adminSubmissionPage=${i};renderAdminSubmissions()">${i}</button>`;h+='</div>';}
+  el.innerHTML=h;
+}
+
+function adminApproveSubmission(idx) {
+  if(idx<0||idx>=globalData.submissions.length)return;
+  const s=globalData.submissions[idx];
+  s.status='已通过';
+  const clues=(s.clues||'').split(',').map(x=>x.trim()).filter(Boolean);
+  const puzzle={id:Date.now(),title:s.title,scenario:s.scenario,truth:s.truth,key_clues:clues,rules:clues.map(c=>[[c],'是']),difficulty:3,hints:['暂无提示','暂无提示','暂无提示'],_fromSubmission:true};
+  if(!globalData.approvedPuzzles)globalData.approvedPuzzles=[];
+  globalData.approvedPuzzles.push(puzzle);PUZZLES.push(puzzle);
+  saveGlobal();renderAdminSubmissions();showToast('已通过并发布为新谜题','success');
+}
+
+function adminRejectSubmission(idx) {
+  if(idx<0||idx>=globalData.submissions.length)return;
+  globalData.submissions[idx].status='已拒绝';
+  saveGlobal();renderAdminSubmissions();showToast('已拒绝该投稿','error');
+}
+
+function openEditBeforeApprove(idx) {
+  const s=globalData.submissions[idx]; if(!s)return;
+  openAdminModal('编辑后通过: '+s.title, `
+    <div class="form-group"><label class="form-label">标题</label><input type="text" class="input-field" id="es-title" value="${escHtml(s.title)}" style="border-radius:var(--radius-sm)"></div>
+    <div class="form-group"><label class="form-label">汤面</label><textarea class="textarea-field" id="es-scenario">${escHtml(s.scenario)}</textarea></div>
+    <div class="form-group"><label class="form-label">汤底</label><textarea class="textarea-field" id="es-truth">${escHtml(s.truth)}</textarea></div>
+    <div class="form-group"><label class="form-label">线索 (逗号分隔)</label><input type="text" class="input-field" id="es-clues" value="${escHtml(s.clues||'')}" style="border-radius:var(--radius-sm)"></div>
+    <div class="form-group"><label class="form-label">提示 (逗号分隔, 最多3)</label><input type="text" class="input-field" id="es-hints" value="" style="border-radius:var(--radius-sm)"></div>
+    <div class="form-group"><label class="form-label">难度 (1-5)</label><input type="number" class="input-field" id="es-diff" min="1" max="5" value="3" style="border-radius:var(--radius-sm);width:80px"></div>
+  `, [{text:'通过并发布',cls:'btn btn-success btn-sm',onclick:`adminApproveWithEdits(${idx})`},{text:'取消',cls:'btn btn-ghost btn-sm',onclick:'closeAdminModal()'}]);
+}
+
+function adminApproveWithEdits(idx) {
+  const s=globalData.submissions[idx]; if(!s)return;
+  const title=document.getElementById('es-title').value.trim();
+  const scenario=document.getElementById('es-scenario').value.trim();
+  const truth=document.getElementById('es-truth').value.trim();
+  if(!title||!scenario||!truth){showToast('必填项不能为空','error');return;}
+  const clues=document.getElementById('es-clues').value.split(',').map(x=>x.trim()).filter(Boolean);
+  const hints=document.getElementById('es-hints').value.split(',').map(x=>x.trim()).filter(Boolean).slice(0,3);
+  const diff=parseInt(document.getElementById('es-diff').value)||3;
+  s.status='已通过';
+  const puzzle={id:Date.now(),title,scenario,truth,key_clues:clues,rules:clues.map(c=>[[c],'是']),difficulty:Math.min(Math.max(diff,1),5),hints:hints.length?hints:['暂无提示','暂无提示','暂无提示'],_fromSubmission:true};
+  if(!globalData.approvedPuzzles)globalData.approvedPuzzles=[];
+  globalData.approvedPuzzles.push(puzzle);PUZZLES.push(puzzle);
+  saveGlobal();closeAdminModal();renderAdminSubmissions();showToast('投稿已编辑通过并发布','success');
+}
+
+/* === TAB: AI Generation === */
+const AI_PREWRITTEN_POOL = [
+  {title:'消失的乘客',tags:['交通','深夜','恐怖','死亡','密室'],scenario:'一辆出租车载着一位乘客行驶在深夜的公路上。司机从后视镜看了一眼，突然尖叫着跳车逃跑了。为什么？',truth:'乘客上车时是有头的，但从后视镜看时发现乘客没有头。原来乘客在上车前就已经死了，是被人绑在座位上的无头尸体。',key_clues:['后视镜','无头','尸体','深夜','绑在座位上'],hints:['司机看到了不该看到的东西','乘客其实不是活人','注意"上车时"和"后来"的区别'],difficulty:3},
+  {title:'最后的晚餐',tags:['海难','食物','历史','死亡','感人'],scenario:'一个厨师在做完最后一道菜后，平静地走向了大海。为什么？',truth:'厨师是泰坦尼克号上的厨师，船已经开始沉没，他做的最后一道菜是给自己的告别晚餐，然后他选择平静地面对死亡。',key_clues:['泰坦尼克号','沉船','告别','平静','选择'],hints:['这不是在陆地上发生的','这个厨师工作的地方很特殊','想想历史上著名的海难'],difficulty:4},
+  {title:'窗外的风景',tags:['旅行','日常','荒诞','建筑'],scenario:'一个人住进了一间旅馆，第二天早上打开窗户后就崩溃了。为什么？',truth:'这个人是为了看海景特意订的高层海景房。但第二天早上打开窗帘发现窗外是一面墙——对面连夜盖了新楼，挡住了全部海景。他花了巨资订房却什么都看不到。',key_clues:['海景','新楼','挡住','花钱','看不到'],hints:['他来这里是为了看风景','窗外确实有东西挡住了视线','这和建筑有关'],difficulty:2},
+  {title:'红色的钢琴',tags:['音乐','死亡','职场','感人'],scenario:'一个钢琴家在演奏会结束后被发现死在钢琴前。钢琴的白键上有血迹。但他不是被杀的。为什么？',truth:'钢琴家练习过度导致手指破裂出血，但他坚持带伤演出。长时间高强度弹奏导致失血过多加上过劳，在演奏结束后心脏骤停死亡。血迹是他自己手指上的血。',key_clues:['练习过度','手指出血','带伤演出','失血','过劳'],hints:['血是他自己的','他的手指有问题','死因和他的职业有关'],difficulty:3},
+  {title:'安静的教室',tags:['学校','日常','搞笑'],scenario:'一间教室里坐满了学生，但没有一个人在说话。老师很生气。为什么？',truth:'这是一堂口语考试课，每个学生都需要大声朗读来测试。但所有学生都没有准备，没人敢开口说话，所以教室异常安静，老师因此很生气。',key_clues:['口语考试','朗读','没准备','不敢开口'],hints:['这不是普通的上课','学生本应该说话','考试相关'],difficulty:1},
+  {title:'黑色的伞',tags:['日常','文化','家庭'],scenario:'阳光明媚的日子里，一个女人打着黑色的伞在街上走。没有人觉得奇怪。为什么？',truth:'女人是去参加葬礼的路上。黑伞是遮阳用的，但也是葬礼配套的。在中国文化中参加葬礼穿黑色带黑色伞很正常，路人看到她穿着黑色衣服就知道了。',key_clues:['葬礼','黑色','遮阳','文化习俗'],hints:['黑伞不只是为了挡阳光','注意她的整体装扮','这和一个特殊场合有关'],difficulty:2},
+  {title:'最贵的咖啡',tags:['食物','家庭','感人','日常'],scenario:'一个男人在咖啡店点了一杯最便宜的美式咖啡。服务员却收了他一千元。男人没有抱怨就付了。为什么？',truth:'这不是普通咖啡店，而是一家"反省咖啡馆"——价格根据你有多久没联系父母来定。菜单上写着"今天给父母打电话了吗？"这个男人已经一年没联系父母了，所以价格最高。',key_clues:['反省','父母','联系','特殊定价','一年没联系'],hints:['这不是普通的定价方式','价格和个人行为有关','想想亲情的价值'],difficulty:4},
+  {title:'倒计时',tags:['密室','悬疑','科技'],scenario:'一个人每天都会在墙上画一道杠。当他画到第100道时，他笑了。为什么？',truth:'这个人被困在一个密室逃脱游戏中，他被告知100天后门会自动打开。他一直在计数，当画到第100道杠时，意味着他终于可以出去了。',key_clues:['密室','计数','100天','出去','自动打开'],hints:['他被困在某个地方','画杠是为了计数','和时间有关'],difficulty:2}
+];
+
+const AI_TEMPLATES = [
+  {cat:'生存困境',tags:['海难','荒岛','死亡','食物','生存'],gen:function(opts){
+    const pDef=['男人','女人','老人','船长','医生','厨师'];const plDef=['荒岛上','大海上','深山里','沙漠中'];
+    const pp=opts&&opts.character?opts.character:pDef[Math.floor(Math.random()*pDef.length)];
+    const ppl=opts&&opts.setting?opts.setting:plDef[Math.floor(Math.random()*plDef.length)];
+    let extra=opts&&opts.tone==='恐怖'?'，周围弥漫着腐烂的气味':'';
+    return{title:pp+'的选择',scenario:`一个${pp}独自在${ppl}生存了很多天。当救援终于到来时，他却拒绝离开。为什么？`,truth:`这个${pp}在${ppl}等待救援期间做了一些不得不做的事情（比如吃了同伴的遗体求生）${extra}。他无法面对回到文明社会后被审判和谴责，所以选择留下。`,key_clues:['求生','同伴','无法面对','审判','选择留下'],hints:['他在等待期间做了什么？','回去后他会面临什么？','这和道德困境有关'],difficulty:4};}},
+  {cat:'日常诡事',tags:['日常','悬疑','交通','监控'],gen:function(opts){
+    const acts=['去同一家便利店','在同一个路口停下','看同一部电影','在同一家面馆吃面'];
+    const a=opts&&opts.setting?'在'+opts.setting:acts[Math.floor(Math.random()*acts.length)];
+    return{title:'相同的习惯',scenario:`一个人连续30天${a}。第31天他没有这样做，然后警察找上了门。为什么？`,truth:`这个人其实是在监视某个目标，每天${a}是为了观察目标的行动规律。第31天他采取了行动（犯了案），所以不再需要继续监视，而警察通过监控发现了他之前30天的反常行为。`,key_clues:['监视','目标','规律','犯案','监控'],hints:['这个习惯不是真的习惯','他的目的是观察','第31天发生了大事'],difficulty:3};}},
+  {cat:'感官错觉',tags:['家庭','感人','日常','回忆'],gen:function(opts){
+    const items=['一杯水','一束花','一面镜子','一张照片'];
+    const it=opts&&opts.item?opts.item:items[Math.floor(Math.random()*items.length)];
+    return{title:'不存在的'+it.slice(1),scenario:`一个人盯着${it}看了一整天，然后打了一个电话。对方接到电话后就哭了。为什么？`,truth:`${it}是已故亲人生前最喜欢的东西。这个人在整理遗物时发现了它，盯着看了一天想起了所有回忆，最后打电话告诉另一位亲人这个发现，对方也因为思念而哭了。`,key_clues:['已故','遗物','回忆','亲人','思念'],hints:['这个东西有特殊意义','和逝去的人有关','电话的内容让人伤感'],difficulty:2};}},
+  {cat:'死亡谜题',tags:['死亡','悬疑','密室','科技'],gen:function(opts){
+    const places=['游泳池边','天台上','停车场里','图书馆中'];
+    const pl=opts&&opts.setting?opts.setting:places[Math.floor(Math.random()*places.length)];
+    const plName=pl.length>1?pl.slice(0,-1)+'的':pl+'的';
+    return{title:plName+'秘密',scenario:`一个人被发现死在${pl}，身上没有任何外伤。地上有一滩水。警察判定这不是意外。为什么？`,truth:`死者被人用冰块击中头部致死。冰块融化后只留下一滩水，凶器消失了。没有外伤是因为冰块造成的钝击伤在头发覆盖的区域，表面看不出来。`,key_clues:['冰块','融化','凶器消失','钝击','水'],hints:['水的来源很关键','凶器会消失','想想什么东西会变成水'],difficulty:4};}},
+  {cat:'密室逃脱',tags:['密室','科技','悬疑','建筑'],gen:function(opts){
+    const rooms=['地下室','电梯','冷库','保险库'];const people=['工程师','保安','清洁工','实习生'];
+    const r=opts&&opts.setting?opts.setting:rooms[Math.floor(Math.random()*rooms.length)];
+    const p=opts&&opts.character?opts.character:people[Math.floor(Math.random()*people.length)];
+    return{title:'被锁住的'+p,scenario:`一个${p}被发现锁在${r}里已经三天了，但他明明有钥匙。为什么他没有打开门？`,truth:`${p}确实有钥匙，但钥匙是反锁在门外侧的。他进入${r}后，有人从外面用他自己的钥匙把门反锁了。他的钥匙只能从外面开锁，从里面无法使用。`,key_clues:['反锁','外侧','钥匙','无法从内部开锁','有人'],hints:['钥匙确实是他的','门锁的方向很重要','他不是自己进去的'],difficulty:3};}},
+  {cat:'职场怪事',tags:['职场','日常','悬疑','科技'],gen:function(opts){
+    const jobs=['程序员','会计','设计师','销售'];const acts=['每天加班到凌晨','从不参加团建','总是最后一个离开'];
+    const j=opts&&opts.character?opts.character:jobs[Math.floor(Math.random()*jobs.length)];
+    const a=acts[Math.floor(Math.random()*acts.length)];
+    return{title:'模范员工',scenario:`公司里有一个${j}，${a}。老板发现后不但没有表扬他，反而报了警。为什么？`,truth:`这个${j}其实在利用${a}的时间偷偷复制公司机密数据。他不是在加班工作，而是在窃取商业秘密准备跳槽到竞争对手公司。老板通过监控发现了异常。`,key_clues:['窃取','机密','监控','竞争对手','跳槽'],hints:['他加班不是为了工作','老板是怎么发现的？','和公司安全有关'],difficulty:3};}},
+  {cat:'家庭秘密',tags:['家庭','感人','日常','回忆'],gen:function(opts){
+    const members=['奶奶','父亲','母亲','姐姐'];const items=['一封信','一张照片','一个盒子','一本日记'];
+    const m=opts&&opts.character?opts.character:members[Math.floor(Math.random()*members.length)];
+    const it=items[Math.floor(Math.random()*items.length)];
+    return{title:m+'的'+it.slice(1),scenario:`${m}去世后，家人在整理遗物时发现了${it}。看完之后，全家人都沉默了很久。为什么？`,truth:`${it}里记录了${m}多年前为了保护家人而独自承担的一个巨大秘密——${m}曾经被诊断出重病，但选择隐瞒家人独自治疗，用自己的积蓄默默支付了所有医药费，直到去世家人才知道。`,key_clues:['隐瞒','重病','独自承担','积蓄','保护'],hints:['这个秘密和健康有关','家人之前完全不知道','这是一种无声的爱'],difficulty:3};}},
+  {cat:'旅途奇遇',tags:['旅行','荒诞','悬疑','交通'],gen:function(opts){
+    const vehicles=['火车','大巴','轮渡','飞机'];const events=['到站后没有人下车','所有乘客都在笑','车厢里飘着花香'];
+    const v=opts&&opts.setting?opts.setting:vehicles[Math.floor(Math.random()*vehicles.length)];
+    const e=events[Math.floor(Math.random()*events.length)];
+    return{title:'奇怪的'+v,scenario:`一辆${v}上，${e}。司机觉得很不对劲，马上停车报了警。为什么？`,truth:`这辆${v}运载的全是参加同一个活动的人。${e}是因为他们事先约定好的暗号，用来掩饰车上正在进行的非法交易。司机是新来的，不知道这条线路的"规矩"，察觉到异常后报了警。`,key_clues:['暗号','非法交易','约定','新司机','异常'],hints:['乘客之间有某种默契','这不是普通的乘车','司机是局外人'],difficulty:4};}},
+];
+
+const AI_QUICK_TAGS=['密室','海难','医院','食物','旅行','职场','家庭','科技','学校','音乐','交通','建筑'];
+const AI_TONES=[
+  {id:'恐怖',label:'恐怖',icon:'\u{1F47B}'},
+  {id:'温馨',label:'温馨',icon:'\u{1F338}'},
+  {id:'悬疑',label:'悬疑',icon:'\u{1F50D}'},
+  {id:'搞笑',label:'搞笑',icon:'\u{1F602}'},
+  {id:'感人',label:'感人',icon:'\u{1F622}'},
+  {id:'荒诞',label:'荒诞',icon:'\u{1F92A}'},
+];
+const AI_INSPIRATION_POOLS={
+  characters:['盲人','医生','双胞胎','退休侦探','失忆者','聋哑人','孕妇','老兵','小孩','外国人','囚犯','快递员'],
+  settings:['废弃医院','海上邮轮','地下停车场','雪山木屋','夜间图书馆','荒废游乐园','深夜便利店','密封的电梯','空旷的教堂','废弃学校'],
+  twists:['身份互换','时间错位','镜像世界','梦境与现实','死者视角','倒叙真相','隐藏的第三人','看似巧合实则阴谋'],
+  emotions:['绝望中的希望','温暖的谎言','善意的欺骗','迟到的救赎','被遗忘的约定','无法原谅的自己'],
+};
+const TODAY_IN_HISTORY={
+'01-01':[{desc:'元旦',type:'节日',archetype:'新年',keywords:['新开始','倒计时','跨年']}],
+'01-13':[{desc:'腊八节(约)',type:'节日',archetype:'传统',keywords:['粥','寒冬','传统']}],
+'01-15':[{desc:'美联航1549号迫降哈德逊河(2009)',type:'案件',archetype:'飞行',keywords:['飞机','迫降','河流','英雄']}],
+'01-27':[{desc:'国际大屠杀纪念日',type:'历史',archetype:'战争',keywords:['记忆','幸存','集中营']}],
+'02-02':[{desc:'世界湿地日',type:'文化',archetype:'自然',keywords:['沼泽','迷路','雾','消失']}],
+'02-14':[{desc:'情人节',type:'节日',archetype:'爱情',keywords:['礼物','误会','秘密','约会']}],
+'02-28':[{desc:'世界罕见病日',type:'文化',archetype:'医疗',keywords:['医院','诊断','误诊','稀有']}],
+'03-08':[{desc:'国际妇女节',type:'节日',archetype:'女性',keywords:['职场','平等','母亲','独立']},{desc:'马航MH370失联(2014)',type:'案件',archetype:'失踪',keywords:['飞机','消失','海洋','搜索']}],
+'03-12':[{desc:'植树节',type:'节日',archetype:'自然',keywords:['森林','荒野','生长','消失']}],
+'03-15':[{desc:'国际消费者权益日',type:'文化',archetype:'消费',keywords:['假货','投诉','真相','标签']}],
+'03-21':[{desc:'世界森林日/春分',type:'文化',archetype:'自然',keywords:['森林','迷路','春天','变化']}],
+'04-01':[{desc:'愚人节',type:'节日',archetype:'骗局',keywords:['恶作剧','谎言','反转','信任']}],
+'04-04':[{desc:'清明节(约)',type:'节日',archetype:'祭祀',keywords:['墓地','回忆','亲人','秘密']}],
+'04-07':[{desc:'世界卫生日',type:'文化',archetype:'医疗',keywords:['药物','误诊','传染','隔离']}],
+'04-10':[{desc:'泰坦尼克号首航(1912)',type:'历史',archetype:'海难',keywords:['首航','豪华','冰山','命运']}],
+'04-15':[{desc:'泰坦尼克号沉没(1912)',type:'历史',archetype:'海难',keywords:['沉船','救生艇','选择','海洋']}],
+'04-22':[{desc:'世界地球日',type:'文化',archetype:'环保',keywords:['污染','末日','生态','消失']}],
+'05-01':[{desc:'劳动节',type:'节日',archetype:'职场',keywords:['工作','加班','职场','老板']}],
+'05-04':[{desc:'五四青年节',type:'历史',archetype:'青春',keywords:['学校','理想','反叛','热血']}],
+'05-12':[{desc:'国际护士节',type:'文化',archetype:'医疗',keywords:['医院','照护','夜班','秘密']}],
+'05-18':[{desc:'国际博物馆日',type:'文化',archetype:'文物',keywords:['展品','失窃','赝品','历史']}],
+'05-20':[{desc:'520网络情人节',type:'文化',archetype:'爱情',keywords:['告白','密码','暗号','误会']}],
+'05-31':[{desc:'世界无烟日',type:'文化',archetype:'健康',keywords:['戒烟','谎言','味觉','气味']}],
+'06-01':[{desc:'国际儿童节',type:'节日',archetype:'童年',keywords:['玩具','失踪','天真','记忆']}],
+'06-05':[{desc:'世界环境日',type:'文化',archetype:'环保',keywords:['水源','毒物','消失','森林']}],
+'06-07':[{desc:'高考(约)',type:'文化',archetype:'考试',keywords:['学校','压力','作弊','教室']}],
+'06-18':[{desc:'拿破仑滑铁卢战役(1815)',type:'历史',archetype:'战争',keywords:['失败','命运','选择','末路']}],
+'06-21':[{desc:'夏至',type:'文化',archetype:'季节',keywords:['最长的白天','影子','炎热','幻觉']}],
+'06-25':[{desc:'端午节(约)',type:'节日',archetype:'传统',keywords:['龙舟','粽子','屈原','河流']}],
+'07-01':[{desc:'建党节',type:'历史',archetype:'历史',keywords:['红色','地下','身份','秘密']}],
+'07-07':[{desc:'七七事变纪念日',type:'历史',archetype:'战争',keywords:['战争','桥','枪声','夜']}],
+'07-11':[{desc:'世界人口日',type:'文化',archetype:'社会',keywords:['拥挤','身份','消失','替换']}],
+'07-20':[{desc:'阿波罗11号登月(1969)',type:'历史',archetype:'太空',keywords:['月球','脚印','孤独','密封舱']}],
+'07-30':[{desc:'国际友谊日',type:'文化',archetype:'友情',keywords:['朋友','背叛','秘密','约定']}],
+'08-01':[{desc:'建军节',type:'历史',archetype:'军事',keywords:['军营','服从','密码','潜伏']}],
+'08-06':[{desc:'广岛原子弹(1945)',type:'历史',archetype:'战争',keywords:['闪光','阴影','时间','消失']}],
+'08-08':[{desc:'全民健身日',type:'文化',archetype:'运动',keywords:['泳池','跑步','受伤','比赛']}],
+'08-15':[{desc:'日本投降纪念日',type:'历史',archetype:'战争',keywords:['信号','投降','密室','结束']}],
+'08-25':[{desc:'七夕(约)',type:'节日',archetype:'爱情',keywords:['约会','等待','误会','礼物']}],
+'09-01':[{desc:'开学日',type:'文化',archetype:'学校',keywords:['新同学','教室','书包','秘密']}],
+'09-10':[{desc:'教师节',type:'节日',archetype:'教育',keywords:['老师','教室','秘密','学生']}],
+'09-11':[{desc:'911事件(2001)',type:'历史',archetype:'灾难',keywords:['大楼','坠落','电话','选择']}],
+'09-18':[{desc:'九一八事变纪念日',type:'历史',archetype:'战争',keywords:['警报','记忆','逃亡','密码']}],
+'09-29':[{desc:'中秋节(约)',type:'节日',archetype:'团圆',keywords:['月亮','月饼','家人','思乡']}],
+'10-01':[{desc:'国庆节',type:'节日',archetype:'庆典',keywords:['烟花','旅行','人群','失踪']}],
+'10-09':[{desc:'重阳节(约)',type:'节日',archetype:'敬老',keywords:['老人','登高','遗愿','传承']}],
+'10-10':[{desc:'世界心理健康日',type:'文化',archetype:'心理',keywords:['幻觉','记忆','遗忘','双重人格']}],
+'10-24':[{desc:'联合国日',type:'文化',archetype:'和平',keywords:['国旗','翻译','密码','身份']}],
+'10-31':[{desc:'万圣节',type:'节日',archetype:'恐怖',keywords:['面具','鬼屋','糖果','伪装']}],
+'11-01':[{desc:'万圣节翌日',type:'文化',archetype:'灵异',keywords:['消失','夜晚','影子','真假']}],
+'11-09':[{desc:'柏林墙倒塌(1989)',type:'历史',archetype:'自由',keywords:['墙','分离','逃亡','隧道']}],
+'11-11':[{desc:'双十一/光棍节',type:'文化',archetype:'消费',keywords:['快递','包裹','退货','假货']}],
+'11-22':[{desc:'肯尼迪遇刺(1963)',type:'案件',archetype:'暗杀',keywords:['枪声','车队','阴谋','证人']}],
+'11-24':[{desc:'感恩节(约)',type:'节日',archetype:'家庭',keywords:['晚餐','家庭','秘密','感恩']}],
+'12-01':[{desc:'世界艾滋病日',type:'文化',archetype:'医疗',keywords:['秘密','检测','恐惧','真相']}],
+'12-09':[{desc:'世界足球日',type:'文化',archetype:'运动',keywords:['比赛','进球','假摔','裁判']}],
+'12-12':[{desc:'双十二',type:'文化',archetype:'消费',keywords:['快递','错发','包裹','身份']}],
+'12-13':[{desc:'南京大屠杀纪念日',type:'历史',archetype:'战争',keywords:['记忆','幸存','证据','遗物']}],
+'12-20':[{desc:'澳门回归纪念日',type:'历史',archetype:'回归',keywords:['身份','边境','双重','选择']}],
+'12-24':[{desc:'平安夜',type:'节日',archetype:'圣诞',keywords:['礼物','夜晚','壁炉','陌生人']}],
+'12-25':[{desc:'圣诞节',type:'节日',archetype:'圣诞',keywords:['礼物','雪','红色','消失']}],
+'12-31':[{desc:'除夕/跨年',type:'节日',archetype:'新年',keywords:['倒计时','烟花','消失','最后']}],
+};
+
+let aiGenState={activeTags:[],activeTone:'',promptText:'',currentWorkspace:null};
+
+/* --- AI Gen: Engine Functions --- */
+function matchTemplatesAndPrewritten(promptText,activeTags,tone,category){
+  const allKw=[...activeTags];
+  if(promptText)promptText.split(/[,，\s;；、]+/).map(s=>s.trim()).filter(Boolean).forEach(k=>{if(!allKw.includes(k))allKw.push(k);});
+  const scoredT=AI_TEMPLATES.map(t=>{
+    let sc=0;
+    if(category&&category!=='random'&&category!=='prewritten'&&t.cat===category)sc+=10;
+    allKw.forEach(k=>{if(t.tags.includes(k))sc+=3;});
+    if(tone&&t.tags.includes(tone))sc+=2;
+    return{template:t,score:sc};
+  }).sort((a,b)=>b.score-a.score);
+  const existing=(globalData.aiDrafts||[]).map(d=>d.title);
+  const scoredP=AI_PREWRITTEN_POOL.filter(p=>!existing.includes(p.title)).map(p=>{
+    let sc=0;
+    allKw.forEach(k=>{if(p.tags&&p.tags.includes(k))sc+=3;if(p.scenario.includes(k)||p.truth.includes(k))sc+=1;});
+    return{puzzle:p,score:sc};
+  }).sort((a,b)=>b.score-a.score);
+  return{templates:scoredT,prewritten:scoredP,keywords:allKw};
+}
+
+function logAiGeneration(){
+  const today=new Date().toISOString().slice(0,10);
+  if(!globalData.aiGenerationLog)globalData.aiGenerationLog=[];
+  const e=globalData.aiGenerationLog.find(x=>x.date===today);
+  if(e)e.count++;else globalData.aiGenerationLog.push({date:today,count:1});
+}
+
+function aiGenGenerate(){
+  const promptText=(document.getElementById('ai-prompt-input')||{}).value||'';
+  const category=(document.getElementById('ai-cat-sel')||{}).value||'random';
+  const{templates,prewritten,keywords}=matchTemplatesAndPrewritten(promptText,aiGenState.activeTags,aiGenState.activeTone,category);
+  let gen;
+  const useP=prewritten.length>0&&(category==='prewritten'||(prewritten[0].score>5)||(prewritten[0].score>=((templates[0]||{}).score||0)&&Math.random()<0.3));
+  if(useP&&prewritten.length>0){
+    const pick=prewritten[0].puzzle;
+    gen={...pick,id:Date.now(),rules:(pick.key_clues||[]).map(c=>[[c],'是']),draftStatus:'workspace',status:'draft',createdAt:new Date().toISOString(),templateSource:'精选预设',revisionHistory:[],promptUsed:promptText,tagsUsed:[...aiGenState.activeTags],toneUsed:aiGenState.activeTone};
+  }else{
+    const tmpl=(templates[0]&&templates[0].score>0)?templates[0].template:AI_TEMPLATES[Math.floor(Math.random()*AI_TEMPLATES.length)];
+    const opts={tone:aiGenState.activeTone,keywords:keywords};
+    AI_INSPIRATION_POOLS.characters.forEach(c=>{if(keywords.includes(c))opts.character=c;});
+    AI_INSPIRATION_POOLS.settings.forEach(s=>{if(keywords.some(k=>s.includes(k)))opts.setting=s;});
+    const result=tmpl.gen(opts);
+    gen={...result,id:Date.now(),rules:(result.key_clues||[]).map(c=>[[c],'是']),draftStatus:'workspace',status:'draft',createdAt:new Date().toISOString(),templateSource:tmpl.cat,revisionHistory:[],promptUsed:promptText,tagsUsed:[...aiGenState.activeTags],toneUsed:aiGenState.activeTone};
+  }
+  logAiGeneration();
+  if(!globalData.aiDrafts)globalData.aiDrafts=[];
+  globalData.aiDrafts.unshift(gen);
+  aiGenState.currentWorkspace=0;
+  saveGlobal();renderAdminAiGen();showToast('AI谜题已生成，请在工作区中查看','success');sfxHint();
+}
+
+function aiGenRegenerate(idx){
+  const d=globalData.aiDrafts[idx];if(!d)return;
+  const feedback=(document.getElementById('ai-feedback-input')||{}).value||'';
+  if(!feedback.trim()){showToast('请输入修改意见','error');return;}
+  d.revisionHistory.push({round:(d.revisionHistory||[]).length+1,feedback:feedback,timestamp:new Date().toISOString(),snapshot:{title:d.title,scenario:d.scenario,truth:d.truth,difficulty:d.difficulty}});
+  const fb=feedback;
+  let newOpts={tone:d.toneUsed||aiGenState.activeTone,keywords:d.tagsUsed||[]};
+  if(fb.includes('阴暗')||fb.includes('恐怖')||fb.includes('黑暗')){newOpts.tone='恐怖';if(d.difficulty<5)d.difficulty++;}
+  if(fb.includes('温馨')||fb.includes('轻松')||fb.includes('温暖')){newOpts.tone='温馨';}
+  if(fb.includes('换场景')||fb.includes('换地点')||fb.includes('换一个场景')){newOpts.rerollSetting=true;}
+  if(fb.includes('搞笑')||fb.includes('幽默')){newOpts.tone='搞笑';if(d.difficulty>1)d.difficulty--;}
+  const clueMatch=feedback.match(/加入(.+?)线索/);
+  if(clueMatch){const nc=clueMatch[1].trim();if(!d.key_clues.includes(nc))d.key_clues.push(nc);}
+  const matched=matchTemplatesAndPrewritten((d.promptUsed||'')+' '+feedback,d.tagsUsed||[],newOpts.tone,'');
+  if(matched.templates.length>0){
+    const tmpl=matched.templates[0].template;
+    const result=tmpl.gen(newOpts);
+    d.scenario=result.scenario;d.truth=result.truth;d.title=result.title;d.hints=result.hints;
+    if(newOpts.tone)d.toneUsed=newOpts.tone;
+  }
+  d.rules=(d.key_clues||[]).map(c=>[[c],'是']);
+  logAiGeneration();
+  saveGlobal();renderAdminAiGen();showToast('已根据修改意见重新生成','success');sfxHint();
+}
+
+function rollInspirationDice(){
+  const p=AI_INSPIRATION_POOLS;
+  const ch=p.characters[Math.floor(Math.random()*p.characters.length)];
+  const st=p.settings[Math.floor(Math.random()*p.settings.length)];
+  const tw=p.twists[Math.floor(Math.random()*p.twists.length)];
+  const em=p.emotions[Math.floor(Math.random()*p.emotions.length)];
+  const txt=ch+' + '+st+' + '+tw+' + '+em;
+  const input=document.getElementById('ai-prompt-input');
+  if(input)input.value=txt;
+  aiGenState.promptText=txt;
+  const r=document.getElementById('ai-dice-result');
+  if(r){r.style.display='block';r.innerHTML='<strong>人物:</strong> '+ch+' · <strong>场景:</strong> '+st+' · <strong>反转:</strong> '+tw+' · <strong>情感:</strong> '+em;}
+  sfxHint();
+}
+
+function getTodayHistoryEvents(){
+  const now=new Date();
+  const key=String(now.getMonth()+1).padStart(2,'0')+'-'+String(now.getDate()).padStart(2,'0');
+  return TODAY_IN_HISTORY[key]||[];
+}
+
+function useTodayEvent(ei,mode){
+  const events=getTodayHistoryEvents();const ev=events[ei];if(!ev)return;
+  const input=document.getElementById('ai-prompt-input');
+  if(mode==='use'){
+    if(input)input.value=ev.keywords.join(' ');
+    aiGenState.promptText=ev.keywords.join(' ');
+    aiGenGenerate();
+  }else if(mode==='inject'){
+    const ex=input?input.value:'';
+    const combined=ex?ex+' '+ev.keywords.join(' '):ev.keywords.join(' ');
+    if(input)input.value=combined;
+    aiGenState.promptText=combined;
+    showToast('关键词已注入到提示区','success');
+  }
+}
+
+function moveDraftToQueue(idx){
+  const d=globalData.aiDrafts[idx];if(!d)return;
+  if(!d.title||!d.scenario||!d.truth){showToast('请先完善标题、汤面和汤底','error');return;}
+  const today=new Date().toISOString().slice(0,10);
+  openAdminModal('设置发布日期',`
+    <div class="form-group"><label class="form-label">计划发布日期</label>
+    <input type="date" class="input-field" id="queue-date" value="${today}" min="${today}" style="border-radius:var(--radius-sm)"></div>
+    <div style="font-size:.82rem;color:var(--text-dim);margin-top:8px">选择今天可立即排入队列，选择未来日期将按计划等待发布</div>
+  `,[{text:'加入队列',cls:'btn btn-amber btn-sm',onclick:'confirmMoveToQueue('+idx+')'},{text:'取消',cls:'btn btn-ghost btn-sm',onclick:'closeAdminModal()'}]);
+}
+function confirmMoveToQueue(idx){
+  const d=globalData.aiDrafts[idx];if(!d)return;
+  const dateVal=document.getElementById('queue-date').value;
+  d.draftStatus='pending';d.scheduledDate=dateVal||new Date().toISOString().slice(0,10);
+  saveGlobal();closeAdminModal();renderAdminAiGen();showToast('已加入待发稿队列','success');
+}
+
+function publishFromQueue(idx){
+  const d=globalData.aiDrafts[idx];if(!d)return;
+  if(!d.title||!d.scenario||!d.truth){showToast('请先完善标题、汤面和汤底','error');return;}
+  d.draftStatus='published';d.status='published';
+  const puzzle={id:d.id,title:d.title,scenario:d.scenario,truth:d.truth,key_clues:d.key_clues||[],rules:(d.key_clues||[]).map(c=>[[c],'是']),difficulty:d.difficulty||3,hints:d.hints&&d.hints.length?d.hints:['暂无提示','暂无提示','暂无提示']};
+  if(!globalData.customPuzzles)globalData.customPuzzles=[];
+  globalData.customPuzzles.push(puzzle);PUZZLES.push(puzzle);
+  saveGlobal();renderAdminAiGen();showToast('谜题已发布','success');
+}
+function publishImmediateFromWorkspace(idx){publishFromQueue(idx);}
+
+function returnToWorkspace(idx){
+  const d=globalData.aiDrafts[idx];if(!d)return;
+  d.draftStatus='workspace';d.scheduledDate='';
+  saveGlobal();renderAdminAiGen();showToast('已退回工作区','success');
+}
+
+function toggleAiTag(tag){
+  const i=aiGenState.activeTags.indexOf(tag);
+  if(i>=0)aiGenState.activeTags.splice(i,1);else aiGenState.activeTags.push(tag);
+  renderAdminAiGen();
+}
+function selectAiTone(tone){
+  aiGenState.activeTone=aiGenState.activeTone===tone?'':tone;
+  renderAdminAiGen();
+}
+
+/* --- AI Gen: Render --- */
+function renderAdminAiGen(){
+  const el=document.getElementById('admin-tab-ai-gen');
+  const drafts=globalData.aiDrafts||[];
+  const wsDrafts=drafts.filter(d=>d.draftStatus==='workspace'||(!d.draftStatus&&d.status==='draft'));
+  const pendDrafts=drafts.filter(d=>d.draftStatus==='pending').sort((a,b)=>(a.scheduledDate||'').localeCompare(b.scheduledDate||''));
+  const pubDrafts=drafts.filter(d=>d.draftStatus==='published'||(!d.draftStatus&&d.status==='published'));
+  let catOpts=AI_TEMPLATES.map(t=>'<option value="'+t.cat+'">'+t.cat+'</option>').join('');
+  const todayStr=new Date().toISOString().slice(0,10);
+  const tLog=(globalData.aiGenerationLog||[]).find(e=>e.date===todayStr);
+  const genToday=tLog?tLog.count:0;
+  const nextSch=pendDrafts.length>0?pendDrafts[0].scheduledDate:'—';
+  let h='';
+  /* Stats Bar */
+  h+='<div class="ai-stats-bar"><span>今日生成: <span class="stat-val">'+genToday+'</span></span><span>待发布: <span class="stat-val">'+pendDrafts.length+'</span></span><span>下次计划: <span class="stat-val">'+nextSch+'</span></span><span>总草稿: <span class="stat-val">'+drafts.length+'</span></span></div>';
+  /* Today in History */
+  const todayEv=getTodayHistoryEvents();
+  if(todayEv.length>0){
+    h+='<div class="ai-today-panel"><div class="ai-today-title">&#x1F4C5; 今日推荐 — 历史上的今天</div>';
+    todayEv.forEach(function(ev,ei){
+      const tc={'节日':'var(--green)','历史':'var(--teal)','案件':'var(--red)','文化':'var(--amber)'}[ev.type]||'var(--text-dim)';
+      h+='<div class="ai-today-item"><div class="ai-today-info"><div class="ai-today-desc">'+escHtml(ev.desc)+'</div><span class="ai-today-type" style="background:'+tc+'20;color:'+tc+';border:1px solid '+tc+'40">'+ev.type+'</span><span style="font-size:.75rem;color:var(--text-dim);margin-left:8px">关键词: '+ev.keywords.join(', ')+'</span></div><div class="ai-today-actions"><button class="btn btn-success btn-sm" onclick="useTodayEvent('+ei+',\'use\')" title="直接使用生成">使用</button><button class="btn btn-primary btn-sm" onclick="useTodayEvent('+ei+',\'inject\')" title="注入关键词">借鉴</button><button class="btn btn-ghost btn-sm" onclick="this.closest(\'.ai-today-item\').style.display=\'none\'" title="跳过">跳过</button></div></div>';
+    });
+    h+='</div>';
+  }else{
+    h+='<div class="ai-today-panel" style="text-align:center;padding:12px;font-size:.85rem;color:var(--text-dim)">&#x1F4C5; 今日暂无特殊推荐</div>';
+  }
+  /* Generator Card */
+  h+='<div class="ai-gen-card"><div style="font-size:1.2rem;margin-bottom:8px">&#x1F916; AI 谜题生成器</div><div style="font-size:.85rem;color:var(--text-dim);margin-bottom:16px">输入关键词、选择风格，AI将生成定制化海龟汤谜题</div>';
+  h+='<div class="ai-prompt-area"><textarea class="ai-prompt-textarea" id="ai-prompt-input" placeholder="输入关键词、故事原型、主题等... 例如: 深夜医院 一个护士 消失的病人">'+escHtml(aiGenState.promptText)+'</textarea></div>';
+  h+='<div style="font-size:.78rem;color:var(--text-dim);margin-bottom:6px">快捷主题标签:</div><div class="ai-tags" id="ai-quick-tags">';
+  AI_QUICK_TAGS.forEach(function(tag){h+='<button class="ai-tag'+(aiGenState.activeTags.includes(tag)?' active':'')+'" onclick="toggleAiTag(\''+tag+'\')">'+tag+'</button>';});
+  h+='</div>';
+  h+='<div style="font-size:.78rem;color:var(--text-dim);margin-bottom:6px">风格基调:</div><div class="ai-tone-row">';
+  AI_TONES.forEach(function(t){h+='<button class="ai-tone-btn'+(aiGenState.activeTone===t.id?' active':'')+'" onclick="selectAiTone(\''+t.id+'\')">'+t.icon+' '+t.label+'</button>';});
+  h+='</div>';
+  h+='<div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:12px">';
+  h+='<select class="ai-template-select" id="ai-cat-sel"><option value="random">&#x1F3B2; 随机分类</option><option value="prewritten">&#x2B50; 精选预设</option>'+catOpts+'</select>';
+  h+='<button class="btn btn-amber" onclick="aiGenGenerate()" style="padding:10px 28px">&#x2728; 生成谜题</button>';
+  h+='<button class="ai-dice-btn" onclick="rollInspirationDice()">&#x1F3B2; 灵感骰子</button>';
+  h+='</div><div id="ai-dice-result" class="ai-dice-result" style="display:none"></div></div>';
+  /* Workspace Panel */
+  var wsIdx=aiGenState.currentWorkspace;
+  if(wsIdx!==null&&wsIdx!==undefined&&drafts[wsIdx]&&(drafts[wsIdx].draftStatus==='workspace'||(!drafts[wsIdx].draftStatus&&drafts[wsIdx].status==='draft'))){
+    var wd=drafts[wsIdx];
+    h+='<div class="ai-workspace"><div class="ai-workspace-header"><div class="ai-workspace-title">&#x1F4DD; 工作区</div><div style="display:flex;gap:4px;flex-wrap:wrap">';
+    h+='<button class="btn btn-primary btn-sm" onclick="openAiDraftEdit('+wsIdx+')">编辑</button>';
+    h+='<button class="btn btn-amber btn-sm" onclick="moveDraftToQueue('+wsIdx+')">送入待发稿区</button>';
+    h+='<button class="btn btn-success btn-sm" onclick="publishImmediateFromWorkspace('+wsIdx+')">立即发布</button>';
+    h+='</div></div>';
+    h+='<div style="font-family:var(--font-serif);font-size:1.1rem;color:var(--amber-glow);margin-bottom:8px">'+escHtml(wd.title)+'</div>';
+    h+='<div style="font-size:.9rem;color:var(--text);padding:10px 14px;background:rgba(14,165,233,0.04);border-radius:var(--radius-sm);margin-bottom:12px;border-left:3px solid var(--teal)">'+escHtml(wd.scenario)+'</div>';
+    h+='<div style="font-size:.85rem;color:var(--text-dim);margin-bottom:4px"><strong>汤底:</strong></div>';
+    h+='<div style="font-size:.88rem;color:var(--text);padding:8px 12px;background:rgba(245,158,11,0.04);border-radius:var(--radius-sm);margin-bottom:8px;border-left:3px solid var(--amber)">'+escHtml(wd.truth)+'</div>';
+    h+='<div style="font-size:.82rem;color:var(--text-dim)">难度: '+'\u2605'.repeat(wd.difficulty||3)+' · 线索: '+((wd.key_clues||[]).join(', ')||'无')+'</div>';
+    h+='<div class="ai-feedback-area">';
+    if(wd.revisionHistory&&wd.revisionHistory.length>0){
+      h+='<div style="font-size:.82rem;color:var(--text-dim);margin-bottom:8px">修改历史 ('+wd.revisionHistory.length+'轮):</div><div class="ai-feedback-history">';
+      wd.revisionHistory.forEach(function(r){h+='<div class="ai-revision-entry"><div class="rev-label">第'+r.round+'轮 · '+new Date(r.timestamp).toLocaleString('zh-CN')+'</div>'+escHtml(r.feedback)+'</div>';});
+      h+='</div>';
+    }
+    h+='<div style="display:flex;gap:8px;align-items:flex-end"><textarea class="textarea-field" id="ai-feedback-input" placeholder="输入修改意见... 例如: 让故事更阴暗, 换一个场景, 加入时间线索" style="min-height:60px;flex:1"></textarea>';
+    h+='<button class="btn btn-primary" onclick="aiGenRegenerate('+wsIdx+')" style="white-space:nowrap">&#x1F504; AI重新生成</button></div></div></div>';
+  }
+  /* Pending Queue */
+  h+='<div class="admin-section-title">&#x1F4E4; 待发稿区 ('+pendDrafts.length+')</div>';
+  if(pendDrafts.length===0){h+='<div style="color:var(--text-dim);text-align:center;padding:16px;font-size:.85rem">暂无待发布草稿</div>';}
+  else{pendDrafts.forEach(function(d){
+    var ai=drafts.indexOf(d);
+    h+='<div class="ai-queue-item"><div style="flex:1;min-width:0"><div style="font-size:.9rem;font-weight:500">'+escHtml(d.title)+' <span class="admin-badge-pending-pub">待发布</span></div><div style="font-size:.78rem;color:var(--text-dim);margin-top:2px">'+escHtml((d.scenario||'').substring(0,60))+'...</div></div><div class="ai-queue-date">'+(d.scheduledDate||'未设定')+'</div><div style="display:flex;gap:4px;margin-left:8px;flex-wrap:wrap"><button class="btn btn-ghost btn-sm" onclick="openAiDraftDetail('+ai+')">查看</button><button class="btn btn-success btn-sm" onclick="publishFromQueue('+ai+')">发布</button><button class="btn btn-primary btn-sm" onclick="returnToWorkspace('+ai+')">退回</button><button class="btn btn-danger btn-sm" onclick="deleteAiDraft('+ai+')">删除</button></div></div>';
+  });}
+  /* Workspace Drafts */
+  h+='<div class="admin-section-title">&#x1F4CB; 工作区草稿 ('+wsDrafts.length+')</div>';
+  if(wsDrafts.length===0){h+='<div style="color:var(--text-dim);text-align:center;padding:16px;font-size:.85rem">暂无草稿，点击上方生成</div>';}
+  else{wsDrafts.forEach(function(d){
+    var ai=drafts.indexOf(d);
+    h+='<div class="admin-item"><div class="admin-item-body"><div class="admin-item-title">'+escHtml(d.title)+' <span class="admin-badge-workspace">工作区</span></div><div class="admin-item-desc">'+escHtml((d.scenario||'').substring(0,80))+'...</div><div style="font-size:.72rem;color:var(--text-dim);margin-top:4px">生成于 '+new Date(d.createdAt).toLocaleString('zh-CN')+' · 模板: '+(d.templateSource||'未知')+' · 修改: '+((d.revisionHistory||[]).length)+'轮</div></div><div class="admin-item-actions" style="flex-wrap:wrap"><button class="btn btn-ghost btn-sm" onclick="openAiDraftDetail('+ai+')">查看</button><button class="btn btn-primary btn-sm" onclick="aiGenState.currentWorkspace='+ai+';renderAdminAiGen()">打开工作区</button><button class="btn btn-amber btn-sm" onclick="moveDraftToQueue('+ai+')">送入队列</button><button class="btn btn-danger btn-sm" onclick="deleteAiDraft('+ai+')">删除</button></div></div>';
+  });}
+  /* Published (collapsed) */
+  if(pubDrafts.length>0){
+    h+='<div class="admin-section-title" style="cursor:pointer" onclick="var el=document.getElementById(\'ai-pub-list\');el.style.display=el.style.display===\'none\'?\'block\':\'none\'">&#x2705; 已发布 ('+pubDrafts.length+') <span style="font-size:.75rem;color:var(--text-dim)">点击展开</span></div><div id="ai-pub-list" style="display:none">';
+    pubDrafts.forEach(function(d){
+      var ai=drafts.indexOf(d);
+      h+='<div class="admin-item" style="opacity:.7"><div class="admin-item-body"><div class="admin-item-title">'+escHtml(d.title)+' <span class="admin-badge-published">已发布</span></div><div style="font-size:.72rem;color:var(--text-dim)">'+new Date(d.createdAt).toLocaleString('zh-CN')+'</div></div><div class="admin-item-actions"><button class="btn btn-ghost btn-sm" onclick="openAiDraftDetail('+ai+')">查看</button></div></div>';
+    });
+    h+='</div>';
+  }
+  el.innerHTML=h;
+}
+
+/* --- AI Gen: Draft CRUD --- */
+function openAiDraftDetail(idx){
+  const d=(globalData.aiDrafts||[])[idx];if(!d)return;
+  const sl=d.draftStatus==='workspace'?'工作区':d.draftStatus==='pending'?'待发布':'已发布';
+  let revH='';
+  if(d.revisionHistory&&d.revisionHistory.length>0){
+    revH='<div class="admin-detail-row"><div class="admin-detail-label">修改历史</div><div class="admin-detail-value">';
+    d.revisionHistory.forEach(function(r){revH+='<div class="ai-revision-entry"><div class="rev-label">第'+r.round+'轮 · '+new Date(r.timestamp).toLocaleString('zh-CN')+'</div>'+escHtml(r.feedback)+'</div>';});
+    revH+='</div></div>';
+  }
+  openAdminModal('AI草稿详情: '+d.title,'<div class="admin-detail-panel"><div class="admin-detail-row"><div class="admin-detail-label">标题</div><div class="admin-detail-value">'+escHtml(d.title)+'</div></div><div class="admin-detail-row"><div class="admin-detail-label">汤面</div><div class="admin-detail-value">'+escHtml(d.scenario)+'</div></div><div class="admin-detail-row"><div class="admin-detail-label">汤底</div><div class="admin-detail-value">'+escHtml(d.truth)+'</div></div><div class="admin-detail-row"><div class="admin-detail-label">线索</div><div class="admin-detail-value">'+((d.key_clues||[]).join('、')||'—')+'</div></div><div class="admin-detail-row"><div class="admin-detail-label">提示</div><div class="admin-detail-value">'+((d.hints||[]).join(' | ')||'—')+'</div></div><div class="admin-detail-row"><div class="admin-detail-label">难度</div><div class="admin-detail-value">'+'\u2605'.repeat(d.difficulty||3)+'</div></div><div class="admin-detail-row"><div class="admin-detail-label">状态</div><div class="admin-detail-value">'+sl+'</div></div><div class="admin-detail-row"><div class="admin-detail-label">使用提示</div><div class="admin-detail-value">'+escHtml(d.promptUsed||'无')+'</div></div>'+revH+'</div>',[{text:'编辑',cls:'btn btn-primary btn-sm',onclick:'closeAdminModal();openAiDraftEdit('+idx+')'},{text:'关闭',cls:'btn btn-ghost btn-sm',onclick:'closeAdminModal()'}]);
+}
+
+function openAiDraftEdit(idx){
+  const d=(globalData.aiDrafts||[])[idx];if(!d)return;
+  openAdminModal('编辑AI草稿: '+d.title,`
+    <div class="form-group"><label class="form-label">标题</label><input type="text" class="input-field" id="ea-title" value="${escHtml(d.title)}" style="border-radius:var(--radius-sm)"></div>
+    <div class="form-group"><label class="form-label">汤面</label><textarea class="textarea-field" id="ea-scenario">${escHtml(d.scenario)}</textarea></div>
+    <div class="form-group"><label class="form-label">汤底</label><textarea class="textarea-field" id="ea-truth">${escHtml(d.truth)}</textarea></div>
+    <div class="form-group"><label class="form-label">关键线索 (逗号分隔)</label><input type="text" class="input-field" id="ea-clues" value="${escHtml((d.key_clues||[]).join(', '))}" style="border-radius:var(--radius-sm)"></div>
+    <div class="form-group"><label class="form-label">提示 (逗号分隔)</label><input type="text" class="input-field" id="ea-hints" value="${escHtml((d.hints||[]).join(', '))}" style="border-radius:var(--radius-sm)"></div>
+    <div class="form-group"><label class="form-label">难度 (1-5)</label><input type="number" class="input-field" id="ea-diff" min="1" max="5" value="${d.difficulty||3}" style="border-radius:var(--radius-sm);width:80px"></div>
+  `,[{text:'保存草稿',cls:'btn btn-amber btn-sm',onclick:'saveAiDraft('+idx+')'},{text:'取消',cls:'btn btn-ghost btn-sm',onclick:'closeAdminModal()'}]);
+}
+
+function saveAiDraft(idx){
+  const d=globalData.aiDrafts[idx];if(!d)return;
+  d.title=document.getElementById('ea-title').value.trim();
+  d.scenario=document.getElementById('ea-scenario').value.trim();
+  d.truth=document.getElementById('ea-truth').value.trim();
+  d.key_clues=document.getElementById('ea-clues').value.split(',').map(function(s){return s.trim();}).filter(Boolean);
+  d.hints=document.getElementById('ea-hints').value.split(',').map(function(s){return s.trim();}).filter(Boolean).slice(0,3);
+  d.difficulty=parseInt(document.getElementById('ea-diff').value)||3;
+  d.rules=d.key_clues.map(function(c){return[[c],'是'];});
+  saveGlobal();closeAdminModal();renderAdminAiGen();showToast('草稿已保存','success');
+}
+
+function deleteAiDraft(idx){
+  showConfirm('&#x1F5D1;&#xFE0F;','删除这个AI草稿？','此操作不可撤销',function(){
+    globalData.aiDrafts.splice(idx,1);
+    if(aiGenState.currentWorkspace===idx)aiGenState.currentWorkspace=null;
+    else if(aiGenState.currentWorkspace!==null&&aiGenState.currentWorkspace>idx)aiGenState.currentWorkspace--;
+    saveGlobal();renderAdminAiGen();showToast('草稿已删除','success');
+  });
+}
+
+/* === TAB: User Management === */
+function renderAdminUsers() {
+  const el = document.getElementById('admin-tab-users');
+  const filtered = adminUserSearch ? allUsers.filter(u=>u.username.includes(adminUserSearch)) : allUsers;
+  const tp = Math.ceil(filtered.length/ADMIN_PAGE_SIZE)||1;
+  adminUserPage = Math.min(adminUserPage,tp);
+  const start = (adminUserPage-1)*ADMIN_PAGE_SIZE;
+  const page = filtered.slice(start,start+ADMIN_PAGE_SIZE);
+
+  let h = `<div class="admin-toolbar">
+    <input type="text" class="input-field admin-search" id="adm-usr-search" placeholder="搜索用户名..." value="${escHtml(adminUserSearch)}" style="border-radius:var(--radius-sm)">
+  </div>
+  <div class="admin-table-wrap"><table class="admin-table"><thead><tr><th>用户名</th><th>角色</th><th>注册时间</th><th>已解谜题</th><th>操作</th></tr></thead><tbody>`;
+
+  page.forEach(u=>{
+    let solved=0;
+    try{const s=localStorage.getItem('turtle_soup_v3_'+u.username);if(s){const p=JSON.parse(s);solved=Object.keys(p.solvedPuzzles||{}).length;}}catch(e){}
+    const rc=u.role==='admin'?'admin-badge-admin':'admin-badge-user';
+    const isCur=currentUser&&currentUser.username===u.username;
+    const cd=u.created?new Date(u.created).toLocaleDateString('zh-CN'):'—';
+    h+=`<tr>
+      <td>${escHtml(u.username)} ${isCur?'<span style="font-size:.7rem;color:var(--teal)">(当前)</span>':''}</td>
+      <td><span class="admin-badge ${rc}">${u.role==='admin'?'管理员':'用户'}</span></td>
+      <td style="color:var(--text-dim);font-size:.8rem">${cd}</td>
+      <td style="color:var(--amber)">${solved}</td>
+      <td><div style="display:flex;gap:4px;flex-wrap:wrap">
+        <button class="btn btn-ghost btn-sm" onclick="viewUserStats('${escHtml(u.username)}')">统计</button>
+        ${!isCur?`<button class="btn btn-primary btn-sm" onclick="toggleUserRole('${escHtml(u.username)}')">${u.role==='admin'?'降为用户':'升为管理员'}</button>
+        <button class="btn btn-danger btn-sm" onclick="adminDeleteUser('${escHtml(u.username)}')">删除</button>`:''}
+      </div></td></tr>`;
+  });
+  h+='</tbody></table></div>';
+  if(tp>1){h+='<div class="admin-pagination">';for(let i=1;i<=tp;i++)h+=`<button class="admin-page-btn ${i===adminUserPage?'active':''}" onclick="adminUserPage=${i};renderAdminUsers()">${i}</button>`;h+='</div>';}
+  h+=`<div style="font-size:.75rem;color:var(--text-dim);margin-top:8px;text-align:center">共 ${filtered.length} 位用户</div>`;
+  el.innerHTML=h;
+  document.getElementById('adm-usr-search').addEventListener('input',e=>{adminUserSearch=e.target.value.trim();adminUserPage=1;renderAdminUsers();});
+}
+
+function viewUserStats(username) {
+  const u=allUsers.find(x=>x.username===username); if(!u)return;
+  let solved=0,totalQ=0,streak=0,achievements=[];
+  try{const s=localStorage.getItem('turtle_soup_v3_'+username);if(s){const p=JSON.parse(s);solved=Object.keys(p.solvedPuzzles||{}).length;totalQ=p.totalQuestions||0;streak=p.streak||0;achievements=p.achievements||[];}}catch(e){}
+  const subs=globalData.submissions.filter(s=>s.author===username);
+  openAdminModal('用户统计: '+username, `
+    <div class="admin-stats" style="margin-bottom:16px">
+      <div class="admin-stat-card"><div class="admin-stat-num">${solved}</div><div class="admin-stat-label">已解谜题</div></div>
+      <div class="admin-stat-card"><div class="admin-stat-num">${totalQ}</div><div class="admin-stat-label">总提问</div></div>
+      <div class="admin-stat-card"><div class="admin-stat-num">${streak}</div><div class="admin-stat-label">连续挑战</div></div>
+      <div class="admin-stat-card"><div class="admin-stat-num">${achievements.length}</div><div class="admin-stat-label">成就</div></div>
+    </div>
+    <div class="admin-detail-panel">
+      <div class="admin-detail-row"><div class="admin-detail-label">注册时间</div><div class="admin-detail-value">${u.created?new Date(u.created).toLocaleString('zh-CN'):'—'}</div></div>
+      <div class="admin-detail-row"><div class="admin-detail-label">角色</div><div class="admin-detail-value">${u.role}</div></div>
+      <div class="admin-detail-row"><div class="admin-detail-label">投稿数</div><div class="admin-detail-value">${subs.length}</div></div>
+      <div class="admin-detail-row"><div class="admin-detail-label">成就列表</div><div class="admin-detail-value">${achievements.length>0?achievements.join(', '):'暂无'}</div></div>
+    </div>
+  `, [{text:'关闭',cls:'btn btn-ghost btn-sm',onclick:'closeAdminModal()'}]);
+}
+
+function toggleUserRole(username) {
+  const u=allUsers.find(x=>x.username===username); if(!u)return;
+  const nr=u.role==='admin'?'user':'admin';
+  const act=nr==='admin'?'升为管理员':'降为普通用户';
+  showConfirm('&#x1F504;',`确定将 ${username} ${act}？`,'此操作会改变用户权限',()=>{
+    u.role=nr;saveUsers();renderAdminUsers();showToast(`${username} 已${act}`,'success');
+  });
+}
+
+function adminDeleteUser(username) {
+  showConfirm('&#x1F5D1;&#xFE0F;',`确定删除用户 ${username}？`,'删除后该用户数据将被清除',()=>{
+    allUsers=allUsers.filter(u=>u.username!==username);saveUsers();
+    try{localStorage.removeItem('turtle_soup_v3_'+username);}catch(e){}
+    renderAdminUsers();showToast(`用户 ${username} 已删除`,'success');
+  });
+}
+
+/* ============================================
+   TOAST NOTIFICATIONS
+   ============================================ */
+function showToast(msg, type = 'info') {
+  const container = document.getElementById('toast-container');
+  const toast = document.createElement('div');
+  toast.className = `toast toast-${type}`;
+  toast.textContent = msg;
+  container.appendChild(toast);
+  setTimeout(() => toast.remove(), 3200);
+}
+
+/* ============================================
+   CUSTOM CONFIRM DIALOG
+   ============================================ */
+let confirmCallback = null;
+function showConfirm(icon, title, desc, onOk) {
+  document.getElementById('confirm-icon').textContent = icon;
+  document.getElementById('confirm-title').textContent = title;
+  document.getElementById('confirm-desc').textContent = desc;
+  confirmCallback = onOk;
+  document.getElementById('confirm-dialog').classList.add('open');
+}
+function initConfirmDialog() {
+  document.getElementById('confirm-cancel').addEventListener('click', () => {
+    document.getElementById('confirm-dialog').classList.remove('open');
+    sfxClick();
+  });
+  document.getElementById('confirm-ok').addEventListener('click', () => {
+    document.getElementById('confirm-dialog').classList.remove('open');
+    if (confirmCallback) confirmCallback();
+    sfxClick();
+  });
+}
+
+/* ============================================
+   SCORE CALCULATION
+   ============================================ */
+function calculateGameScore() {
+  const base = 1000;
+  const qPenalty = state.questions.length * 20;
+  const hintPenalty = state.hintsUsed > 0 ? [10,20,30].slice(0, state.hintsUsed).reduce((a,b)=>a+b,0) : 0;
+  const timePenalty = state.elapsed;
+  return Math.max(base - qPenalty - hintPenalty - timePenalty, 100);
+}
+function updateScore() {
+  const score = calculateGameScore();
+  document.getElementById('current-score').textContent = score;
+}
+
+/* ============================================
+   STREAK SYSTEM
+   ============================================ */
+function updateStreak() {
+  const today = new Date().toISOString().split('T')[0];
+  if (state.lastPlayDate) {
+    const last = new Date(state.lastPlayDate);
+    const now = new Date(today);
+    const diff = Math.floor((now - last) / 86400000);
+    if (diff === 1) {
+      state.streak = (state.streak || 0) + 1;
+    } else if (diff > 1) {
+      state.streak = 1;
+    }
+    // same day: don't change streak
+  } else {
+    state.streak = 1;
+  }
+  state.lastPlayDate = today;
+}
+function updateStreakBar() {
+  const solvedCount = Object.keys(state.solvedPuzzles).length;
+  document.getElementById('streak-count').textContent = state.streak || 0;
+  document.getElementById('total-solved').textContent = solvedCount;
+  document.getElementById('total-questions').textContent = state.totalQuestions || 0;
+}
+
+/* ============================================
+   SHARE CARD
+   ============================================ */
+function showShareCard(score) {
+  const p = getCurrentPuzzle();
+  document.getElementById('share-card').style.display = 'block';
+  document.getElementById('share-day').textContent = getDayNumber();
+  document.getElementById('share-puzzle-name').textContent = p.title;
+  document.getElementById('share-time').textContent = formatTime(state.elapsed);
+  document.getElementById('share-questions').textContent = state.questions.length;
+  document.getElementById('share-hints').textContent = state.hintsUsed;
+  document.getElementById('share-score').textContent = score;
+
+  // Build emoji grid of question results
+  const grid = document.getElementById('share-grid');
+  grid.innerHTML = '';
+  state.questions.forEach(q => {
+    const block = document.createElement('div');
+    block.className = `share-block ${q.answer === '是' ? 'yes' : q.answer === '否' ? 'no' : 'irr'}`;
+    block.textContent = q.answer === '是' ? '✓' : q.answer === '否' ? '✗' : '—';
+    grid.appendChild(block);
+  });
+}
+
+function initShareCard() {
+  document.getElementById('copy-share-btn').addEventListener('click', () => {
+    const p = getCurrentPuzzle();
+    const emojis = state.questions.map(q => q.answer === '是' ? '🟢' : q.answer === '否' ? '🔴' : '⚪').join('');
+    const text = `🐢 每日海龟汤 #${getDayNumber()} — ${p.title}\n⏱ ${formatTime(state.elapsed)} | ❓ ${state.questions.length}问 | ⭐ ${calculateGameScore()}分\n${emojis}\n来挑战吧！`;
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(text).then(() => showToast('已复制分享内容！', 'success'));
+    } else {
+      // Fallback
+      const ta = document.createElement('textarea');
+      ta.value = text;
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand('copy');
+      document.body.removeChild(ta);
+      showToast('已复制分享内容！', 'success');
+    }
+    sfxClick();
+  });
+
+  document.getElementById('next-puzzle-btn').addEventListener('click', () => {
+    // Go to next unsolved puzzle in archive
+    const currentId = getCurrentPuzzle().id;
+    let nextIdx = -1;
+    for (let i = 0; i < PUZZLES.length; i++) {
+      if (!state.solvedPuzzles[PUZZLES[i].id] && PUZZLES[i].id !== currentId) {
+        nextIdx = i;
+        break;
+      }
+    }
+    if (nextIdx >= 0) {
+      state.currentPuzzleIndex = nextIdx;
+      state.questions = [];
+      state.hintsUsed = 0;
+      state.solved = false;
+      state.givenUp = false;
+      state.startTime = Date.now();
+      state.elapsed = 0;
+      saveState();
+      resetGameUI();
+      renderPuzzle();
+      stopTimer();
+      startTimer();
+      updateScore();
+      showToast(`已切换到「${PUZZLES[nextIdx].title}」`, 'info');
+    } else {
+      showToast('所有谜题都解完了！等待明天的新题吧', 'info');
+    }
+    sfxClick();
+  });
+}
+
+/* ============================================
+   ACHIEVEMENTS
+   ============================================ */
+function unlockAchievement(id) {
+  if (!state.achievements) state.achievements = [];
+  if (state.achievements.includes(id)) return;
+  state.achievements.push(id);
+  saveState();
+  const ach = ACHIEVEMENTS.find(a => a.id === id);
+  if (ach) {
+    showToast(`🏅 成就解锁：${ach.name}`, 'success');
+    sfxHint();
+  }
+}
+
+function renderAchievements() {
+  const grid = document.getElementById('achievement-grid');
+  grid.innerHTML = '';
+  ACHIEVEMENTS.forEach(ach => {
+    const unlocked = (state.achievements || []).includes(ach.id);
+    const card = document.createElement('div');
+    card.className = `achievement-card ${unlocked ? 'unlocked' : 'locked'}`;
+    card.innerHTML = `
+      <div class="achievement-icon">${ach.icon}</div>
+      <div class="achievement-name">${ach.name}</div>
+      <div class="achievement-desc">${ach.desc}</div>
+      ${unlocked ? '<div class="achievement-badge">✓</div>' : ''}
+    `;
+    grid.appendChild(card);
+  });
+}
+
+/* ============================================
+   USER AUTH SYSTEM
+   ============================================ */
+function initWelcome() {
+  if (!currentUser) {
+    document.getElementById('welcome-modal').style.display = 'flex';
+  } else {
+    updateUserBadge();
+  }
+
+  // Tab switching
+  document.getElementById('auth-login-tab').addEventListener('click', () => {
+    document.getElementById('auth-login-tab').classList.add('active');
+    document.getElementById('auth-register-tab').classList.remove('active');
+    document.getElementById('auth-login-form').style.display = 'block';
+    document.getElementById('auth-register-form').style.display = 'none';
+  });
+  document.getElementById('auth-register-tab').addEventListener('click', () => {
+    document.getElementById('auth-register-tab').classList.add('active');
+    document.getElementById('auth-login-tab').classList.remove('active');
+    document.getElementById('auth-register-form').style.display = 'block';
+    document.getElementById('auth-login-form').style.display = 'none';
+  });
+
+  // Login
+  document.getElementById('login-btn').addEventListener('click', doLogin);
+  document.getElementById('login-password').addEventListener('keydown', e => { if(e.key==='Enter') doLogin(); });
+
+  // Register
+  document.getElementById('register-btn').addEventListener('click', doRegister);
+  document.getElementById('reg-password2').addEventListener('keydown', e => { if(e.key==='Enter') doRegister(); });
+
+  // Logout via user badge
+  document.getElementById('user-badge').addEventListener('click', () => {
+    if (!currentUser) return;
+    showConfirm('👋', '确定要登出吗？', '你的游戏进度已保存', () => {
+      currentUser = null;
+      localStorage.removeItem('turtle_soup_current_user');
+      location.reload();
+    });
+  });
+}
+
+function doLogin() {
+  const username = document.getElementById('login-username').value.trim();
+  const password = document.getElementById('login-password').value;
+  const errEl = document.getElementById('login-error');
+  errEl.style.display = 'none';
+
+  if (!username || !password) { errEl.textContent='请填写用户名和密码';errEl.style.display='block';return; }
+
+  const user = allUsers.find(u => u.username === username && u.password === password);
+  if (!user) { errEl.textContent='用户名或密码错误';errEl.style.display='block';return; }
+
+  currentUser = user;
+  localStorage.setItem('turtle_soup_current_user', username);
+  // Load user-specific state
+  loadUserState(username);
+  document.getElementById('welcome-modal').style.display = 'none';
+  updateUserBadge();
+  sfxSolve();
+  ensureAudio();
+  // Re-render everything with user data
+  renderPuzzle();
+  updateStreakBar();
+  updateScore();
+  renderMySubmissions();
+}
+
+function doRegister() {
+  const username = document.getElementById('reg-username').value.trim();
+  const password = document.getElementById('reg-password').value;
+  const password2 = document.getElementById('reg-password2').value;
+  const errEl = document.getElementById('reg-error');
+  errEl.style.display = 'none';
+
+  if (!username || username.length < 2) { errEl.textContent='用户名至少2个字';errEl.style.display='block';return; }
+  if (password.length < 4) { errEl.textContent='密码至少4位';errEl.style.display='block';return; }
+  if (password !== password2) { errEl.textContent='两次密码不一致';errEl.style.display='block';return; }
+  if (allUsers.find(u => u.username === username)) { errEl.textContent='用户名已存在';errEl.style.display='block';return; }
+
+  const user = { username, password, role: 'user', created: new Date().toISOString() };
+  allUsers.push(user);
+  saveUsers();
+
+  currentUser = user;
+  localStorage.setItem('turtle_soup_current_user', username);
+  state.playerName = username;
+  state.welcomed = true;
+  saveState();
+  document.getElementById('welcome-modal').style.display = 'none';
+  updateUserBadge();
+  sfxSolve();
+  ensureAudio();
+}
+
+function loadUserState(username) {
+  const key = LS_KEY + '_' + username;
+  try {
+    const s = localStorage.getItem(key);
+    if (s) {
+      const parsed = JSON.parse(s);
+      Object.assign(state, parsed);
+    }
+  } catch(e) {}
+  state.playerName = username;
+}
+
+function saveState() {
+  const key = currentUser ? (LS_KEY + '_' + currentUser.username) : LS_KEY;
+  try { localStorage.setItem(key, JSON.stringify(state)); } catch(e) {}
+}
+
+function loadState() {
+  const savedUsername = localStorage.getItem('turtle_soup_current_user');
+  if (savedUsername) {
+    const user = allUsers.find(u => u.username === savedUsername);
+    if (user) {
+      currentUser = user;
+      loadUserState(savedUsername);
+      return;
+    }
+  }
+  // Fallback: try loading anonymous state
+  try {
+    const s = localStorage.getItem(LS_KEY);
+    if (s) { const parsed = JSON.parse(s); Object.assign(state, parsed); }
+  } catch(e) {}
+}
+
+function updateUserBadge() {
+  const el = document.getElementById('user-badge');
+  if (currentUser) {
+    const roleLabel = currentUser.role === 'admin' ? ' 🛡️' : '';
+    el.textContent = '👤 ' + currentUser.username + roleLabel;
+    el.title = '点击登出';
+  } else {
+    el.textContent = '';
+  }
+  // Show/hide admin nav button
+  const adminNavExists = document.querySelector('.nav-btn[data-view="admin"]');
+  if (isAdmin() && !adminNavExists) {
+    const nav = document.getElementById('app-nav');
+    const btn = document.createElement('button');
+    btn.className = 'nav-btn';
+    btn.dataset.view = 'admin';
+    btn.textContent = '🛡️ 管理面板';
+    btn.addEventListener('click', () => switchView('admin'));
+    nav.appendChild(btn);
+  }
+  if (!isAdmin() && adminNavExists) {
+    adminNavExists.remove();
+  }
+}
+
+/* ============================================
+   KEYBOARD SHORTCUTS
+   ============================================ */
+function initKeyboard() {
+  document.addEventListener('keydown', e => {
+    // Don't trigger if typing in an input
+    if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+    if (document.getElementById('welcome-modal').style.display !== 'none') return;
+
+    switch(e.key) {
+      case '1': switchView('game'); break;
+      case '2': switchView('leaderboard'); break;
+      case '3': switchView('archive'); break;
+      case '4': switchView('achievements'); break;
+      case 'g': case 'G':
+        if (!state.solved && !state.givenUp) {
+          document.getElementById('guess-btn').click();
+        }
+        break;
+      case 'h': case 'H':
+        if (!state.solved && !state.givenUp && state.hintsUsed < 3) {
+          const cards = document.querySelectorAll('.hint-card.locked');
+          if (cards.length > 0) cards[0].click();
+        }
+        break;
+      case '/':
+        e.preventDefault();
+        document.getElementById('question-input').focus();
+        break;
+    }
+  });
+}
+
+/* ============================================
+   INITIALIZATION
+   ============================================ */
+function init() {
+  // Load user accounts and global data first
+  loadUsers();
+  loadGlobal();
+  ensureAdminAccount();
+
+  // Restore persisted custom and approved puzzles into runtime PUZZLES array
+  (globalData.customPuzzles || []).forEach(p => { if(!PUZZLES.find(x=>x.id===p.id)) PUZZLES.push(p); });
+  (globalData.approvedPuzzles || []).forEach(p => { if(!PUZZLES.find(x=>x.id===p.id)) PUZZLES.push(p); });
+
+  // Load user-specific state (or anonymous)
+  loadState();
+
+  // Ensure new state fields exist
+  if (!state.achievements) state.achievements = [];
+  if (!state.totalQuestions) state.totalQuestions = 0;
+  if (!state.streak) state.streak = 0;
+  if (!state.solvedPuzzles) state.solvedPuzzles = {};
+  if (state.welcomed === undefined) state.welcomed = false;
+
+  // Check if it's a new day
+  const todayIndex = getDayIndex();
+  const today = new Date().toISOString().split('T')[0];
+  const isNewDay = state.dailyPuzzleId !== todayIndex;
+
+  if (isNewDay) {
+    // Save old puzzle progress if it was solved
+    state.currentPuzzleIndex = todayIndex;
+    state.questions = [];
+    state.hintsUsed = 0;
+    state.solved = !!state.solvedPuzzles[PUZZLES[todayIndex].id];
+    state.givenUp = false;
+    state.startTime = null;
+    state.elapsed = 0;
+    state.dailyPuzzleId = todayIndex;
+    saveState();
+  }
+
+  initBubbles();
+  initNav();
+  initChat();
+  initAnswerModal();
+  initGiveUp();
+  initSubmit();
+  initAdmin();
+  initLeaderboardTabs();
+  initWelcome();
+  initConfirmDialog();
+  initShareCard();
+  initKeyboard();
+
+  renderPuzzle();
+  renderMySubmissions();
+  updateStreakBar();
+  updateScore();
+  startTimer();
+
+  // If already solved, show share card
+  if (state.solved) {
+    const p = getCurrentPuzzle();
+    const saved = state.solvedPuzzles[p.id];
+    if (saved) showShareCard(saved.score);
+  }
+}
+
+document.addEventListener('DOMContentLoaded', init);
+</script>
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js/v8c78df7c7c0f484497ecbca7046644da1771523124516" integrity="sha512-8DS7rgIrAmghBFwoOTujcf6D9rXvH8xm8JQ1Ja01h9QX8EzXldiszufYa4IFfKdLUKTTrnSFXLDkUEOTrZQ8Qg==" data-cf-beacon='{"version":"2024.11.0","token":"75124c326cb447fe934cde04713ae013","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
+</body>
+</html>
